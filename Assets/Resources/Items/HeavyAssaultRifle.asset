@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e82e28147cfc44c41ab396ba9e1972d9, type: 3}
+  m_Name: HeavyAssaultRifle
+  m_EditorClassIdentifier: 
+  id: 9
+  name: Heavy Assault Rifle
+  icon: {fileID: 21300000, guid: fa216931b72f87b4dbed3700340e625f, type: 3}
+  muzzlePosition: {x: 6.12, y: 0.11, z: 0}
+  position: {x: -3.99, y: -15.51, z: 0}
+  positionFlipped: {x: -3.98, y: 19.51, z: 0}
+  scale: {x: 9, y: 9, z: 9}
+  rotation: {x: 0, y: 0, z: -0.9}
+  rotationFlipped: {x: 0, y: 0, z: 0}
+  spawnPosition: {x: 0.2, y: -5.05, z: 0}
+  spawnScale: {x: 2.4, y: 2.4, z: 2.4}
+  spawnRotation: {x: 0, y: 0, z: 0}
+  switchOffset: {x: 0.3, y: 3.58, z: 0}
+  bullet: {fileID: 1301045824902992, guid: e556b3574128fde42a64d7d8e3b11022, type: 2}
+  shell: {fileID: 1934366033084884, guid: 8a2327c718fac0044b716a0b2e4d175d, type: 2}
+  magazineSize: 45
+  reloadTime: 3.5
+  mass: 1.6
+  axisToFlip: 1
+  bloom: 0.25
+  recoil: 200
+  impact: 1000
+  fireRate: 3.85
+  muzzleFlashScale: {x: 3.77, y: 10, z: 0}
+  itemModel: {fileID: 1448881644258168, guid: e20246124ec894646ae1aeb279fd660c, type: 2}
+  bulletSplit: 1
+  burstSize: 0
+  burstTime: 0
+  mag: 1
+  currentBullets: 45
+  ItemColliderPos: {x: 0, y: 0, z: 0}
+  damage: 12
+  special: 0
+  shot: {fileID: 8300000, guid: 5586c21deeda24147a0dcbdb99f7991b, type: 3}
+  reload: {fileID: 8300000, guid: d64c5d7f543d02b4da4f48c06cf7f5ee, type: 3}
+  heal: 0

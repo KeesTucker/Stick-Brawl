@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e82e28147cfc44c41ab396ba9e1972d9, type: 3}
+  m_Name: DoubleBarreledShotgun - Copy
+  m_EditorClassIdentifier: 
+  id: 8
+  name: Double Barreled Shotgun
+  icon: {fileID: 21300000, guid: a6788b91ede080f48ac096206399599a, type: 3}
+  muzzlePosition: {x: 11.69, y: -0.47, z: 0}
+  position: {x: 4.3, y: 3.93, z: 0}
+  positionFlipped: {x: 3.99, y: -0.53, z: 0}
+  scale: {x: 6, y: 6, z: 6}
+  rotation: {x: 0, y: 0, z: 0}
+  rotationFlipped: {x: 0, y: 0, z: 0}
+  spawnPosition: {x: 1.03, y: 0.43, z: 0}
+  spawnScale: {x: 1.4, y: 1.4, z: 1.4}
+  spawnRotation: {x: 0, y: 0, z: 0}
+  switchOffset: {x: 0.31, y: 4.46, z: 0}
+  bullet: {fileID: 1332045582774856, guid: fb70fb69213da4c458093f6f0529cc5f, type: 2}
+  shell: {fileID: 1934366033084884, guid: 8a2327c718fac0044b716a0b2e4d175d, type: 2}
+  magazineSize: 2
+  reloadTime: 1.6
+  mass: 1.2
+  axisToFlip: 1
+  bloom: 1.2
+  recoil: 700
+  impact: 1500
+  fireRate: 3
+  muzzleFlashScale: {x: 5, y: 12, z: 0}
+  itemModel: {fileID: 1433198901942048, guid: c7e9869a3ef55714d918f7ba5e24a059, type: 2}
+  bulletSplit: 4
+  burstSize: 0
+  burstTime: 0
+  mag: 0
+  currentBullets: 1
+  ItemColliderPos: {x: 0, y: 0, z: 0}
+  damage: 15
+  special: 0
+  shot: {fileID: 8300000, guid: aa1642b718732394bb5a96b1f4888dc6, type: 3}
+  reload: {fileID: 8300000, guid: 516311f5091a52844bd759e07ee88add, type: 3}
+  heal: 0

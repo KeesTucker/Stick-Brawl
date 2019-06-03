@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e82e28147cfc44c41ab396ba9e1972d9, type: 3}
+  m_Name: BoltActionSniper
+  m_EditorClassIdentifier: 
+  id: 2
+  name: Bolt-Action Sniper
+  icon: {fileID: 21300000, guid: fef166ab3cc961b419d0380e6343b369, type: 3}
+  muzzlePosition: {x: 19.3, y: 0.3, z: 0}
+  position: {x: 4.5, y: 3.01, z: 0}
+  positionFlipped: {x: 4.15, y: 2.23, z: 0}
+  scale: {x: 4, y: 4, z: 4}
+  rotation: {x: -1.92, y: -90, z: 0}
+  rotationFlipped: {x: 0, y: 0, z: 0}
+  spawnPosition: {x: -0.06, y: -0.02, z: 0}
+  spawnScale: {x: 0.75, y: 0.75, z: 0.75}
+  spawnRotation: {x: 0, y: -90, z: 0}
+  switchOffset: {x: 0.4, y: 3.6, z: 0}
+  bullet: {fileID: 1970557568902668, guid: 2b1d4fd5c37e56b4da603f6d6c50ead1, type: 2}
+  shell: {fileID: 1934366033084884, guid: 8a2327c718fac0044b716a0b2e4d175d, type: 2}
+  magazineSize: 1
+  reloadTime: 0
+  mass: 1.5
+  axisToFlip: 3
+  bloom: 0
+  recoil: 750
+  impact: 3000
+  fireRate: 0.4
+  muzzleFlashScale: {x: 4.5, y: 16, z: 0}
+  itemModel: {fileID: 1856421119672694, guid: 240b879865ca8f644bbe6242a89ca88c, type: 2}
+  bulletSplit: 1
+  burstSize: 0
+  burstTime: 0
+  mag: 1
+  currentBullets: 1
+  ItemColliderPos: {x: 0, y: 0, z: 0}
+  damage: 105
+  special: 0
+  shot: {fileID: 8300000, guid: 1e0ede1f8425429459d557b7b0b9dff3, type: 3}
+  reload: {fileID: 0}
+  heal: 0

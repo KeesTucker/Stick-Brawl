@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - volume
+  - sfx
+  - Chunk
+  - Ragdoll
+  - PosRelay
+  - WeaponItem
+  - GrappleHand
+  - TerrainPart
+  - WeaponSpawn
+  - Hands
+  - Feet
+  - NoAttract
+  - BackgroundElement
+  - NoGrapple
+  - Breakable
+  - ButtonMenu
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - PostProcessing
+  - Bullets
+  - Guns
+  - Items
+  - Ground
+  - Grapples
+  - IgnoreCollisions
+  - Player
+  - Object
+  - Shells
+  - Ghost
+  - GhostProj
+  - GunCollide
+  - PlayerNew
+  - Seed
+  - Rocket
+  - AI
+  - Box
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

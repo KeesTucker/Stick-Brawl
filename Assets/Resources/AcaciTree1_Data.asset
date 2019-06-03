@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85328ea39ada0aa44af496b626a4f5e9, type: 3}
+  m_Name: AcaciTree1_Data
+  m_EditorClassIdentifier: 
+  dataName: AcaciTree1
+  dragonBonesJSON: {fileID: 4900000, guid: eca4d0f0a58125d45bb108011608e979, type: 3}
+  textureAtlas:
+  - textureAtlasJSON: {fileID: 4900000, guid: 2c3d626593f88d04a84e6b28b6887dc5, type: 3}
+    texture: {fileID: 2800000, guid: 7846db6d43618d34e9c1284ff1ad4e0d, type: 3}
+    material: {fileID: 2100000, guid: 834f4df1d29dc314e9129f49521008f9, type: 2}
+    uiMaterial: {fileID: 0}

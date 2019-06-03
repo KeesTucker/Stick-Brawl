@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85328ea39ada0aa44af496b626a4f5e9, type: 3}
+  m_Name: TreeDesert_Data
+  m_EditorClassIdentifier: 
+  dataName: TreeDesert
+  dragonBonesJSON: {fileID: 4900000, guid: ed803bcef75d05149856466b5e66474f, type: 3}
+  textureAtlas:
+  - textureAtlasJSON: {fileID: 4900000, guid: e28d0f881ae895f42803cd98f0ce851e, type: 3}
+    texture: {fileID: 2800000, guid: 9c5e4574a050e574e9f79caa4bd8f1ca, type: 3}
+    material: {fileID: 2100000, guid: d553624a86c28c545855a2d5ad7298c3, type: 2}
+    uiMaterial: {fileID: 0}

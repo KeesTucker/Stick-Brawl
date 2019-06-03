@@ -1,0 +1,230 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1229615253974006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4160757301118708}
+  - component: {fileID: 114812450365707318}
+  - component: {fileID: 363097206}
+  - component: {fileID: 9035509261113446417}
+  - component: {fileID: 1486324774}
+  - component: {fileID: 1486324776}
+  - component: {fileID: 9205465908520443044}
+  m_Layer: 0
+  m_Name: _NetworkManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4160757301118708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229615253974006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114812450365707318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229615253974006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aafc5915553c9f9498c8131a1686cab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentID: 0
+--- !u!114 &363097206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229615253974006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5671dcb80f9d69240b71f5612676a3fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnClientConnected:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnClientDataReceived:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.UnityEventArraySegment, Mirror, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnClientError:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.UnityEventException, Mirror, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnClientDisconnected:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnServerConnected:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.UnityEventInt, Mirror, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  OnServerDataReceived:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.UnityEventIntArraySegment, Mirror, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnServerError:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.UnityEventIntException, Mirror, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnServerDisconnected:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.UnityEventInt, Mirror, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  clientAddress: 127.0.0.1
+  serverIPv4BindAddress: 0.0.0.0
+  serverIPv6BindAddress: '::'
+  port: 7777
+  useUpnP: 1
+  maxConnections: 20
+  ipv6Enabled: 1
+  channels: 0300000000000000020000000400000001000000
+  authCode: 
+  updateTime: 15
+  pingInterval: 1000
+  disconnectTimeout: 5000
+  reconnectDelay: 500
+  maxConnectAttempts: 10
+  simulatePacketLoss: 0
+  simulationPacketLossChance: 10
+  simulateLatency: 0
+  simulationMinLatency: 30
+  simulationMaxLatency: 100
+  onClientSocketError:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.LiteNetLib4Mirror.UnityEventError, Mirror, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onServerSocketError:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.LiteNetLib4Mirror.UnityEventIntError, Mirror, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &9035509261113446417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229615253974006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aab4c8111b7c411b9b92cf3dbc5bd4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 1
+  runInBackground: 0
+  startOnHeadless: 0
+  serverTickRate: 30
+  showDebugMessages: 0
+  offlineScene: Lobby
+  onlineScene: Main
+  transport: {fileID: 363097206}
+  networkAddress: localhost
+  maxConnections: 4
+  playerPrefab: {fileID: 1798705481898108, guid: 9559fef88bd38da419844d62e9fff83d,
+    type: 3}
+  autoCreatePlayer: 1
+  playerSpawnMethod: 0
+  spawnPrefabs:
+  - {fileID: 1617520046985736, guid: da30013b553d3db4fa1a7d9491184f73, type: 3}
+  - {fileID: 1757743736535976, guid: a2ab57fb811728d4b8e6d0fd2cc945ba, type: 3}
+  - {fileID: 1881230412041522, guid: eddec3f38fcb0644da1b4a8e5d33588a, type: 3}
+  - {fileID: 1989945171437490, guid: b89332b51ea1ef04c9ae97043df98cd5, type: 3}
+  - {fileID: 1822163060209856, guid: 98dd924f011935e4a9d28ee383b99329, type: 3}
+  - {fileID: 1812291429154494, guid: 3e3d265b7e73163438623709c2ebd8c1, type: 3}
+  - {fileID: 1518451573490538, guid: 5f2943bf059b13548be7f82c2c00422f, type: 3}
+  - {fileID: 1367329845884602, guid: 1a072b5345bcc6943b070d6a03bf0b9c, type: 3}
+  - {fileID: 1547343565134876, guid: 102edce82a0f39840b2cd8a5cd6612f7, type: 3}
+  - {fileID: 1961334030262914, guid: 41b5b74b7af68d74eaf82c8d6a4ae823, type: 3}
+  - {fileID: 1521237967344724, guid: 1e4d7b5d63bfb0f4a8abc0416f357edd, type: 3}
+  - {fileID: 1061426083749792, guid: 8f89e1d9acfbce34cb1fa165946ed7df, type: 3}
+  - {fileID: 1666995441803532, guid: 617ef2ae822289e4c91168c9fb58697d, type: 3}
+  - {fileID: 1190359694676026, guid: 2a9f07e348e1ca445bb6f12f4354232f, type: 3}
+  - {fileID: 1863524919597770, guid: 905773958cc2ea54f9937555f4b03bbb, type: 3}
+  - {fileID: 1367589208815292, guid: f75e2b17dfa1cda4e80936cd2e1b464d, type: 3}
+  - {fileID: 1819630250974710, guid: 2f6c11c370697a545b4d27371829bead, type: 3}
+  - {fileID: 1499256669777014, guid: e6e41e5e9d3f77b46be113770613170c, type: 3}
+  - {fileID: 1177587362103768, guid: 15764b67c6eed154a844fe52f22d36b7, type: 3}
+  - {fileID: 1926635873979608, guid: abb0a343ab4c4fc4695624f58927520b, type: 3}
+  - {fileID: 1774387969591122, guid: e49944a2deb22fb438b3bb990f895a5b, type: 3}
+  - {fileID: 1266252095945962, guid: c7a1025521be71c4484afdfda080129c, type: 3}
+  - {fileID: 1852793469177754, guid: 7aad48c452c5de74584ab8a9fb3fbff1, type: 3}
+  - {fileID: 1504159081922394, guid: a8fd0a0129e540a4a9c3717400fc0835, type: 3}
+  - {fileID: 1563178683742798, guid: 7f35ffeeff3f2a64492125b5f907f1d5, type: 3}
+  - {fileID: 1384572599709050, guid: 315485d8843a72f4f9ffe36c8f1f9892, type: 3}
+  - {fileID: 1805788155736632, guid: b687d0250711cda45a640536700202c5, type: 3}
+--- !u!114 &1486324774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229615253974006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4982f260dd876ef46978b7d5365e4c2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  discoveryInterval: 1
+--- !u!114 &1486324776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229615253974006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGUI: 1
+  offsetX: 0
+  offsetY: 0
+--- !u!114 &9205465908520443044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229615253974006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f60b04ea5d7e9843a9407ce527f96d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDiscoveryResponse:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.LiteNetLib4Mirror.UnityEventIpEndpointString, Mirror, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  ports: 611e

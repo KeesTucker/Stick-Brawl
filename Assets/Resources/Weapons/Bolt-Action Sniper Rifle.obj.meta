@@ -1,0 +1,125 @@
+fileFormatVersion: 2
+guid: 61648f0fa9a02f04aaedc635bfd3f916
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: SR_3__Ca_on
+    100004: SR_3__Cargador
+    100006: SR_3__Cerrojo
+    100008: SR_3__Cuerpo_Cuerpo1
+    100010: SR_3__Gatillo
+    100012: SR_3__Mira
+    400000: //RootNode
+    400002: SR_3__Ca_on
+    400004: SR_3__Cargador
+    400006: SR_3__Cerrojo
+    400008: SR_3__Cuerpo_Cuerpo1
+    400010: SR_3__Gatillo
+    400012: SR_3__Mira
+    2100000: SR_3__Ca_onMat
+    2100002: SR_3__CargadorMat
+    2100004: SR_3__CerrojoMat
+    2100006: SR_3__Cuerpo_Cuerpo1Mat
+    2100008: SR_3__GatilloMat
+    2100010: SR_3__MiraMat
+    2300000: SR_3__Ca_on
+    2300002: SR_3__Cargador
+    2300004: SR_3__Cerrojo
+    2300006: SR_3__Cuerpo_Cuerpo1
+    2300008: SR_3__Gatillo
+    2300010: SR_3__Mira
+    3300000: SR_3__Ca_on
+    3300002: SR_3__Cargador
+    3300004: SR_3__Cerrojo
+    3300006: SR_3__Cuerpo_Cuerpo1
+    3300008: SR_3__Gatillo
+    3300010: SR_3__Mira
+    4300000: SR_3__Ca_on
+    4300002: SR_3__Cargador
+    4300004: SR_3__Cerrojo
+    4300006: SR_3__Cuerpo_Cuerpo1
+    4300008: SR_3__Gatillo
+    4300010: SR_3__Mira
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e82e28147cfc44c41ab396ba9e1972d9, type: 3}
+  m_Name: Pistol
+  m_EditorClassIdentifier: 
+  id: 0
+  name: Pistol
+  icon: {fileID: 21300000, guid: 8f2e67f2e41aea7489d060b8f8056f78, type: 3}
+  muzzlePosition: {x: 1.85, y: -0.08, z: 0}
+  position: {x: -2.17, y: 0.45, z: 0}
+  positionFlipped: {x: -2.17, y: 3.93, z: 0}
+  scale: {x: 4, y: 4, z: 4}
+  rotation: {x: 7.84, y: -90, z: 0}
+  rotationFlipped: {x: -8.26, y: 0, z: 0}
+  spawnPosition: {x: 0.08, y: -1.01, z: 0}
+  spawnScale: {x: 2.3, y: 2.3, z: 2.3}
+  spawnRotation: {x: 0, y: 90, z: 0}
+  switchOffset: {x: -0.65, y: 4.58, z: 0}
+  bullet: {fileID: 1299477897655968, guid: ff97ee52b8bc425479a64c5d916c105d, type: 2}
+  shell: {fileID: 1934366033084884, guid: 8a2327c718fac0044b716a0b2e4d175d, type: 2}
+  magazineSize: 14
+  reloadTime: 1.6
+  mass: 0.5
+  axisToFlip: 3
+  bloom: 0.5
+  recoil: 50
+  impact: 650
+  fireRate: 2.1
+  muzzleFlashScale: {x: 3.77, y: 10, z: 0}
+  itemModel: {fileID: 1989280828092562, guid: bc9c3a875b8d9004e8e9866ef6d82088, type: 2}
+  bulletSplit: 1
+  burstSize: 0
+  burstTime: 0
+  mag: 1
+  currentBullets: 14
+  ItemColliderPos: {x: 0, y: 0, z: 0}
+  damage: 28
+  special: 0
+  shot: {fileID: 8300000, guid: e0a27140faec2d349afb2c09c42830fe, type: 3}
+  reload: {fileID: 8300000, guid: 119fd31ddebc9e748ac6e9ae892e8158, type: 3}

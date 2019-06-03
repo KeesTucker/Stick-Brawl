@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e82e28147cfc44c41ab396ba9e1972d9, type: 3}
+  m_Name: Revolver
+  m_EditorClassIdentifier: 
+  id: 11
+  name: Revolver
+  icon: {fileID: 21300000, guid: aa3b049e1e031594c97b7dbf635b811a, type: 3}
+  muzzlePosition: {x: 2.36, y: -1.36, z: 0}
+  position: {x: -2.67, y: 2.67, z: 0}
+  positionFlipped: {x: -2.5, y: 0.74, z: 0}
+  scale: {x: 5, y: 5, z: 5}
+  rotation: {x: 7.84, y: 90, z: 0}
+  rotationFlipped: {x: -8.26, y: 0, z: 0}
+  spawnPosition: {x: 0, y: 0.11, z: 0}
+  spawnScale: {x: 2.5, y: 2.5, z: 2.5}
+  spawnRotation: {x: 0, y: 90, z: 0}
+  switchOffset: {x: 0.22, y: 5.32, z: 0}
+  bullet: {fileID: 1301045824902992, guid: e556b3574128fde42a64d7d8e3b11022, type: 2}
+  shell: {fileID: 1934366033084884, guid: 8a2327c718fac0044b716a0b2e4d175d, type: 2}
+  magazineSize: 6
+  reloadTime: 2.3
+  mass: 0.6
+  axisToFlip: 3
+  bloom: 0.6
+  recoil: 650
+  impact: 1500
+  fireRate: 1.3
+  muzzleFlashScale: {x: 3.77, y: 10, z: 0}
+  itemModel: {fileID: 1107380556221144, guid: a6eaab580cd77b44887414596333353b, type: 2}
+  bulletSplit: 1
+  burstSize: 0
+  burstTime: 0
+  mag: 1
+  currentBullets: 6
+  ItemColliderPos: {x: 0, y: 0, z: 0}
+  damage: 55
+  special: 0
+  shot: {fileID: 8300000, guid: 5083b2159f8fe7e4bb49e10244cb7420, type: 3}
+  reload: {fileID: 8300000, guid: 911b98ae04f83db4aa9242f75ebdcdc2, type: 3}
+  heal: 0

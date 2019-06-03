@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e82e28147cfc44c41ab396ba9e1972d9, type: 3}
+  m_Name: Fists
+  m_EditorClassIdentifier: 
+  id: 100
+  name: Fists
+  icon: {fileID: 21300000, guid: b126db2a2e0e8e24abd7841bf5321039, type: 3}
+  muzzlePosition: {x: 0, y: 0, z: 0}
+  position: {x: 0, y: 0, z: 0}
+  positionFlipped: {x: 0, y: 0, z: 0}
+  scale: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0}
+  rotationFlipped: {x: 0, y: 0, z: 0}
+  spawnPosition: {x: 0, y: 0, z: 0}
+  spawnScale: {x: 0, y: 0, z: 0}
+  spawnRotation: {x: 0, y: 0, z: 0}
+  switchOffset: {x: 0, y: 0, z: 0}
+  bullet: {fileID: 0}
+  shell: {fileID: 0}
+  magazineSize: 0
+  reloadTime: 0
+  mass: 0
+  axisToFlip: 0
+  bloom: 0
+  recoil: 0
+  impact: 0
+  fireRate: 0
+  muzzleFlashScale: {x: 0, y: 0, z: 0}
+  itemModel: {fileID: 1060146106876572, guid: 08ed84eace0feff47b51aad066c4f57c, type: 2}
+  bulletSplit: 0
+  burstSize: 0
+  burstTime: 0
+  mag: 0
+  currentBullets: 0
+  ItemColliderPos: {x: 0, y: 0, z: 0}
+  damage: 0
+  special: 0
+  shot: {fileID: 8300000, guid: 1e0ede1f8425429459d557b7b0b9dff3, type: 3}
+  reload: {fileID: 0}
