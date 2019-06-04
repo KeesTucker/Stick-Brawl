@@ -13,6 +13,7 @@ public static class SyncData : object {
     public static int numPlayers = 5;
 
     public static string name;
+    public static string serverName;
 
     public static int worldSize = 13;
 
@@ -30,4 +31,6 @@ public static class SyncData : object {
     public static KeyCode i = KeyCode.I;
     public static KeyCode f = KeyCode.F;
     public static KeyCode r = KeyCode.R;
+    
+    public static List<ServerUIObject> servers = new List<ServerUIObject>();
 }

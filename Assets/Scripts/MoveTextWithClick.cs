@@ -12,8 +12,11 @@ public class MoveTextWithClick : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
     public bool disabled = false;
 
+    private AudioSource audioSource;
+
     public void OnPointerDown(PointerEventData eventData)
     {
+        audioSource.PlayOneShot(audioSource.clip, SyncData.sfx * 0.6f);
         if (!disabled)
         {
             rectTransform.position = rectTransform.position - new Vector3(0, amountDown, 0);
@@ -30,6 +33,7 @@ public class MoveTextWithClick : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
     void Start()
     {
+        audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
         if (disabled)
         {
             Disable();

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 114812450365707318}
   - component: {fileID: 363097206}
   - component: {fileID: 9035509261113446417}
-  - component: {fileID: 1486324774}
   - component: {fileID: 1486324776}
   - component: {fileID: 9205465908520443044}
+  - component: {fileID: 8598903922104559500}
   m_Layer: 0
   m_Name: _NetworkManager
   m_TagString: Untagged
@@ -102,7 +102,7 @@ MonoBehaviour:
   clientAddress: 127.0.0.1
   serverIPv4BindAddress: 0.0.0.0
   serverIPv6BindAddress: '::'
-  port: 7777
+  port: 2345
   useUpnP: 1
   maxConnections: 20
   ipv6Enabled: 1
@@ -149,7 +149,7 @@ MonoBehaviour:
   onlineScene: Main
   transport: {fileID: 363097206}
   networkAddress: localhost
-  maxConnections: 4
+  maxConnections: 20
   playerPrefab: {fileID: 1798705481898108, guid: 9559fef88bd38da419844d62e9fff83d,
     type: 3}
   autoCreatePlayer: 1
@@ -182,19 +182,6 @@ MonoBehaviour:
   - {fileID: 1563178683742798, guid: 7f35ffeeff3f2a64492125b5f907f1d5, type: 3}
   - {fileID: 1384572599709050, guid: 315485d8843a72f4f9ffe36c8f1f9892, type: 3}
   - {fileID: 1805788155736632, guid: b687d0250711cda45a640536700202c5, type: 3}
---- !u!114 &1486324774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1229615253974006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4982f260dd876ef46978b7d5365e4c2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  discoveryInterval: 1
 --- !u!114 &1486324776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGUI: 1
+  showGUI: 0
   offsetX: 0
   offsetY: 0
 --- !u!114 &9205465908520443044
@@ -227,4 +214,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Mirror.LiteNetLib4Mirror.UnityEventIpEndpointString, Mirror, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  ports: 611e
+  port: 2345
+--- !u!114 &8598903922104559500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229615253974006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36701a673322bd14280d8eda254239af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  discoveryInterval: 1
+  _noDiscovering: 1
+  updateServerList: {fileID: 0}

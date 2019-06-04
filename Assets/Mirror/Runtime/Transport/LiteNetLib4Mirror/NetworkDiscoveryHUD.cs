@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Net;
 using UnityEngine;
@@ -14,15 +15,15 @@ namespace Mirror.LiteNetLib4Mirror
 	public class NetworkDiscoveryHUD : MonoBehaviour
 	{
 		[SerializeField] public float discoveryInterval = 1f;
-		private NetworkManagerHUD _managerHud;
-		private bool _noDiscovering = true;
+		//private NetworkManagerHUD _managerHud;
+		public bool _noDiscovering = true;
 
-		private void Awake()
+		/*private void Awake()
 		{
 			_managerHud = GetComponent<NetworkManagerHUD>();
-		}
+		}*/
 
-		private void OnGUI()
+		/*private void OnGUI()
 		{
 			if (!_managerHud.showGUI)
 			{
@@ -56,7 +57,8 @@ namespace Mirror.LiteNetLib4Mirror
 			}
 
 			GUILayout.EndArea();
-		}
+            
+		}*/
 
 		private IEnumerator StartDiscovery()
 		{
@@ -66,7 +68,12 @@ namespace Mirror.LiteNetLib4Mirror
 			LiteNetLib4MirrorDiscovery.Singleton.onDiscoveryResponse.AddListener(OnClientDiscoveryResponse);
 			while (!_noDiscovering)
 			{
-				LiteNetLib4MirrorDiscovery.SendDiscoveryRequest("NetworkManagerHUD");
+                ResetList();
+                for (int i = 0; i < 20; i++)
+                {
+                    LiteNetLib4MirrorDiscovery.SendDiscoveryRequest("NetworkManagerHUD");
+                    yield return new WaitForSeconds(discoveryInterval / 100f);
+                }
 				yield return new WaitForSeconds(discoveryInterval);
 			}
 
@@ -74,19 +81,37 @@ namespace Mirror.LiteNetLib4Mirror
 			LiteNetLib4MirrorDiscovery.StopDiscovery();
 		}
 
-		private void OnClientDiscoveryResponse(IPEndPoint endpoint, string text)
+        public virtual void ResetList()
+        {
+            //Override
+        }
+
+		public virtual void OnClientDiscoveryResponse(IPEndPoint endpoint, string text)
 		{
-			string ip = endpoint.Address.ToString();
+			//string ip = endpoint.Address.ToString();
 
             Debug.Log(text);
 
-			NetworkManager.singleton.networkAddress = ip;
+			/*NetworkManager.singleton.networkAddress = ip;
 			NetworkManager.singleton.maxConnections = 2;
 			LiteNetLib4MirrorTransport.Singleton.clientAddress = ip;
 			LiteNetLib4MirrorTransport.Singleton.port = (ushort)endpoint.Port;
 			LiteNetLib4MirrorTransport.Singleton.maxConnections = 2;
-			NetworkManager.singleton.StartClient();
-			_noDiscovering = true;
+			NetworkManager.singleton.StartClient();*/
+			//_noDiscovering = true;
 		}
+
+        public void StartSearch()
+        {
+            if (_noDiscovering)
+            {
+                StartCoroutine(StartDiscovery());
+            }
+        }
+
+        public void EndSearch()
+        {
+            _noDiscovering = true;
+        }
 	}
 }

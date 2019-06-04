@@ -9,7 +9,7 @@ namespace Mirror.LiteNetLib4Mirror
 	public class LiteNetLib4MirrorDiscovery : MonoBehaviour
 	{
 		public UnityEventIpEndpointString onDiscoveryResponse;
-		public ushort[] ports = {7777};
+        public ushort port = 2345;
 		private static readonly NetDataWriter DataWriter = new NetDataWriter();
 		public static LiteNetLib4MirrorDiscovery Singleton { get; protected set; }
 		private static string _lastDiscoveryMessage;
@@ -56,11 +56,17 @@ namespace Mirror.LiteNetLib4Mirror
 			{
 				LiteNetLib4MirrorUtils.ReusePutDiscovery(DataWriter, text, ref _lastDiscoveryMessage);
 
-				foreach (ushort port in Singleton.ports)
-				{
-					LiteNetLib4MirrorCore.Host.SendBroadcast(DataWriter, port);
-				}
-			}
+				LiteNetLib4MirrorCore.Host.SendBroadcast(DataWriter, Singleton.port);
+
+                if (Singleton.port > 2365)
+                {
+                    Singleton.port = 2345;
+                }
+                else
+                {
+                    Singleton.port++;
+                }
+            }
 		}
 
 		public static void StopDiscovery()
