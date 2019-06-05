@@ -10,6 +10,7 @@ public class UpdateServerList : MonoBehaviour
     public GameObject listObject;
 
     public Animator joinPanel;
+    public Animator hostPanel;
 
     public NetworkDiscoveryHUD hud;
 
@@ -28,7 +29,7 @@ public class UpdateServerList : MonoBehaviour
         {
             joinPanel.transform.GetChild(1).GetChild(1).GetChild(0).GetChild(0);
         }
-        if (joinPanel.GetCurrentAnimatorStateInfo(0).IsName("IdlePanel"))
+        if (joinPanel.GetCurrentAnimatorStateInfo(0).IsName("IdlePanel") || hostPanel.GetCurrentAnimatorStateInfo(0).IsName("IdlePanel"))
         {
             if (hud._noDiscovering)
             {

@@ -38640,7 +38640,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1214521701}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999976
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -45780,7 +45780,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1505952920}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999934
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -48403,6 +48403,7 @@ MonoBehaviour:
   listObject: {fileID: 7411268469723838328, guid: a5a29d2bbf9cda7449dd83ac5781493b,
     type: 3}
   joinPanel: {fileID: 582880785}
+  hostPanel: {fileID: 511386313}
   hud: {fileID: 8598903922104559500}
 --- !u!1 &1877353712
 GameObject:
