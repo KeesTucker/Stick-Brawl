@@ -12,11 +12,35 @@ public class ColourSetterLoad : MonoBehaviour {
 
     public bool local = false;
 
+    public bool localLobby = false;
+
     void Start()
     {
-        foreach (ColouriserAI cai in GetComponentsInChildren<ColouriserAI>())
+        if (localLobby)
         {
-            cai.ColourFind();
+            if (SyncData.color == null || SyncData.color == new Color())
+            {
+                if (PlayerPrefs.HasKey("r") && PlayerPrefs.HasKey("g") && PlayerPrefs.HasKey("b"))
+                {
+                    SyncData.color = new Color(PlayerPrefs.GetFloat("r"), PlayerPrefs.GetFloat("g"), PlayerPrefs.GetFloat("b"));
+                }
+                else
+                {
+                    Color randomColour = Color.HSVToRGB(Random.Range(0, 1f), Random.Range(0.5f, 1f), Random.Range(0.5f, 1f));
+                    SyncData.color = randomColour;
+                    PlayerPrefs.SetFloat("r", randomColour.r);
+                    PlayerPrefs.SetFloat("g", randomColour.g);
+                    PlayerPrefs.SetFloat("b", randomColour.b);
+                }
+            }
+            SetColor(SyncData.color);
+        }
+        else
+        {
+            foreach (ColouriserAI cai in GetComponentsInChildren<ColouriserAI>())
+            {
+                cai.ColourFind();
+            }
         }
     }
 

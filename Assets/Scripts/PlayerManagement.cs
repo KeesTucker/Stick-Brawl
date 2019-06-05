@@ -16,9 +16,94 @@ public class PlayerManagement : NetworkBehaviour {
     public PlayerManagement playerManagement;
     [SyncVar]
     public bool server;
+    [SyncVar]
+    public string playerName;
+    [SyncVar]
+    public Color playerColor;
+
+    public GameObject lobbyPlayer;
+
+    public bool createdPlayer = false;
 
 	// Use this for initialization
-	void Start () {
+    IEnumerator Start()
+    {
+        if (isLocalPlayer)
+        {
+            if (SyncData.color == null || SyncData.color == new Color())
+            {
+                if (PlayerPrefs.HasKey("r") && PlayerPrefs.HasKey("g") && PlayerPrefs.HasKey("b"))
+                {
+                    SyncData.color = new Color(PlayerPrefs.GetFloat("r"), PlayerPrefs.GetFloat("g"), PlayerPrefs.GetFloat("b"));
+                }
+                else
+                {
+                    Color randomColour = Color.HSVToRGB(Random.Range(0, 1f), Random.Range(0.5f, 1f), Random.Range(0.5f, 1f));
+                    SyncData.color = randomColour;
+                    PlayerPrefs.SetFloat("r", randomColour.r);
+                    PlayerPrefs.SetFloat("g", randomColour.g);
+                    PlayerPrefs.SetFloat("b", randomColour.b);
+                }
+            }
+            CmdSetColorAndName(SyncData.name, SyncData.color);
+        }
+        else
+        {
+            yield return new WaitForSeconds(2f);
+            if (!createdPlayer)
+            {
+                GameObject lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity, transform);
+                lobbyPlayerInstantiated.GetComponent<ColourSetterLoad>().SetColor(playerColor);
+                StartCoroutine(SetColorAndNameSecond(lobbyPlayerInstantiated));
+                createdPlayer = true;
+            }
+        }
+        
+    }
+
+    [Command]
+    public void CmdSetColorAndName(string playerNameS, Color playerColorS)
+    {
+        playerName = playerNameS;
+        playerColor = playerColorS;
+        /*if (!isLocalPlayer)
+        {
+            GameObject lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity, transform);
+            lobbyPlayerInstantiated.GetComponent<ColourSetterLoad>().SetColor(playerColor);
+            StartCoroutine(SetColorAndNameSecond(lobbyPlayerInstantiated));
+        }*/
+        RpcSetColorAndName();
+    }
+
+    [ClientRpc]
+    public void RpcSetColorAndName()
+    {
+        if (!isLocalPlayer)
+        {
+            GameObject lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity, transform);
+            lobbyPlayerInstantiated.GetComponent<ColourSetterLoad>().SetColor(playerColor);
+            StartCoroutine(SetColorAndNameSecond(lobbyPlayerInstantiated));
+            createdPlayer = true;
+        }
+    }
+
+    public IEnumerator SetColorAndNameSecond(GameObject lobbyPlayerInstantiated)
+    {
+        yield return new WaitForEndOfFrame();
+        lobbyPlayerInstantiated.GetComponent<SetupLoading>().nameTag.GetComponent<SyncName>().instantiatedLobbyPlayer = true;
+        int wins;
+        if (PlayerPrefs.HasKey("wins"))
+        {
+            wins = PlayerPrefs.GetInt("wins");
+        }
+        else
+        {
+            wins = 0;
+        }
+        lobbyPlayerInstantiated.GetComponent<SetupLoading>().nameTag.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = playerName + " *" + wins.ToString() + "*";
+    }
+
+    public void StartGame () {
         numPlayers = SyncData.numPlayers;
         if (!isLocalPlayer && isServer)
         {

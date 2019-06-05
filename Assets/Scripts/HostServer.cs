@@ -18,7 +18,7 @@ public class HostServer : MonoBehaviour
 
     public void StartServer()
     {
-        manager.StartHost();
+        NetworkManager.singleton.StartHost();
     }
 
     public void EditPort(string port)

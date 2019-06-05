@@ -17,6 +17,10 @@ public class GenerateServerList : NetworkDiscoveryHUD
 
     public override void ResetList()
     {
+        if (updateServerList == null)
+        {
+            updateServerList = FindObjectOfType<UpdateServerList>();
+        }
         updateServerList.Refresh();
         SyncData.servers.Clear();
     }

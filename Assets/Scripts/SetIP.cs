@@ -7,15 +7,12 @@ using System;
 
 public class SetIP : MonoBehaviour {
 
-    public NetworkManager manager;
-
     public TMPro.TMP_InputField mainInputField;
 
     int result;
 
     void Start()
     {
-        manager = GameObject.Find("_NetworkManager").GetComponent<NetworkManager>();
         if (mainInputField.text == "5 Bots")
         {
             if (PlayerPrefs.HasKey("playerNum"))
@@ -28,7 +25,7 @@ public class SetIP : MonoBehaviour {
 
     public void ValueChanged()
     {
-        manager.networkAddress = mainInputField.text;
+        NetworkManager.singleton.networkAddress = mainInputField.text;
     }
 
     public void PlayerNumValueChanged()

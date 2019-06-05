@@ -6,12 +6,14 @@ public class SetupLoading : MonoBehaviour
 {
     public Collider[] colliders;
 
-    public GameObject name;
+    public GameObject playerName;
+
+    public GameObject nameTag;
 
     // Use this for initialization
     void Start()
     {
-        GameObject nameTag = Instantiate(name, transform.position, Quaternion.identity);
+        nameTag = Instantiate(playerName, transform.position, Quaternion.identity);
         nameTag.GetComponent<SyncName>().parent = gameObject;
         for (int i = 0; i < colliders.Length; i++)
         {

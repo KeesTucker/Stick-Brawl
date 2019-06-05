@@ -8,7 +8,7 @@ public class SyncName : NetworkBehaviour {
     public TMPro.TMP_Text text;
 
     [SyncVar]
-    public string name;
+    public string playerName;
 
     public GameObject parent;
 
@@ -18,20 +18,22 @@ public class SyncName : NetworkBehaviour {
     public int wins;
     public HealthAI healthAI;
 
-	// Use this for initialization
-	IEnumerator Start () {
+    public bool instantiatedLobbyPlayer = false;
+
+    // Use this for initialization
+    IEnumerator Start () {
         if (GameObject.Find("LoadingPlayer"))
         {
             if (PlayerPrefs.HasKey("wins"))
             {
                 wins = PlayerPrefs.GetInt("wins");
             }
-            if (PlayerPrefs.HasKey("name"))
+            if (PlayerPrefs.HasKey("name") && !instantiatedLobbyPlayer)
             {
                 SyncData.name = PlayerPrefs.GetString("name");
-                name = SyncData.name + " *" + wins.ToString() + "*";
+                playerName = SyncData.name + " *" + wins.ToString() + "*";
 
-                text.text = name;
+                text.text = playerName;
             }
             text.color = parent.GetComponent<ColourSetterLoad>().m_NewColor;
         }
@@ -42,7 +44,7 @@ public class SyncName : NetworkBehaviour {
             {
                 parent = serverParent;
                 healthAI = parent.GetComponent<HealthAI>();
-                text.text = name;
+                text.text = playerName;
             }
             text.color = parent.GetComponent<ColourSetterAI>().m_NewColor;
         }
@@ -60,6 +62,10 @@ public class SyncName : NetworkBehaviour {
                 }
             }
             transform.position = parent.transform.position + new Vector3(0, 10, 10);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
 	}
 
@@ -86,17 +92,17 @@ public class SyncName : NetworkBehaviour {
 
     public void UpdateName()
     {
-        name = SyncData.name + " *" + wins.ToString() + "*";
+        playerName = SyncData.name + " *" + wins.ToString() + "*";
 
-        text.text = name;
+        text.text = playerName;
     }
 
     [Command]
     public void CmdUpdateName(string nameS, int winsS)
     {
-        name = nameS + " *" + winsS.ToString() + "*";
+        playerName = nameS + " *" + winsS.ToString() + "*";
         RpcUpdateTxt();
-        text.text = name;
+        text.text = playerName;
     }
 
     [Command]
@@ -118,6 +124,6 @@ public class SyncName : NetworkBehaviour {
     [ClientRpc]
     public void RpcUpdateTxt()
     {
-        text.text = name;
+        text.text = playerName;
     }
 }

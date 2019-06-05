@@ -16,6 +16,18 @@ public class UpdateServerList : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (hud == null)
+        {
+            hud = NetworkDiscoveryManager.Singleton.gameObject.GetComponent<NetworkDiscoveryHUD>();
+        }
+        if (joinPanel == null)
+        {
+            joinPanel = GameObject.Find("Canvas/Join").GetComponent<Animator>();
+        }
+        if (UIParent == null)
+        {
+            joinPanel.transform.GetChild(1).GetChild(1).GetChild(0).GetChild(0);
+        }
         if (joinPanel.GetCurrentAnimatorStateInfo(0).IsName("IdlePanel"))
         {
             if (hud._noDiscovering)

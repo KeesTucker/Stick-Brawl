@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798705481898108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.384253, y: -241.75351, z: -0.185295}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,3 +84,5 @@ MonoBehaviour:
   totalPlayers: 0
   playerManagement: {fileID: 0}
   server: 0
+  lobbyPlayer: {fileID: 1489902280508144, guid: c2954a45956026b4ea4fee807ea7ae3b,
+    type: 3}

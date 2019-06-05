@@ -101,127 +101,129 @@ public class AimShootAI : MonoBehaviour {
 
     void Update()
     {
-        Vector3 mouseWorldPosition = aim.position; //Make this follow a gameobject that the AI can control therefore it can aim etc.
-
-        float angle = AngleBetweenPoints(location.position, mouseWorldPosition);
-        if (rotationGunManager)
+        if (aim)
         {
-            angleGun = AngleBetweenPoints(rotationGunManager.transform.position, mouseWorldPosition);
-        }
-        
-        //Ta daa
-        target.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle) - new Vector3(0f, 0f, body.rotation.eulerAngles.z + 90)); //This is for arm rotation, trying something new with weapon rotation
-        grappleLauncher.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angleGun + 180f));
+            Vector3 mouseWorldPosition = aim.position; //Make this follow a gameobject that the AI can control therefore it can aim etc.
 
-        if (refrenceKeeper != null)
-        {
-            if (refrenceKeeper.weaponHeld)
+            float angle = AngleBetweenPoints(location.position, mouseWorldPosition);
+            if (rotationGunManager)
             {
-                //this bunch of crap converts the ugly value of the rotation of the gun + the aim rotation to a nice value in between -180 and 180 so it can be applied just basically get modulus and rectifys it, then applies it.
-                if ((angleGun - rotationGunManager.transform.rotation.eulerAngles.z + 180f) % 360 < -180)
+                angleGun = AngleBetweenPoints(rotationGunManager.transform.position, mouseWorldPosition);
+            }
+            //Ta daa
+            target.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle) - new Vector3(0f, 0f, body.rotation.eulerAngles.z + 90)); //This is for arm rotation, trying something new with weapon rotation
+            grappleLauncher.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angleGun + 180f));
+
+            if (refrenceKeeper != null)
+            {
+                if (refrenceKeeper.weaponHeld)
                 {
-                    hingeSpring.targetPosition = ((angleGun - rotationGunManager.transform.rotation.eulerAngles.z + 180f) % 360) + 360;
+                    //this bunch of crap converts the ugly value of the rotation of the gun + the aim rotation to a nice value in between -180 and 180 so it can be applied just basically get modulus and rectifys it, then applies it.
+                    if ((angleGun - rotationGunManager.transform.rotation.eulerAngles.z + 180f) % 360 < -180)
+                    {
+                        hingeSpring.targetPosition = ((angleGun - rotationGunManager.transform.rotation.eulerAngles.z + 180f) % 360) + 360;
+                    }
+                    else if ((angleGun - rotationGunManager.transform.rotation.eulerAngles.z + 180f) % 360 > 180)
+                    {
+                        hingeSpring.targetPosition = ((angleGun - rotationGunManager.transform.rotation.eulerAngles.z + 180f) % 360) - 360;
+                    }
+                    else
+                    {
+                        hingeSpring.targetPosition = (angleGun - rotationGunManager.transform.rotation.eulerAngles.z + 180f) % 360;
+                    }
+
+                    //syncMoveState.CmdSetArmState(true);
+
+                    hinge.spring = hingeSpring;
+
                 }
-                else if ((angleGun - rotationGunManager.transform.rotation.eulerAngles.z + 180f) % 360 > 180)
+
+                else
                 {
-                    hingeSpring.targetPosition = ((angleGun - rotationGunManager.transform.rotation.eulerAngles.z + 180f) % 360) - 360;
+                    //syncMoveState.CmdSetArmState(false);
+                }
+
+                activeSlot = refrenceKeeper.activeSlot;
+
+                if (refrenceKeeper.weaponHeld && health.health > 0)
+                {
+                    if (target.rotation.eulerAngles.z < 360 && target.rotation.eulerAngles.z > 180)
+                    {
+                        shoot.upsideDown = true;
+                        multiplier = -1;
+                        switched = refrenceKeeper.weaponInventory[activeSlot].switchOffset;
+                        localiseTransform.setTransformHandheldF(WeaponHand.transform.GetChild(1).gameObject, refrenceKeeper.weaponInventory[activeSlot].id);
+                        bulletPositioner.transform.localPosition = refrenceKeeper.weaponInventory[activeSlot].muzzlePosition;
+                    }
+                    else
+                    {
+                        shoot.upsideDown = false;
+                        multiplier = 1;
+                        switched = refrenceKeeper.weaponInventory[activeSlot].switchOffset;
+                        localiseTransform.setTransformHandheld(WeaponHand.transform.GetChild(1).gameObject, refrenceKeeper.weaponInventory[activeSlot].id);
+                        bulletPositioner.transform.localPosition = refrenceKeeper.weaponInventory[activeSlot].muzzlePosition + refrenceKeeper.weaponInventory[activeSlot].switchOffset;
+                    }
+                    recoilAdder.transform.position = bulletPositioner.transform.position;
+
+                }
+            }
+
+            if (refrenceKeeper && !groundForceAI.dead)
+            {
+                if (refrenceKeeper.weaponHeld)
+                {
+                    RHT.gameObject.GetComponent<HingeJoint>().useSpring = true;
+                    location.gameObject.GetComponent<HingeJoint>().useSpring = true;
                 }
                 else
                 {
-                    hingeSpring.targetPosition = (angleGun - rotationGunManager.transform.rotation.eulerAngles.z + 180f) % 360;
+                    RHT.gameObject.GetComponent<HingeJoint>().useSpring = false;
+                    location.gameObject.GetComponent<HingeJoint>().useSpring = false;
                 }
-
-                //syncMoveState.CmdSetArmState(true);
-
-                hinge.spring = hingeSpring;
-                
             }
-
-            else
-            {
-                //syncMoveState.CmdSetArmState(false);
-            }
-
-            activeSlot = refrenceKeeper.activeSlot;
-
-            if (refrenceKeeper.weaponHeld && health.health > 0)
-            {
-                if (target.rotation.eulerAngles.z < 360 && target.rotation.eulerAngles.z > 180)
-                {
-                    shoot.upsideDown = true;
-                    multiplier = -1;
-                    switched = refrenceKeeper.weaponInventory[activeSlot].switchOffset;
-                    localiseTransform.setTransformHandheldF(WeaponHand.transform.GetChild(1).gameObject, refrenceKeeper.weaponInventory[activeSlot].id);
-                    bulletPositioner.transform.localPosition = refrenceKeeper.weaponInventory[activeSlot].muzzlePosition;
-                }
-                else
-                {
-                    shoot.upsideDown = false;
-                    multiplier = 1;
-                    switched = refrenceKeeper.weaponInventory[activeSlot].switchOffset;
-                    localiseTransform.setTransformHandheld(WeaponHand.transform.GetChild(1).gameObject, refrenceKeeper.weaponInventory[activeSlot].id);
-                    bulletPositioner.transform.localPosition = refrenceKeeper.weaponInventory[activeSlot].muzzlePosition + refrenceKeeper.weaponInventory[activeSlot].switchOffset;
-                }
-                recoilAdder.transform.position = bulletPositioner.transform.position;
-
-            }
-        }
-
-        if (refrenceKeeper && !groundForceAI.dead)
-        {
-            if (refrenceKeeper.weaponHeld)
-            {
-                RHT.gameObject.GetComponent<HingeJoint>().useSpring = true;
-                location.gameObject.GetComponent<HingeJoint>().useSpring = true;
-            }
-            else
+            else if (!groundForceAI.dead)
             {
                 RHT.gameObject.GetComponent<HingeJoint>().useSpring = false;
                 location.gameObject.GetComponent<HingeJoint>().useSpring = false;
             }
-        }
-        else if (!groundForceAI.dead)
-        {
-            RHT.gameObject.GetComponent<HingeJoint>().useSpring = false;
-            location.gameObject.GetComponent<HingeJoint>().useSpring = false;
-        }
 
-        if (RClick)
-        {
-            rightClick = true;
-            rightBeenClicked = true;
-        }
-        if (!RClick && rightBeenClicked)
-        {
-            rightBeenClicked = false;
-            Destroy(grapple, 0.1f);
-            rightClick = false;
-            groundForceAI.grappled = false;
-            fireGrapple = true;
-        }
-        if (rightClick == true)
-        {
-            targetL.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle) - new Vector3(0f, 0f, body.rotation.eulerAngles.z + 90));
-            FireGrapple();
-            animator.GetComponent<PlayerMovementAI>().grappleSince = true;
-
-        }
-        if (rightClick && GroundForce.touchingGround)
-        {
-            GrappleHand.useSpring = true;
-            GrappleArm.useSpring = true;
-        }
-        else
-        {
-            GrappleHand.useSpring = false;
-            GrappleArm.useSpring = false;
-        }
-
-        if (rightClick == false && groundForceAI.touchingGround == true && !groundForceAI.dead)
-        {
-            foreach (GameObject playerPart in playerParts)
+            if (RClick)
             {
-                playerPart.GetComponent<HingeJoint>().useSpring = true;
+                rightClick = true;
+                rightBeenClicked = true;
+            }
+            if (!RClick && rightBeenClicked)
+            {
+                rightBeenClicked = false;
+                Destroy(grapple, 0.1f);
+                rightClick = false;
+                groundForceAI.grappled = false;
+                fireGrapple = true;
+            }
+            if (rightClick == true)
+            {
+                targetL.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle) - new Vector3(0f, 0f, body.rotation.eulerAngles.z + 90));
+                FireGrapple();
+                animator.GetComponent<PlayerMovementAI>().grappleSince = true;
+
+            }
+            if (rightClick && GroundForce.touchingGround)
+            {
+                GrappleHand.useSpring = true;
+                GrappleArm.useSpring = true;
+            }
+            else
+            {
+                GrappleHand.useSpring = false;
+                GrappleArm.useSpring = false;
+            }
+
+            if (rightClick == false && groundForceAI.touchingGround == true && !groundForceAI.dead)
+            {
+                foreach (GameObject playerPart in playerParts)
+                {
+                    playerPart.GetComponent<HingeJoint>().useSpring = true;
+                }
             }
         }
     }

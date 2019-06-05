@@ -18,7 +18,14 @@ public class Music : MonoBehaviour
         nextEventTime = AudioSettings.dspTime + 2.0f;
         running = true;
         flip = Random.Range(0, clips.Length);
-        DontDestroyOnLoad(gameObject);
+        if (GameObject.FindObjectsOfType<Music>().Length > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     void Update()

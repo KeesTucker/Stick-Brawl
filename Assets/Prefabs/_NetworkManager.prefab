@@ -145,8 +145,8 @@ MonoBehaviour:
   startOnHeadless: 0
   serverTickRate: 30
   showDebugMessages: 0
-  offlineScene: Lobby
-  onlineScene: Main
+  offlineScene: Start
+  onlineScene: 
   transport: {fileID: 363097206}
   networkAddress: localhost
   maxConnections: 20
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGUI: 0
+  showGUI: 1
   offsetX: 0
   offsetY: 0
 --- !u!114 &9205465908520443044
