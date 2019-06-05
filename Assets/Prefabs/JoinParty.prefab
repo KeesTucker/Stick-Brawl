@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 585.01, y: 90.09}
+  m_SizeDelta: {x: 585.01, y: 144}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7411268469723838332
 CanvasRenderer:
@@ -142,6 +142,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3b010e58d6d0b448d8712e00938899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IPAddress: localhost
+  ServerPort: 2345
+  mainButtonText: {fileID: 0}
+  listButtonText: {fileID: 7411268470996892285}
 --- !u!1 &7411268470996892287
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +240,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 47.75
+  m_fontSize: 72
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -12,16 +12,68 @@ public class JoinServerList : MonoBehaviour
     public string IPAddress = "localhost";
     public int ServerPort = 2345;
 
+    public TMPro.TMP_Text mainButtonText;
+
+    public TMPro.TMP_Text listButtonText;
+
+    void Update()
+    {
+        if (mainButtonText)
+        {
+            if (NetworkServer.active)
+            {
+                mainButtonText.text = "Stop Host";
+            }
+            else if (NetworkClient.isConnected)
+            {
+                mainButtonText.text = "Disconnect";
+            }
+            else
+            {
+                mainButtonText.text = "Join";
+            }
+        }
+        if (listButtonText)
+        {
+            if (NetworkServer.active)
+            {
+                listButtonText.text = "Stop Hosting to Join";
+            }
+            else if (NetworkClient.isConnected)
+            {
+                listButtonText.text = "Disconnect to Join";
+            }
+        }
+    }
+
     public void JoinServer()
     {
-        string ip = endpoint.Address.ToString();
+        if (NetworkServer.active)
+        {
+            NetworkManager.singleton.StopHost();
+            //Message
+        }
+        else if (NetworkClient.isConnected)
+        {
+            NetworkManager.singleton.StopClient();
+            //Message
+        }
+        else
+        {
+            string ip = endpoint.Address.ToString();
 
-        NetworkManager.singleton.networkAddress = ip;
-        NetworkManager.singleton.maxConnections = 2;
-        LiteNetLib4MirrorTransport.Singleton.clientAddress = ip;
-        LiteNetLib4MirrorTransport.Singleton.port = (ushort)endpoint.Port;
-        LiteNetLib4MirrorTransport.Singleton.maxConnections = 2;
-        NetworkManager.singleton.StartClient();
+            NetworkManager.singleton.networkAddress = ip;
+            NetworkManager.singleton.maxConnections = 2;
+            LiteNetLib4MirrorTransport.Singleton.clientAddress = ip;
+            LiteNetLib4MirrorTransport.Singleton.port = (ushort)endpoint.Port;
+            LiteNetLib4MirrorTransport.Singleton.maxConnections = 2;
+            NetworkManager.singleton.StartClient();
+            if (GameObject.Find("Canvas/Join").GetComponent<Animator>())
+            {
+                GameObject.Find("Canvas/Join").GetComponent<Animator>().SetTrigger("Exit");
+                GameObject.Find("Canvas/Main").GetComponent<Animator>().SetTrigger("Entry");
+            }
+        }
     }
 
     public void EditIP(string ip)
@@ -31,12 +83,28 @@ public class JoinServerList : MonoBehaviour
 
     public void EditPort(string port)
     {
-        ServerPort = int.Parse(port);
+        if (!int.TryParse(port, out ServerPort))
+        {
+            //Error
+        }
     }
 
     public void JoinServerManual()
     {
-        JoinServerManualCall(IPAddress, (ushort)ServerPort);
+        if (NetworkServer.active)
+        {
+            NetworkManager.singleton.StopHost();
+            //Message
+        }
+        else if (NetworkClient.isConnected)
+        {
+            NetworkManager.singleton.StopClient();
+            //Message
+        }
+        else
+        {
+            JoinServerManualCall(IPAddress, (ushort)ServerPort);
+        }
     }
 
     private void JoinServerManualCall(string ip, ushort port)
@@ -47,5 +115,10 @@ public class JoinServerList : MonoBehaviour
         LiteNetLib4MirrorTransport.Singleton.port = port;
         LiteNetLib4MirrorTransport.Singleton.maxConnections = 2;
         NetworkManager.singleton.StartClient();
+        if (GameObject.Find("Canvas/Join").GetComponent<Animator>())
+        {
+            GameObject.Find("Canvas/Join").GetComponent<Animator>().SetTrigger("Exit");
+            GameObject.Find("Canvas/Main").GetComponent<Animator>().SetTrigger("Entry");
+        }
     }
 }

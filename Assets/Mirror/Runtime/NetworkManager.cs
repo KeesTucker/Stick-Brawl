@@ -258,6 +258,7 @@ namespace Mirror
             if (!NetworkServer.Listen(maxConnections))
             {
                 Debug.LogError("StartServer listen failed.");
+                //Error
                 return false;
             }
 
