@@ -19,7 +19,7 @@ public class HostServer : MonoBehaviour
     void Start()
     {
         SyncData.serverName = "Unnamed Server!";
-        SyncData.numPlayers = 0;
+        SyncData.health = 200;
 
         transport = NetworkManager.singleton.gameObject.GetComponent<LiteNetLib4MirrorTransport>();
         transport.port = 2345;
@@ -99,9 +99,9 @@ public class HostServer : MonoBehaviour
         }
     }
 
-    public void EditBots(string bots)
+    public void EditHealth(string health)
     {
-        if (!int.TryParse(bots, out SyncData.numPlayers))
+        if (!int.TryParse(health, out SyncData.health))
         {
             //Error
         }

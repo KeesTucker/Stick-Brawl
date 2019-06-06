@@ -12,7 +12,7 @@ public class DisablePlayOnClient : MonoBehaviour
 
     void Update()
     {
-        if (NetworkServer.active || NetworkClient.isConnected)
+        if (!NetworkServer.active && NetworkClient.isConnected)
         {
             text.text = "Host is choosing!";
             button.interactable = false;

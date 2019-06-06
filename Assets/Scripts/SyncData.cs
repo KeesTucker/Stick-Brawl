@@ -24,6 +24,12 @@ public static class SyncData : object {
 
     public static int kills;
 
+    public static int targetFPS;
+
+    public static float gunScale;
+    public static float moveScale;
+    public static bool fixedFloating;
+
     public static KeyCode a = KeyCode.A;
     public static KeyCode d = KeyCode.D;
     public static KeyCode s = KeyCode.S;

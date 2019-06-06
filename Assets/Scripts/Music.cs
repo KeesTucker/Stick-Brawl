@@ -37,7 +37,7 @@ public class Music : MonoBehaviour
 
         if (oldVolume != SyncData.volume)
         {
-            audioSource.volume = SyncData.volume;
+            audioSource.volume = (float)SyncData.volume / 100f;
             oldVolume = SyncData.volume;
         }
 

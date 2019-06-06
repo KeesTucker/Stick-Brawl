@@ -16,9 +16,9 @@ public class MoveTextWithClick : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        audioSource.PlayOneShot(audioSource.clip, SyncData.sfx * 0.6f);
         if (!disabled)
         {
+            audioSource.PlayOneShot(audioSource.clip, SyncData.sfx / 100f * 0.6f);
             rectTransform.position = rectTransform.position - new Vector3(0, amountDown, 0);
         }
     }
