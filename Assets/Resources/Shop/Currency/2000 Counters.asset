@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da22603e95b4b7041b3a0ffc00a24231, type: 3}
+  m_Name: 2000 Counters
+  m_EditorClassIdentifier: 
+  itemName: 2000 Counters
+  shopItemType: 5
+  cost: 15
+  sprite: {fileID: 21300000, guid: 6881d1b15e21e544a8935c750141ff0c, type: 3}
+  backgroundColor: {r: 1, g: 0.5707547, b: 0.5707547, a: 1}
+  foregroundColor: {r: 1, g: 1, b: 1, a: 1}
+  itemID: 2
+  amount: 2000
