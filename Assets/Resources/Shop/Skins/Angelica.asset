@@ -19,3 +19,21 @@ MonoBehaviour:
   backgroundColor: {r: 0.8862745, g: 0.7254902, b: 0.81960785, a: 1}
   foregroundColor: {r: 1, g: 1, b: 1, a: 1}
   itemID: 5
+  amount: 0
+  sprites:
+  - {fileID: 21300000, guid: c0f698d1e7b87a64d84d28e3a53b5aef, type: 3}
+  - {fileID: 21300000, guid: 69df339e79988254b9d382ff7830ed2c, type: 3}
+  - {fileID: 21300000, guid: b4941e30092823948b4eff1f2d556638, type: 3}
+  - {fileID: 21300000, guid: 70b44b1851f0d0c4684bffa947d2984f, type: 3}
+  - {fileID: 21300000, guid: b4941e30092823948b4eff1f2d556638, type: 3}
+  - {fileID: 21300000, guid: 70b44b1851f0d0c4684bffa947d2984f, type: 3}
+  - {fileID: 21300000, guid: b4941e30092823948b4eff1f2d556638, type: 3}
+  - {fileID: 21300000, guid: 70b44b1851f0d0c4684bffa947d2984f, type: 3}
+  - {fileID: 21300000, guid: b4941e30092823948b4eff1f2d556638, type: 3}
+  - {fileID: 21300000, guid: 70b44b1851f0d0c4684bffa947d2984f, type: 3}
+  - {fileID: 21300000, guid: 6044790537edb534f84606271e89b1a4, type: 3}
+  - {fileID: 21300000, guid: 094fd78559aacce4bbe145f6e77f1b9d, type: 3}
+  - {fileID: 21300000, guid: 094fd78559aacce4bbe145f6e77f1b9d, type: 3}
+  - {fileID: 21300000, guid: 094fd78559aacce4bbe145f6e77f1b9d, type: 3}
+  - {fileID: 21300000, guid: 094fd78559aacce4bbe145f6e77f1b9d, type: 3}
+  applyOnSprite: {fileID: 11400000, guid: 540c2e6e87fe54b41a3d4300f5f4008a, type: 2}

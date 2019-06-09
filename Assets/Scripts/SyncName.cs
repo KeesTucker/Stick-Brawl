@@ -31,7 +31,7 @@ public class SyncName : NetworkBehaviour {
             if (PlayerPrefs.HasKey("name") && !instantiatedLobbyPlayer)
             {
                 SyncData.name = PlayerPrefs.GetString("name");
-                playerName = SyncData.name + " *" + wins.ToString() + "*";
+                playerName = SyncData.name;
 
                 text.text = playerName;
             }
@@ -48,6 +48,11 @@ public class SyncName : NetworkBehaviour {
             }
             text.color = parent.GetComponent<ColourSetterAI>().m_NewColor;
         }
+    }
+
+    public void UpdateColor()
+    {
+        text.color = parent.GetComponent<ColourSetterLoad>().m_NewColor;
     }
 
     // Update is called once per frame
@@ -92,7 +97,7 @@ public class SyncName : NetworkBehaviour {
 
     public void UpdateName()
     {
-        playerName = SyncData.name + " *" + wins.ToString() + "*";
+        playerName = SyncData.name;
 
         text.text = playerName;
     }
@@ -100,7 +105,7 @@ public class SyncName : NetworkBehaviour {
     [Command]
     public void CmdUpdateName(string nameS, int winsS)
     {
-        playerName = nameS + " *" + winsS.ToString() + "*";
+        playerName = nameS;
         RpcUpdateTxt();
         text.text = playerName;
     }

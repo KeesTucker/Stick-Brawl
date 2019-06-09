@@ -49,6 +49,10 @@ public class ColourSetterLoad : MonoBehaviour {
         m_NewColor = color;
         foreach (ColouriserAI cai in GetComponentsInChildren<ColouriserAI>())
         {
+            PlayerPrefs.SetFloat("r", color.r);
+            PlayerPrefs.SetFloat("g", color.g);
+            PlayerPrefs.SetFloat("b", color.b);
+            SyncData.color = color;
             cai.ColourFind();
         }
     }

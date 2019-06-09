@@ -552,6 +552,7 @@ GameObject:
   - component: {fileID: 59961164213958360}
   - component: {fileID: 59961164213958361}
   - component: {fileID: 59961164213958342}
+  - component: {fileID: 957097634378408488}
   m_Layer: 0
   m_Name: ShopItem
   m_TagString: Untagged
@@ -642,7 +643,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.06802726, g: 1, b: 0, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -658,9 +659,37 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 59961164213958361}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 957097634378408488}
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &957097634378408488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59961164213958340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b588a2263e5a27e4583359683b0dda40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 0
+  id: 0
+  cost: 0
+  itemName: 
+  amount: 0
 --- !u!1 &8681893703339070583
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,4 +28,8 @@ public class ShopItem : ScriptableObject
     public int itemID;
 
     public int amount;
+
+    public Sprite[] sprites;
+
+    public ShopItem applyOnSprite;
 }

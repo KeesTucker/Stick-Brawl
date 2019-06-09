@@ -296,6 +296,11 @@ namespace Mirror
             return true;
         }
 
+        public void StartGame()
+        {
+
+        }
+
         void RegisterClientMessages()
         {
             NetworkClient.RegisterHandler<ConnectMessage>(OnClientConnectInternal);

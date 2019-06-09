@@ -25,6 +25,8 @@ public class AccountSettings : MonoBehaviour
             GameObject.Find("Nametag(Clone)").GetComponent<SyncName>().UpdateName();
         }
         text.text = SyncData.name;
+
+        GameObject.Find("LocalConnection").GetComponent<PlayerManagement>().CmdUpdateColorAndNameN(SyncData.name);
     }
 
     public void ShowLeaderboard()

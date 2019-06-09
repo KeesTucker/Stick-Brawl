@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Orange
   m_EditorClassIdentifier: 
   itemName: Orange
-  shopItemType: 1
+  shopItemType: 4
   cost: 500
   sprite: {fileID: 21300000, guid: 5b5e6079ed3b15b4289cd7f5689f9d7c, type: 3}
   backgroundColor: {r: 1, g: 0.700068, b: 0.3537736, a: 1}
   foregroundColor: {r: 1, g: 0.4636076, b: 0, a: 1}
   itemID: 4
+  amount: 0
+  sprites: []
+  applyOnSprite: {fileID: 0}

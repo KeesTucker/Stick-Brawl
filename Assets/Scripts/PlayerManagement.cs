@@ -20,12 +20,16 @@ public class PlayerManagement : NetworkBehaviour {
     public string playerName;
     [SyncVar]
     public Color playerColor;
+    [SyncVar]
+    public int skinID;
 
     public GameObject lobbyPlayer;
 
     public bool createdPlayer = false;
 
-	// Use this for initialization
+    GameObject lobbyPlayerInstantiated;
+
+    // Use this for initialization
     IEnumerator Start()
     {
         if (isLocalPlayer)
@@ -45,62 +49,115 @@ public class PlayerManagement : NetworkBehaviour {
                     PlayerPrefs.SetFloat("b", randomColour.b);
                 }
             }
-            CmdSetColorAndName(SyncData.name, SyncData.color);
+            CmdSetColorAndName(SyncData.name, SyncData.color, PlayerPrefs.GetInt(ShopItemType.Skin.ToString() + "selected"));
         }
         else
         {
             yield return new WaitForSeconds(2f);
             if (!createdPlayer)
             {
-                GameObject lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity, transform);
+                lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity, transform);
                 lobbyPlayerInstantiated.GetComponent<ColourSetterLoad>().SetColor(playerColor);
+                lobbyPlayerInstantiated.GetComponent<SkinApply>().UpdateSkin(skinID);
                 StartCoroutine(SetColorAndNameSecond(lobbyPlayerInstantiated));
                 createdPlayer = true;
             }
         }
-        
     }
 
     [Command]
-    public void CmdSetColorAndName(string playerNameS, Color playerColorS)
+    public void CmdSetColorAndName(string playerNameS, Color playerColorS, int skinIDS)
     {
         playerName = playerNameS;
         playerColor = playerColorS;
+        skinID = skinIDS;
         /*if (!isLocalPlayer)
         {
             GameObject lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity, transform);
             lobbyPlayerInstantiated.GetComponent<ColourSetterLoad>().SetColor(playerColor);
             StartCoroutine(SetColorAndNameSecond(lobbyPlayerInstantiated));
         }*/
-        RpcSetColorAndName();
+        RpcSetColorAndName(playerColor, skinID);
     }
 
     [ClientRpc]
-    public void RpcSetColorAndName()
+    public void RpcSetColorAndName(Color playerColorSS, int skinIDS)
     {
         if (!isLocalPlayer)
         {
-            GameObject lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity, transform);
-            lobbyPlayerInstantiated.GetComponent<ColourSetterLoad>().SetColor(playerColor);
+            lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity, transform);
+            lobbyPlayerInstantiated.GetComponent<ColourSetterLoad>().SetColor(playerColorSS);
+            lobbyPlayerInstantiated.GetComponent<SkinApply>().UpdateSkin(skinIDS);
             StartCoroutine(SetColorAndNameSecond(lobbyPlayerInstantiated));
             createdPlayer = true;
         }
     }
 
-    public IEnumerator SetColorAndNameSecond(GameObject lobbyPlayerInstantiated)
+    [Command]
+    public void CmdUpdateColorAndName(string playerNameS, Color playerColorS, int skinIDS)
+    {
+        playerName = playerNameS;
+        playerColor = playerColorS;
+        skinID = skinIDS;
+        foreach (SyncName syncName in FindObjectsOfType<SyncName>())
+        {
+            syncName.UpdateColor();
+        }
+        /*if (!isLocalPlayer)
+        {
+            GameObject lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity, transform);
+            lobbyPlayerInstantiated.GetComponent<ColourSetterLoad>().SetColor(playerColor);
+            StartCoroutine(SetColorAndNameSecond(lobbyPlayerInstantiated));
+        }*/
+        RpcUpdateColorAndName(playerColor, skinID);
+    }
+
+    [Command]
+    public void CmdUpdateColorAndNameN(string playerNameS)
+    {
+        playerName = playerNameS;
+        RpcUpdateColorAndNameN(playerNameS);
+    }
+
+    [ClientRpc]
+    public void RpcUpdateColorAndNameN(string playerNameS)
+    {
+        if (!isLocalPlayer)
+        {
+            StartCoroutine(SetColorAndNameSecond(lobbyPlayerInstantiated, playerNameS));
+        }
+    }
+
+    [ClientRpc]
+    public void RpcUpdateColorAndName(Color playerColorSS, int skinIDS)
+    {
+        if (!isLocalPlayer)
+        {
+            lobbyPlayerInstantiated.GetComponent<ColourSetterLoad>().SetColor(playerColorSS);
+            lobbyPlayerInstantiated.GetComponent<SkinApply>().UpdateSkin(skinIDS);
+            foreach (SyncName syncName in FindObjectsOfType<SyncName>())
+            {
+                syncName.UpdateColor();
+            }
+            StartCoroutine(SetColorAndNameSecond(lobbyPlayerInstantiated));
+        }
+    }
+
+    public IEnumerator SetColorAndNameSecond(GameObject lobbyPlayerInstantiatedS)
     {
         yield return new WaitForEndOfFrame();
-        lobbyPlayerInstantiated.GetComponent<SetupLoading>().nameTag.GetComponent<SyncName>().instantiatedLobbyPlayer = true;
-        int wins;
-        if (PlayerPrefs.HasKey("wins"))
+        lobbyPlayerInstantiatedS.GetComponent<SetupLoading>().nameTag.GetComponent<SyncName>().instantiatedLobbyPlayer = true;
+        lobbyPlayerInstantiatedS.GetComponent<SetupLoading>().nameTag.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = playerName;
+        foreach (SyncName syncName in FindObjectsOfType<SyncName>())
         {
-            wins = PlayerPrefs.GetInt("wins");
+            syncName.UpdateColor();
         }
-        else
-        {
-            wins = 0;
-        }
-        lobbyPlayerInstantiated.GetComponent<SetupLoading>().nameTag.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = playerName + " *" + wins.ToString() + "*";
+    }
+
+    public IEnumerator SetColorAndNameSecond(GameObject lobbyPlayerInstantiatedS, string playerNameS)
+    {
+        yield return new WaitForEndOfFrame();
+        lobbyPlayerInstantiatedS.GetComponent<SetupLoading>().nameTag.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = playerName;
     }
 
     public void StartGame () {

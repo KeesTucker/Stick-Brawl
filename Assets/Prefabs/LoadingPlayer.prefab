@@ -4348,6 +4348,7 @@ GameObject:
   - component: {fileID: 114067010425418630}
   - component: {fileID: 114915463846792992}
   - component: {fileID: 82966276855229744}
+  - component: {fileID: 8017773356390982087}
   m_Layer: 24
   m_Name: LoadingPlayer
   m_TagString: PosRelay
@@ -4733,6 +4734,7 @@ MonoBehaviour:
   m_NewColor: {r: 1, g: 0.63624465, b: 0, a: 1}
   grappleMat: {fileID: 0}
   local: 0
+  localLobby: 0
 --- !u!82 &82966276855229744
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4829,6 +4831,45 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8017773356390982087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489902280508144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f99d780501e834b99af0fcc89ff1d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderers:
+  - {fileID: 212990300820850682}
+  - {fileID: 212044147835537996}
+  - {fileID: 212557675029466636}
+  - {fileID: 212798412735922278}
+  - {fileID: 212796881131382952}
+  - {fileID: 212687854174705106}
+  - {fileID: 212605215703052804}
+  - {fileID: 212543099548749354}
+  - {fileID: 212542205775688684}
+  - {fileID: 212073955461033706}
+  - {fileID: 212759821637320666}
+  - {fileID: 212497209181840394}
+  - {fileID: 212252539614009338}
+  - {fileID: 212532237315179156}
+  - {fileID: 212668236266443272}
+  sprites: []
+  shopItems:
+  - {fileID: 11400000, guid: 96891c20171ea6e41aae2c82b8a707b1, type: 2}
+  - {fileID: 11400000, guid: 8de39c7956fc8d7499c2ef098561d454, type: 2}
+  - {fileID: 11400000, guid: 1d001d2934f3dce428f5ed232d9e6df2, type: 2}
+  - {fileID: 11400000, guid: 8663285048234b24e8304afb17365ffe, type: 2}
+  - {fileID: 11400000, guid: c6454fc6391835b4faef8d1ec261e58f, type: 2}
+  - {fileID: 11400000, guid: ab7a54d1130f8234aa5bc58483149768, type: 2}
+  - {fileID: 11400000, guid: 9683252283586b74e80b52b99119265e, type: 2}
+  - {fileID: 11400000, guid: 191e9e968bae8b341b7d1e2bfc7f3e75, type: 2}
+  - {fileID: 11400000, guid: 2103e058e2cb2fd4a928cffd6a0a44e2, type: 2}
 --- !u!1 &1515549080263138
 GameObject:
   m_ObjectHideFlags: 0

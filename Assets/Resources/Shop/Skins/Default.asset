@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da22603e95b4b7041b3a0ffc00a24231, type: 3}
-  m_Name: Josh
+  m_Name: Default
   m_EditorClassIdentifier: 
-  itemName: Josh
+  itemName: Default
   shopItemType: 1
-  cost: 150
-  sprite: {fileID: 21300000, guid: e47f09fd4c3a43145896412d6e264d07, type: 3}
-  backgroundColor: {r: 1, g: 0.7764706, b: 0.043137256, a: 1}
+  cost: 0
+  sprite: {fileID: 21300000, guid: 5b5e6079ed3b15b4289cd7f5689f9d7c, type: 3}
+  backgroundColor: {r: 0.16794232, g: 0.65987337, b: 0.6981132, a: 1}
   foregroundColor: {r: 1, g: 1, b: 1, a: 1}
-  itemID: 0
+  itemID: 8
   amount: 0
   sprites:
   - {fileID: 21300000, guid: c0f698d1e7b87a64d84d28e3a53b5aef, type: 3}
@@ -31,7 +31,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 70b44b1851f0d0c4684bffa947d2984f, type: 3}
   - {fileID: 21300000, guid: b4941e30092823948b4eff1f2d556638, type: 3}
   - {fileID: 21300000, guid: 70b44b1851f0d0c4684bffa947d2984f, type: 3}
-  - {fileID: 21300000, guid: 75b1aa7132be9fb45be42dc163da8a9f, type: 3}
+  - {fileID: 21300000, guid: 094fd78559aacce4bbe145f6e77f1b9d, type: 3}
   - {fileID: 21300000, guid: 094fd78559aacce4bbe145f6e77f1b9d, type: 3}
   - {fileID: 21300000, guid: 094fd78559aacce4bbe145f6e77f1b9d, type: 3}
   - {fileID: 21300000, guid: 094fd78559aacce4bbe145f6e77f1b9d, type: 3}

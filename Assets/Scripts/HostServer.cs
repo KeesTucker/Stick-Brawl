@@ -75,6 +75,8 @@ public class HostServer : MonoBehaviour
             {
                 GameObject.Find("Canvas/Host").GetComponent<Animator>().SetTrigger("Exit");
                 GameObject.Find("Canvas/Main").GetComponent<Animator>().SetTrigger("Entry");
+                GameObject.Find("Canvas/JoinMinor").GetComponent<Animator>().SetTrigger("Exit");
+                GameObject.Find("Canvas/Minor").GetComponent<Animator>().SetTrigger("Entry");
             }
         }
     }

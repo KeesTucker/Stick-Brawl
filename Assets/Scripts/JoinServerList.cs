@@ -119,6 +119,8 @@ public class JoinServerList : MonoBehaviour
         {
             GameObject.Find("Canvas/Join").GetComponent<Animator>().SetTrigger("Exit");
             GameObject.Find("Canvas/Main").GetComponent<Animator>().SetTrigger("Entry");
+            GameObject.Find("Canvas/JoinMinor").GetComponent<Animator>().SetTrigger("Exit");
+            GameObject.Find("Canvas/Minor").GetComponent<Animator>().SetTrigger("Entry");
         }
     }
 }
