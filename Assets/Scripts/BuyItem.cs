@@ -12,6 +12,8 @@ public class BuyItem : MonoBehaviour
     public int amount;
     public ShopItem item;
 
+    public GameObject dialogue;
+
     public void Start()
     {
         if (PlayerPrefs.HasKey(itemType.ToString() + "selected"))
@@ -38,16 +40,20 @@ public class BuyItem : MonoBehaviour
                 if (PlayerPrefs.GetInt("Counters") >= cost)
                 {
                     //Display Confirm
-
-                    //If Confirmed
-                    Confirmed();
+                    GameObject confirm = Instantiate(dialogue, GameObject.Find("Canvas").transform);
+                    confirm.transform.GetChild(1).GetChild(0).GetComponent<TMPro.TMP_Text>().text = "Purchase!";
+                    confirm.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Button>().onClick.AddListener(Confirmed);
+                    confirm.transform.GetChild(1).GetChild(1).GetChild(2).GetComponent<TMPro.TMP_Text>().text = "Are you sure you would like to purchase " + itemName + " for " + cost + " counters?";
+                    confirm.GetComponent<Animator>().SetTrigger("Entry");
                 }
                 else
                 {
                     //Display Not enough counters message
-
-                    //If Confirmed
-                    OpenIAP();
+                    GameObject confirm = Instantiate(dialogue, GameObject.Find("Canvas").transform);
+                    confirm.transform.GetChild(1).GetChild(0).GetComponent<TMPro.TMP_Text>().text = "Purchase Fail!";
+                    confirm.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Button>().onClick.AddListener(OpenIAP);
+                    confirm.transform.GetChild(1).GetChild(1).GetChild(2).GetComponent<TMPro.TMP_Text>().text = "You do not have enough counters, purchase some?";
+                    confirm.GetComponent<Animator>().SetTrigger("Entry");
                 }
             }
         }
@@ -76,6 +82,8 @@ public class BuyItem : MonoBehaviour
         DeselectAll();
 
         Select();
+
+        FindObjectOfType<CreditsDisplay>().UpdateAmount();
     }
 
     public void OpenIAP()

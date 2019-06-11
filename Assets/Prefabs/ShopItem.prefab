@@ -690,6 +690,9 @@ MonoBehaviour:
   cost: 0
   itemName: 
   amount: 0
+  item: {fileID: 0}
+  dialogue: {fileID: 8108545615394468727, guid: f3c96a6804bbea643a17019dfd721874,
+    type: 3}
 --- !u!1 &8681893703339070583
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,5 +17,8 @@ MonoBehaviour:
   cost: 250
   sprite: {fileID: 21300000, guid: 5b5e6079ed3b15b4289cd7f5689f9d7c, type: 3}
   backgroundColor: {r: 0.6462264, g: 0.7822626, b: 1, a: 1}
-  foregroundColor: {r: 0.10902455, g: 0.32178345, b: 0.9245283, a: 1}
+  foregroundColor: {r: 0.19023676, g: 0.37352255, b: 0.8962264, a: 1}
   itemID: 2
+  amount: 0
+  sprites: []
+  applyOnSprite: {fileID: 0}

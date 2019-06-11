@@ -414,6 +414,7 @@ namespace Mirror
         {
             // TODO Let's discuss how we will handle errors
             Debug.LogException(exception);
+            NetworkManager.singleton.networkErrorHandler.ErrorSend(exception.Message);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never), Obsolete("Use RegisterHandler<T> instead")]

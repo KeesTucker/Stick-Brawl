@@ -18,6 +18,10 @@ public class MoveTextWithClick : MonoBehaviour, IPointerDownHandler, IPointerUpH
     {
         if (!disabled)
         {
+            if (audioSource == null)
+            {
+                audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
+            }
             audioSource.PlayOneShot(audioSource.clip, SyncData.sfx / 100f * 0.6f);
             rectTransform.position = rectTransform.position - new Vector3(0, amountDown, 0);
         }

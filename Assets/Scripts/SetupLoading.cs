@@ -10,8 +10,9 @@ public class SetupLoading : MonoBehaviour
 
     public GameObject nameTag;
 
+    public bool preInstantiated;
     // Use this for initialization
-    void Start()
+    IEnumerator Start()
     {
         nameTag = Instantiate(playerName, transform.position, Quaternion.identity);
         nameTag.GetComponent<SyncName>().parent = gameObject;
@@ -25,6 +26,11 @@ public class SetupLoading : MonoBehaviour
             {
                 Physics.IgnoreCollision(colliders[i], colliders[v]);
             }
+        }
+        yield return new WaitForEndOfFrame();
+        if (preInstantiated)
+        {
+            GetComponent<SkinApply>().UpdateSkin(PlayerPrefs.GetInt(ShopItemType.Skin.ToString() + "selected"));
         }
     }
 }

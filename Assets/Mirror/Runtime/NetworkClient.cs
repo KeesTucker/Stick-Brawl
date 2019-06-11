@@ -107,11 +107,13 @@ namespace Mirror
 
         static void OnError(Exception exception)
         {
-            Debug.LogException(exception);
+            NetworkManager.singleton.networkErrorHandler.ErrorSend(exception.Message);
         }
 
         static void OnDisconnected()
         {
+            NetworkManager.singleton.networkErrorHandler.ErrorSend("Failed to connect to server!");
+
             connectState = ConnectState.Disconnected;
 
             ClientScene.HandleClientDisconnect(connection);

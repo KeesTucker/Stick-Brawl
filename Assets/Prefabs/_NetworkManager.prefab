@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 4160757301118708}
   - component: {fileID: 114812450365707318}
   - component: {fileID: 363097206}
-  - component: {fileID: 9035509261113446417}
   - component: {fileID: 1486324776}
   - component: {fileID: 9205465908520443044}
   - component: {fileID: 8598903922104559500}
+  - component: {fileID: 1407067962}
+  - component: {fileID: 997788498}
+  - component: {fileID: 1572629010505688323}
   m_Layer: 0
   m_Name: _NetworkManager
   m_TagString: Untagged
@@ -120,15 +122,99 @@ MonoBehaviour:
   simulationMaxLatency: 100
   onClientSocketError:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1407067962}
+        m_MethodName: Error
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Mirror.LiteNetLib4Mirror.UnityEventError, Mirror, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onServerSocketError:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1407067962}
+        m_MethodName: Error
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Mirror.LiteNetLib4Mirror.UnityEventIntError, Mirror, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &9035509261113446417
+--- !u!114 &1486324776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229615253974006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showGUI: 0
+  offsetX: 0
+  offsetY: 0
+--- !u!114 &9205465908520443044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229615253974006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f60b04ea5d7e9843a9407ce527f96d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDiscoveryResponse:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.LiteNetLib4Mirror.UnityEventIpEndpointString, Mirror, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  port: 2345
+--- !u!114 &8598903922104559500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229615253974006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36701a673322bd14280d8eda254239af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  discoveryInterval: 1
+  _noDiscovering: 1
+  updateServerList: {fileID: 0}
+--- !u!114 &1407067962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229615253974006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d335643fd665f4087838eb86ce1ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: {fileID: 4396373960112328644, guid: d73185786385bda4fa3ffb1b5dc62f8e, type: 3}
+  canvas: {fileID: 3530119523129386462, guid: af39d5d60207ad24893665cf52017cb3, type: 3}
+--- !u!114 &997788498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,7 +268,8 @@ MonoBehaviour:
   - {fileID: 1563178683742798, guid: 7f35ffeeff3f2a64492125b5f907f1d5, type: 3}
   - {fileID: 1384572599709050, guid: 315485d8843a72f4f9ffe36c8f1f9892, type: 3}
   - {fileID: 1805788155736632, guid: b687d0250711cda45a640536700202c5, type: 3}
---- !u!114 &1486324776
+  networkErrorHandler: {fileID: 1572629010505688323}
+--- !u!114 &1572629010505688323
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,42 +278,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1229615253974006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
+  m_Script: {fileID: 11500000, guid: ed61b21978fdb0f459d6a840d64abb30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGUI: 0
-  offsetX: 0
-  offsetY: 0
---- !u!114 &9205465908520443044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1229615253974006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f60b04ea5d7e9843a9407ce527f96d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDiscoveryResponse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Mirror.LiteNetLib4Mirror.UnityEventIpEndpointString, Mirror, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  port: 2345
---- !u!114 &8598903922104559500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1229615253974006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36701a673322bd14280d8eda254239af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  discoveryInterval: 1
-  _noDiscovering: 1
-  updateServerList: {fileID: 0}

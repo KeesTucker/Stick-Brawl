@@ -53,6 +53,8 @@ namespace Mirror
         [NonSerialized]
         public bool clientLoadedScene;
 
+        public NetworkErrorHandler networkErrorHandler;
+
         // only really valid on the server
         public int numPlayers => NetworkServer.connections.Count(kv => kv.Value.playerController != null);
 
@@ -296,11 +298,6 @@ namespace Mirror
             return true;
         }
 
-        public void StartGame()
-        {
-
-        }
-
         void RegisterClientMessages()
         {
             NetworkClient.RegisterHandler<ConnectMessage>(OnClientConnectInternal);
@@ -336,7 +333,7 @@ namespace Mirror
 
             if (string.IsNullOrEmpty(networkAddress))
             {
-                Debug.LogError("Must set the Network Address field in the manager");
+                networkErrorHandler.ErrorSend("Enter a valid IP address.");
                 return;
             }
             if (LogFilter.Debug) Debug.Log("NetworkManager StartClient address:" + networkAddress);
@@ -615,6 +612,7 @@ namespace Mirror
         {
             if (LogFilter.Debug) Debug.Log("NetworkManager.OnServerErrorInternal");
             OnServerError(conn, msg.value);
+            networkErrorHandler.ErrorSend("Couldn't establish connection with client.");
         }
         #endregion
 
@@ -656,6 +654,7 @@ namespace Mirror
         {
             if (LogFilter.Debug) Debug.Log("NetworkManager:OnClientErrorInternal");
             OnClientError(conn, msg.value);
+            networkErrorHandler.ErrorSend("Couldn't establish connection with server.");
         }
 
         void OnClientSceneInternal(NetworkConnection conn, SceneMessage msg)
@@ -746,7 +745,9 @@ namespace Mirror
             }
         }
 
-        public virtual void OnServerError(NetworkConnection conn, int errorCode) {}
+        public virtual void OnServerError(NetworkConnection conn, int errorCode) {
+            networkErrorHandler.ErrorSend("Couldn't establish connection with client.");
+        }
 
         public virtual void OnServerSceneChanged(string sceneName) {}
         #endregion
@@ -770,7 +771,9 @@ namespace Mirror
             StopClient();
         }
 
-        public virtual void OnClientError(NetworkConnection conn, int errorCode) {}
+        public virtual void OnClientError(NetworkConnection conn, int errorCode) {
+            networkErrorHandler.ErrorSend("Couldn't establish connection with server.");
+        }
 
         public virtual void OnClientNotReady(NetworkConnection conn) {}
 
