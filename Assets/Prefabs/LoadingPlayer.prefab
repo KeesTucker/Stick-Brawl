@@ -4349,6 +4349,7 @@ GameObject:
   - component: {fileID: 114915463846792992}
   - component: {fileID: 82966276855229744}
   - component: {fileID: 8017773356390982087}
+  - component: {fileID: 7627006113366353253}
   m_Layer: 24
   m_Name: LoadingPlayer
   m_TagString: PosRelay
@@ -4613,6 +4614,7 @@ MonoBehaviour:
   - {fileID: 135439027174118066}
   playerName: {fileID: 1989945171437490, guid: b89332b51ea1ef04c9ae97043df98cd5, type: 3}
   nameTag: {fileID: 0}
+  preInstantiated: 0
 --- !u!114 &114609256874078674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4870,6 +4872,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9683252283586b74e80b52b99119265e, type: 2}
   - {fileID: 11400000, guid: 191e9e968bae8b341b7d1e2bfc7f3e75, type: 2}
   - {fileID: 11400000, guid: 2103e058e2cb2fd4a928cffd6a0a44e2, type: 2}
+--- !u!114 &7627006113366353253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489902280508144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d15059d61ea88f48b01533795afaece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1515549080263138
 GameObject:
   m_ObjectHideFlags: 0

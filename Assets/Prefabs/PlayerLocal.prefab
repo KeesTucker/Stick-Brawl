@@ -10216,6 +10216,7 @@ GameObject:
   - component: {fileID: 82166130458323914}
   - component: {fileID: 114815923090410630}
   - component: {fileID: 114712726320990698}
+  - component: {fileID: 8785708382678422509}
   m_Layer: 24
   m_Name: PlayerLocal
   m_TagString: PosRelay
@@ -10964,6 +10965,18 @@ MonoBehaviour:
   time: 0
   timeMultiplier: 0
   spawnRocket: {fileID: 0}
+--- !u!114 &8785708382678422509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617520046985736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d15059d61ea88f48b01533795afaece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1627744383871120
 GameObject:
   m_ObjectHideFlags: 0
