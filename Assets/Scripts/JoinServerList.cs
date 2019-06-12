@@ -51,12 +51,12 @@ public class JoinServerList : MonoBehaviour
         if (NetworkServer.active)
         {
             NetworkManager.singleton.StopHost();
-            //Message
+            ShowError("Stopped hosting, you can now join another server.");
         }
         else if (NetworkClient.isConnected)
         {
             NetworkManager.singleton.StopClient();
-            //Message
+            ShowError("Disconnected from server, you can now join another!");
         }
         else
         {
@@ -72,6 +72,8 @@ public class JoinServerList : MonoBehaviour
             {
                 GameObject.Find("Canvas/Join").GetComponent<Animator>().SetTrigger("Exit");
                 GameObject.Find("Canvas/Main").GetComponent<Animator>().SetTrigger("Entry");
+                GameObject.Find("Canvas/JoinMinor").GetComponent<Animator>().SetTrigger("Exit");
+                GameObject.Find("Canvas/Minor").GetComponent<Animator>().SetTrigger("Entry");
             }
         }
     }
@@ -85,7 +87,7 @@ public class JoinServerList : MonoBehaviour
     {
         if (!int.TryParse(port, out ServerPort))
         {
-            //Error
+            ShowError("Not a valid port number");
         }
     }
 
@@ -94,16 +96,28 @@ public class JoinServerList : MonoBehaviour
         if (NetworkServer.active)
         {
             NetworkManager.singleton.StopHost();
-            //Message
+            ShowError("Stopped hosting, you can now join another server.");
         }
         else if (NetworkClient.isConnected)
         {
             NetworkManager.singleton.StopClient();
-            //Message
+            ShowError("Disconnected from server, you can now join another!");
         }
         else
         {
             JoinServerManualCall(IPAddress, (ushort)ServerPort);
+        }
+    }
+
+    private void ShowError(string msg)
+    {
+        GameObject confirm;
+        if (GameObject.Find("NoDestroyCanvas/Message"))
+        {
+            confirm = GameObject.Find("NoDestroyCanvas/Message");
+            confirm.transform.GetChild(1).GetChild(0).GetComponent<TMPro.TMP_Text>().text = "Message!";
+            confirm.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<TMPro.TMP_Text>().text = "Network Error! INFO: " + msg;
+            confirm.GetComponent<Animator>().SetTrigger("Entry");
         }
     }
 

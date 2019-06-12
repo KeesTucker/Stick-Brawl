@@ -55,17 +55,29 @@ public class HostServer : MonoBehaviour
         }
     }
 
+    private void ShowError(string msg)
+    {
+        GameObject confirm;
+        if (GameObject.Find("NoDestroyCanvas/Message"))
+        {
+            confirm = GameObject.Find("NoDestroyCanvas/Message");
+            confirm.transform.GetChild(1).GetChild(0).GetComponent<TMPro.TMP_Text>().text = "Message!";
+            confirm.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<TMPro.TMP_Text>().text = "Network Error! INFO: " + msg;
+            confirm.GetComponent<Animator>().SetTrigger("Entry");
+        }
+    }
+
     public void StartServer()
     {
         if (NetworkServer.active)
         {
             NetworkManager.singleton.StopHost();
-            //Message
+            ShowError("Stopped hosting, you can now host a new server.");
         }
         else if (NetworkClient.isConnected)
         {
             NetworkManager.singleton.StopClient();
-            //Message
+            ShowError("Disconnected from server, you can now host your own!");
         }
         else
         {
@@ -97,7 +109,7 @@ public class HostServer : MonoBehaviour
     {
         if (!ushort.TryParse(port, out NetworkManager.singleton.gameObject.GetComponent<LiteNetLib4MirrorTransport>().port))
         {
-            //Error
+            ShowError("Not a valid port!");
         }
     }
 
@@ -105,7 +117,7 @@ public class HostServer : MonoBehaviour
     {
         if (!int.TryParse(health, out SyncData.health))
         {
-            //Error
+            ShowError("Not a number!");
         }
     }
 
