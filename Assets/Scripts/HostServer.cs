@@ -19,7 +19,7 @@ public class HostServer : MonoBehaviour
     void Start()
     {
         SyncData.serverName = "Unnamed Server!";
-        SyncData.health = 200;
+        SyncData.health = 100;
 
         transport = NetworkManager.singleton.gameObject.GetComponent<LiteNetLib4MirrorTransport>();
         transport.port = 2345;
@@ -62,7 +62,7 @@ public class HostServer : MonoBehaviour
         {
             confirm = GameObject.Find("NoDestroyCanvas/Message");
             confirm.transform.GetChild(1).GetChild(0).GetComponent<TMPro.TMP_Text>().text = "Message!";
-            confirm.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<TMPro.TMP_Text>().text = "Network Error! INFO: " + msg;
+            confirm.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<TMPro.TMP_Text>().text = msg;
             confirm.GetComponent<Animator>().SetTrigger("Entry");
         }
     }

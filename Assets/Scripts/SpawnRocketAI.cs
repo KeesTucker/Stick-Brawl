@@ -69,7 +69,7 @@ public class SpawnRocketAI : NetworkBehaviour
             mainCam.GetComponent<Camera>().orthographicSize = 100;
             camActive = true;
         }
-        rocketGO.GetComponent<SpriteRenderer>().color = gameObject.GetComponent<ColourSetterAI>().m_NewColor;
+        rocketGO.GetComponent<SpriteRenderer>().color = Color.clear;
         if (!isServer)
         {
             if (refrenceKeeper.updateUI)
@@ -77,10 +77,17 @@ public class SpawnRocketAI : NetworkBehaviour
                 refrenceKeeper.updateUI.fNote.SetActive(false);
             }
         }
-        if (SyncData.gameMode == 2)
+        /*if (SyncData.gameMode == 2)
         {
             yield return new WaitForSeconds(10f);
             ready = true;
+        }*/
+
+        ready = true;
+        StartCoroutine("timerToKill");
+        if (refrenceKeeper.updateUI)
+        {
+            refrenceKeeper.updateUI.fNote.SetActive(false);
         }
     }
 
@@ -149,7 +156,7 @@ public class SpawnRocketAI : NetworkBehaviour
                 {
                     foreach (FallTerrain ft in GameObject.Find("Terrain").transform.GetComponentsInChildren<FallTerrain>())
                     {
-                        ft.StartWrapper();
+                        //ft.StartWrapper();
                     }
                 }
             }
@@ -158,7 +165,7 @@ public class SpawnRocketAI : NetworkBehaviour
 
     IEnumerator timerToKill()
     {
-        yield return new WaitForSeconds(timeDeath);
+        yield return new WaitForEndOfFrame();
         spaceDepressed = true;
         if (isServer)
         {
@@ -195,7 +202,7 @@ public class SpawnRocketAI : NetworkBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         destroyed = true;
         Destroy(rocketGO);
     }

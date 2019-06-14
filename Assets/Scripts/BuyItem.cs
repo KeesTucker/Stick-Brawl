@@ -71,6 +71,13 @@ public class BuyItem : MonoBehaviour
         PlayerPrefs.SetInt("Owned " + itemType.ToString() + " number " + id.ToString(), 1);
         PlayerPrefs.SetInt("Counters", PlayerPrefs.GetInt("Counters") - cost);
         transform.GetChild(3).GetChild(0).GetComponent<TMPro.TMP_Text>().text = "Owned!";
+
+        foreach (SetMapsAndGamemodes toggle in FindObjectsOfType<SetMapsAndGamemodes>())
+        {
+            Debug.Log("Updated Interactables");
+            toggle.UpdateIntereact();
+        }
+
         if (transform.GetChild(3).childCount >= 2)
         {
             Destroy(transform.GetChild(3).GetChild(1).gameObject);

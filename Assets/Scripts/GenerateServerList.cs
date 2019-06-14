@@ -21,7 +21,11 @@ public class GenerateServerList : NetworkDiscoveryHUD
         {
             updateServerList = FindObjectOfType<UpdateServerList>();
         }
-        updateServerList.Refresh();
+        if (updateServerList != null)
+        {
+            updateServerList.Refresh();
+        }
+        
         SyncData.servers.Clear();
     }
 }

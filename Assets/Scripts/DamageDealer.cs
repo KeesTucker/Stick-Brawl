@@ -376,12 +376,26 @@ public class DamageDealer : MonoBehaviour {
             {
                 audioSource.PlayOneShot(splat, SyncData.sfx * 1.3f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
             }
-            
-            ParticleSystem.MainModule system = particle.GetComponent<ParticleSystem>().main;
+
             if (info.gameObject.tag == "PosRelay" || info.gameObject.name == "LimbEnd" && info.gameObject.layer == 24)
             {
-                system.startColor = info.gameObject.GetComponent<SpriteRenderer>().color;
+                ParticleSystem.MainModule system = particle.GetComponent<ParticleSystem>().main;
+
+                if (info.gameObject.GetComponent<SpriteRenderer>())
+                {
+                    system.startColor = info.gameObject.GetComponent<SpriteRenderer>().color;
+                }
+                else if (info.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>())
+                {
+                    system.startColor = info.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color;
+                }
+                else
+                {
+                    system.startColor = Color.red;
+                }
+
                 GameObject ouchParticle = Instantiate(particle, info.contacts[0].point, Quaternion.identity);
+                
                 ouchParticle.transform.forward = new Vector3(-info.contacts[0].normal.x, -info.contacts[info.contacts.Length - 1].normal.y, info.contacts[info.contacts.Length - 1].normal.z);
                 if (punching)
                 {
@@ -404,10 +418,27 @@ public class DamageDealer : MonoBehaviour {
             }
             else if (gameObject.layer == 24)
             {
-                if (info.transform.GetChild(0).GetComponent<SpriteRenderer>())
+                ParticleSystem.MainModule system = particle.GetComponent<ParticleSystem>().main;
+
+                if (info.gameObject.GetComponent<SpriteRenderer>())
                 {
-                    system.startColor = info.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
+                    system.startColor = info.gameObject.GetComponent<SpriteRenderer>().color;
                 }
+                else if (info.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>())
+                {
+                    system.startColor = info.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color;
+                }
+                else
+                {
+                    Debug.Log("No sprite found for damage");
+                    system.startColor = Color.red;
+                }
+
+                if (system.startColor.color == Color.white)
+                {
+                    system.startColor = Color.red;
+                }
+
                 GameObject ouchParticle = Instantiate(particle, new Vector3(info.contacts[0].point.x, info.contacts[0].point.y, 1), Quaternion.identity);
                 ouchParticle.transform.forward = new Vector3(-info.contacts[0].normal.x, -info.contacts[info.contacts.Length - 1].normal.y, info.contacts[info.contacts.Length - 1].normal.z);
                 if (punching)
@@ -432,8 +463,8 @@ public class DamageDealer : MonoBehaviour {
         }
         else if (gameObject.layer == 9)
         {
-            GameObject particle = Instantiate(gunParticle, new Vector3(info.contacts[0].point.x, info.contacts[0].point.y, 1), Quaternion.identity);
-            particle.transform.forward = info.contacts[0].normal;
+            GameObject particleG = Instantiate(gunParticle, new Vector3(info.contacts[0].point.x, info.contacts[0].point.y, 1), Quaternion.identity);
+            particleG.transform.forward = info.contacts[0].normal;
         }
     }
 

@@ -41,14 +41,16 @@ public class SpawnRocket : NetworkBehaviour {
             sprite.enabled = false;
         }
         yield return new WaitForSeconds(0.2f);
-        rocketGO.GetComponent<SpriteRenderer>().color = transform.parent.gameObject.GetComponent<ColourSetter>().m_NewColor;
+        rocketGO.GetComponent<SpriteRenderer>().color = Color.clear;
         localRelay = GameObject.Find("LocalRelay");
+
+        DepressSpace();
     }
 	
 	void Update () {
         if (Input.GetKey("space"))
         {
-            DepressSpace();
+            //DepressSpace();
         }
         if (spaceDepressed && !done)
         {

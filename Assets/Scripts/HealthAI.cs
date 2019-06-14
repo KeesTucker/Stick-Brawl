@@ -119,7 +119,7 @@ public class HealthAI : NetworkBehaviour {
         transform.Find("Physics AnimatorAI").GetComponent<PlayerMovementAI>().enabled = false;
         if (hasAuthority)
         {
-            GetComponent<SpawnItem>().CmdSpawnKilled(weaponItem, transform.position, 15, 0, 1);
+            //GetComponent<SpawnItem>().CmdSpawnKilled(weaponItem, transform.position, 15, 0, 1);
         }
         for (int i = 0; i < refrenceKeeper.weaponInventory.Count; i++)
         {
@@ -144,11 +144,6 @@ public class HealthAI : NetworkBehaviour {
         if (isPlayer)
         {
             CmdSpawnGhost();
-        }
-        if (GetComponent<PlayerControl>())
-        {
-            yield return new WaitForSeconds(15f);
-            Destroy(gameObject);
         }
     }
 
@@ -254,7 +249,7 @@ public class HealthAI : NetworkBehaviour {
             }
             if (hasAuthority)
             {
-                GetComponent<SpawnItem>().CmdSpawnKilled(weaponItem, transform.position, 15, 0, 1);
+                //GetComponent<SpawnItem>().CmdSpawnKilled(weaponItem, transform.position, 15, 0, 1);
             }
             
             for (int i = 0; i < refrenceKeeper.weaponInventory.Count; i++)

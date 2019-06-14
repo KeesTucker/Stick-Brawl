@@ -232,7 +232,7 @@ MonoBehaviour:
   serverTickRate: 30
   showDebugMessages: 0
   offlineScene: Start
-  onlineScene: 
+  onlineScene: Main
   transport: {fileID: 363097206}
   networkAddress: localhost
   maxConnections: 20

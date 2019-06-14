@@ -34,6 +34,9 @@ namespace Mirror
         [Scene]
         [FormerlySerializedAs("m_OnlineScene")] public string onlineScene = "";
 
+        [Scene]
+        public string gameScene = "";
+
         [Header("Network Info")]
         // transport layer
         [SerializeField] protected Transport transport;
@@ -293,9 +296,20 @@ namespace Mirror
                 //NetworkServer.SpawnObjects();
             }
 
-
-
             return true;
+        }
+
+        public void StartGame()
+        {
+            string loadedSceneName = SceneManager.GetActiveScene().name;
+            if (!string.IsNullOrEmpty(gameScene) && gameScene != loadedSceneName && gameScene != offlineScene)
+            {
+                ServerChangeScene(gameScene);
+            }
+            else
+            {
+                NetworkServer.SpawnObjects();
+            }
         }
 
         void RegisterClientMessages()
@@ -346,6 +360,7 @@ namespace Mirror
         public virtual void StartHost()
         {
             OnStartHost();
+            Debug.Log("Starting Server");
             if (StartServer())
             {
                 ConnectLocalClient();
@@ -360,6 +375,7 @@ namespace Mirror
             NetworkServer.ActivateLocalClientScene();
             NetworkClient.ConnectLocalServer();
             RegisterClientMessages();
+            Debug.Log("Started client");
         }
 
         public void StopHost()

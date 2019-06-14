@@ -8,6 +8,10 @@ public static class SyncData : object {
 
     public static int gameMode;
 
+    public static bool[] gameModes;
+
+    public static bool[] maps;
+
     public static bool failed;
 
     public static int numPlayers = 5;
@@ -25,6 +29,8 @@ public static class SyncData : object {
     public static int kills;
 
     public static int targetFPS;
+
+    public static int chunkID;
 
     public static float gunScale;
     public static float moveScale;

@@ -116,7 +116,7 @@ public class JoinServerList : MonoBehaviour
         {
             confirm = GameObject.Find("NoDestroyCanvas/Message");
             confirm.transform.GetChild(1).GetChild(0).GetComponent<TMPro.TMP_Text>().text = "Message!";
-            confirm.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<TMPro.TMP_Text>().text = "Network Error! INFO: " + msg;
+            confirm.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<TMPro.TMP_Text>().text = msg;
             confirm.GetComponent<Animator>().SetTrigger("Entry");
         }
     }

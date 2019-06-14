@@ -17,8 +17,14 @@ public class SettingsManager : MonoBehaviour
 
     public Vector2[] resList;
 
+    public int gameModeCount;
+    public int mapCount;
+
     void Start()
     {
+        SyncData.gameModes = new bool[gameModeCount];
+        SyncData.maps = new bool[mapCount];
+
         //Vsync
         if (PlayerPrefs.HasKey("vsync"))
         {

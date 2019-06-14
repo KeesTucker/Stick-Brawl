@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using Mirror.LiteNetLib4Mirror;
+using UnityEngine.SceneManagement;
 
 public class PlayerManagement : NetworkBehaviour {
 
@@ -29,9 +31,12 @@ public class PlayerManagement : NetworkBehaviour {
 
     GameObject lobbyPlayerInstantiated;
 
+    public bool isCampaign;
+
     // Use this for initialization
     IEnumerator Start()
     {
+        DontDestroyOnLoad(gameObject);
         if (isLocalPlayer)
         {
             if (SyncData.color == null || SyncData.color == new Color())
@@ -160,7 +165,17 @@ public class PlayerManagement : NetworkBehaviour {
         lobbyPlayerInstantiatedS.GetComponent<SetupLoading>().nameTag.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = playerName;
     }
 
-    public void StartGame () {
+    private IEnumerator SwitchGo()
+    {
+        while (SceneManager.GetActiveScene().name != NetworkManager.singleton.gameScene)
+        {
+            yield return null;
+        }
+        yield return new WaitForEndOfFrame();
+        if (transform.childCount > 0)
+        {
+            Destroy(transform.GetChild(0).gameObject);
+        }
         numPlayers = SyncData.numPlayers;
         if (!isLocalPlayer && isServer)
         {
@@ -177,8 +192,14 @@ public class PlayerManagement : NetworkBehaviour {
         if (isLocalPlayer)
         {
             CmdSpawn(); //Spawn code here
+
             if (isServer)
             {
+                if (!isCampaign)
+                {
+                    SyncData.gameMode = ChooseGamemode();
+                }
+                
                 if (SyncData.gameMode == 1)
                 {
                     for (int i = 0; i < numPlayers; i++)
@@ -192,16 +213,49 @@ public class PlayerManagement : NetworkBehaviour {
                 }
             }
         }
-	}
+    }
+
+    public int ChooseGamemode()
+    {
+        bool hasActivated = false;
+        for (int i = 0; i < SyncData.gameModes.Length; i++)
+        {
+            if (SyncData.gameModes[i] == true)
+            {
+                hasActivated = true;
+            }   
+        }
+
+        int gameMode = Random.Range(0, SyncData.gameModes.Length);
+
+        if (!hasActivated)
+        {
+            return gameMode;
+        }
+        else
+        {
+            gameMode = Random.Range(0, SyncData.gameModes.Length);
+            while (SyncData.gameModes[gameMode] == false)
+            {
+                gameMode = Random.Range(0, SyncData.gameModes.Length);
+            }
+            return gameMode;
+        }
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(SwitchGo());
+    }
 
     [Command]
     public void CmdSpawn()
     {
         if (playerManagement)
         {
-            pos = new Vector3((Random.Range(-SyncData.worldSize / 2, SyncData.worldSize / 2) * 250) + 125, 100, 0);
+            pos = new Vector3(Random.Range(-100, 100), 0, 0);
         }
-        pos = new Vector3((Random.Range(-SyncData.worldSize / 2, SyncData.worldSize / 2) * 250) + 125, 100, 0);
+        pos = new Vector3(Random.Range(-100, 100), 0, 0);
         playerSpawned = Instantiate(AIPlayer, pos, transform.rotation);
         playerSpawnedReal = playerSpawned;
         playerSpawned.GetComponent<AISetup>().parent = gameObject;
@@ -219,14 +273,7 @@ public class PlayerManagement : NetworkBehaviour {
     [Command]
     public void CmdBotSpawn()
     {
-        if (currentNum % 2 == 0)
-        {
-            pos = new Vector3((currentNum / 2) * 250, 100, 0);
-        }
-        else
-        {
-            pos = new Vector3((int)(-currentNum / 2) * 250, 100, 0);
-        }
+        pos = new Vector3(Random.Range(-100, 100), 0, 0);
         playerSpawned = Instantiate(bot, pos, transform.rotation);
         playerSpawned.GetComponent<AISetup>().parent = gameObject;
         NetworkServer.SpawnWithClientAuthority(playerSpawned, connectionToClient);

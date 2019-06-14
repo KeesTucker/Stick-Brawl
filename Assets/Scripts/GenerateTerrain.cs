@@ -8,6 +8,10 @@ public class GenerateTerrain : NetworkBehaviour {
 
     public GameObject[] chunks;
 
+    private List<GameObject> chunksEdit = new List<GameObject>();
+
+    private GameObject[] chunksFinal;
+
     [SerializeField]
     public Biome[] BiomesCompare;
 
@@ -30,12 +34,10 @@ public class GenerateTerrain : NetworkBehaviour {
     public float startPos;
 	// Use this for initialization
 	void Start () {
+
         if (isServer)
         {
-            if (SyncData.gameMode == 2)
-            {
-                SyncData.worldSize = Mathf.Clamp(SyncData.worldSize / 3, 4, 6);
-            }
+            SyncData.worldSize = 1;
             size = SyncData.worldSize;
         }
         info = Resources.LoadAll("Biomes", typeof(Biome));
@@ -72,39 +74,71 @@ public class GenerateTerrain : NetworkBehaviour {
         }
         if (isServer)
         {
-            RandomizeArray(chunks);
-
-            if (size > chunks.Length)
+            if (!GameObject.Find("LocalConnection").GetComponent<PlayerManagement>().isCampaign)
             {
-                int inital = chunks.Length - 1;
-                Array.Resize(ref chunks, size);
+                bool hasActivated = false;
+                for (int i = 0; i < SyncData.maps.Length; i++)
+                {
+                    if (SyncData.maps[i] == true)
+                    {
+                        hasActivated = true;
+                    }
+                }
+                if (hasActivated)
+                {
+                    for (int i = 0; i < SyncData.maps.Length; i++)
+                    {
+                        if (SyncData.maps[i])
+                        {
+                            chunksEdit.Add(chunks[i]);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                chunksEdit.Add(chunks[SyncData.chunkID]);
+                Debug.Log(chunksEdit[0].ToString());
+            }
+
+            chunksFinal = chunksEdit.ToArray();
+
+            if (chunksFinal.Length > 1)
+            {
+                RandomizeArray(chunksFinal);
+            }
+
+            if (size > chunksFinal.Length)
+            {
+                int inital = chunksFinal.Length - 1;
+                Array.Resize(ref chunksFinal, size);
                 int p = 0;
                 int x = 0;
-                for (int i = inital; i < chunks.Length; i++)
+                for (int i = inital; i < chunksFinal.Length; i++)
                 {
                     while (p == x)
                     {
                         x = UnityEngine.Random.Range(0, inital);
                     }
-                    chunks[i] = chunks[x];
+                    chunksFinal[i] = chunksFinal[x];
                     p = x;
                 }
             }
-            else
+            else if(chunksFinal.Length != size)
             {
-                Array.Resize(ref chunks, size);
+                Array.Resize(ref chunksFinal, size);
             }
 
-            for (int i = 0; i < chunks.Length; i++)
+            for (int i = 0; i < chunksFinal.Length; i++)
             {
-                currentPosition -= chunks[i].GetComponent<ChunkData>().width;
+                currentPosition -= chunksFinal[i].GetComponent<ChunkData>().width;
             }
             startPos = currentPosition;
             currentPosition = currentPosition / 2;
 
-            for (int i = 0; i < chunks.Length; i++)
+            for (int i = 0; i < chunksFinal.Length; i++)
             {
-                GameObject chunk = Instantiate(chunks[i], new Vector3(currentPosition, 0, 0), Quaternion.identity);
+                GameObject chunk = Instantiate(chunksFinal[i], new Vector3(currentPosition, 0, 0), Quaternion.identity);
                 currentPosition += chunk.GetComponent<ChunkData>().width;
                 NetworkServer.Spawn(chunk);
             }
