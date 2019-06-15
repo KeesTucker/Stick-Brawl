@@ -50,12 +50,16 @@ public class MultiplayerStart : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
+        foreach (PlayerManagement playerManagement in FindObjectsOfType<PlayerManagement>())
+        {
+            playerManagement.CmdStart(false);
+        }
+
         NetworkManager.singleton.StartGame();
 
         foreach (PlayerManagement playerManagement in FindObjectsOfType<PlayerManagement>())
         {
-            playerManagement.isCampaign = false;
-            playerManagement.StartGame();
+            playerManagement.StartGame(false);
         }
     }
 }

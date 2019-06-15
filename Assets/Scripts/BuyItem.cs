@@ -136,6 +136,8 @@ public class BuyItem : MonoBehaviour
 
             if (itemType == ShopItemType.Skin)
             {
+                SyncData.skinID = item.itemID;
+
                 GameObject.Find("LoadingPlayer").GetComponent<SkinApply>().sprites = item.sprites;
                 GameObject.Find("LoadingPlayer").GetComponent<SkinApply>().UpdateSkin();
 

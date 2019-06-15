@@ -171,7 +171,17 @@ public class PlayerManagement : NetworkBehaviour {
         {
             yield return null;
         }
-        yield return new WaitForEndOfFrame();
+        while (!GameObject.Find("Items"))
+        {
+            Debug.Log("Waiting");
+            yield return null;
+        }
+        while (!GameObject.Find("Items").activeInHierarchy)
+        {
+            Debug.Log("Waiting");
+            yield return null;
+        }
+        yield return new WaitForSeconds(4f);
         if (transform.childCount > 0)
         {
             Destroy(transform.GetChild(0).gameObject);
@@ -243,9 +253,36 @@ public class PlayerManagement : NetworkBehaviour {
         }
     }
 
-    public void StartGame()
+    public void StartGame(bool isCampaignS)
     {
-        StartCoroutine(SwitchGo());
+        isCampaign = isCampaignS;
+        Debug.Log("StartGame Called on Server with no authority");
+        if (hasAuthority || isServer)
+        {
+            Debug.Log("StartGame Called on Server with authority");
+            StartCoroutine(SwitchGo());
+            //CmdStart(isCampaign);
+        }
+    }
+
+    [Command]
+    public void CmdStart(bool isCampaign)
+    {
+        RpcStart(isCampaign);
+        Debug.Log("SendingRPC");
+    }
+
+    [ClientRpc]
+    public void RpcStart(bool isCampaignS)
+    {
+        Debug.Log("StartGame Called on Server through RPC");
+        isCampaign = isCampaignS;
+        if (!isServer)
+        {
+            //NetworkManager.singleton.ClientChangeScene(NetworkManager.singleton.gameScene, true);
+            Debug.Log("StartGame Called on Client");
+            StartCoroutine(SwitchGo());
+        }
     }
 
     [Command]

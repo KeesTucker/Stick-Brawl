@@ -65,12 +65,16 @@ public class StartCampaignLevel : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
+        foreach (PlayerManagement playerManagement in FindObjectsOfType<PlayerManagement>())
+        {
+            playerManagement.CmdStart(true);
+        }
+
         NetworkManager.singleton.StartGame();
 
         foreach (PlayerManagement playerManagement in FindObjectsOfType<PlayerManagement>())
         {
-            playerManagement.isCampaign = true;
-            playerManagement.StartGame();
+            playerManagement.StartGame(true);
         }
     }
 }

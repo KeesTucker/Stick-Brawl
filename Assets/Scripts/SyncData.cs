@@ -30,6 +30,8 @@ public static class SyncData : object {
 
     public static int targetFPS;
 
+    public static int skinID;
+
     public static int chunkID;
 
     public static float gunScale;

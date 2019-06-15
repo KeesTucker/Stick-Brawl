@@ -24,16 +24,17 @@ public class ColourSetterAI : NetworkBehaviour
     {
         if (hasAuthority)
         {
-            CmdSetColor(SyncData.color);
+            CmdSetColor(SyncData.color, SyncData.skinID);
         }
     }
 
     [Command]
-    public void CmdSetColor(Color c)
+    public void CmdSetColor(Color c, int id)
     {
         if (GetComponent<PlayerControl>())
         {
             m_NewColor = c; //Replace with colour from home menu
+            GetComponent<SkinApply>().UpdateSkin(id);
         }
         else
         {
@@ -45,13 +46,17 @@ public class ColourSetterAI : NetworkBehaviour
             cai.ColourFind();
         }
 
-        RpcTriggerChildrenColour(m_NewColor);
+        RpcTriggerChildrenColour(m_NewColor, id);
     }
 
     [ClientRpc]
-    public void RpcTriggerChildrenColour(Color color)
+    public void RpcTriggerChildrenColour(Color color, int id)
     {
         m_NewColor = color;
+        if (GetComponent<PlayerControl>())
+        {
+            GetComponent<SkinApply>().UpdateSkin(id);
+        }
         foreach (ColouriserAI cai in GetComponentsInChildren<ColouriserAI>())
         {
             cai.ColourFind();

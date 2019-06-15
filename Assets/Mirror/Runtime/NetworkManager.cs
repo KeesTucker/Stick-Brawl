@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using System.Collections;
 
 namespace Mirror
 {
@@ -283,32 +284,30 @@ namespace Mirror
             if (LogFilter.Debug) Debug.Log("NetworkManager StartServer");
             isNetworkActive = true;
 
-            // Only change scene if the requested online scene is not blank, and is not already loaded
-            
-            
-            string loadedSceneName = SceneManager.GetActiveScene().name;
-            if (!string.IsNullOrEmpty(onlineScene) && onlineScene != loadedSceneName && onlineScene != offlineScene)
-            {
-                //ServerChangeScene(onlineScene);
-            }
-            else
-            {
-                //NetworkServer.SpawnObjects();
-            }
-
             return true;
         }
 
         public void StartGame()
         {
-            string loadedSceneName = SceneManager.GetActiveScene().name;
-            if (!string.IsNullOrEmpty(gameScene) && gameScene != loadedSceneName && gameScene != offlineScene)
+            //isNetworkActive = true;
+            //SceneManager.LoadScene(gameScene);
+            ServerChangeScene(gameScene);
+            //NetworkServer.SpawnObjects();
+            //StartCoroutine(WaitForScene());
+        }
+
+        IEnumerator WaitForScene()
+        {
+            while (!GameObject.Find("Items"))
             {
-                ServerChangeScene(gameScene);
+                Debug.Log("WaitingToSetClients");
+                yield return null;
             }
-            else
+            yield return new WaitForSeconds(5f);
+            for (int i = 0; i < NetworkServer.connections.Count; i++)
             {
-                NetworkServer.SpawnObjects();
+                Debug.Log("SetClientsReady");
+                NetworkServer.SetClientReady(NetworkServer.connections[i]);
             }
         }
 
@@ -464,7 +463,7 @@ namespace Mirror
             }
         }
 
-        void ClientChangeScene(string newSceneName, bool forceReload)
+        public void ClientChangeScene(string newSceneName, bool forceReload)
         {
             ClientChangeScene(newSceneName, forceReload, LoadSceneMode.Single, LocalPhysicsMode.None);
         }
