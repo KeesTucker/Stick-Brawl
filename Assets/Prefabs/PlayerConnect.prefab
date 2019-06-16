@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 114635493950171358}
   - component: {fileID: 114913565836709824}
   - component: {fileID: 6009366380080422212}
+  - component: {fileID: 4477576435002978678}
   m_Layer: 0
   m_Name: PlayerConnect
   m_TagString: Untagged
@@ -91,6 +92,7 @@ MonoBehaviour:
   lobbyPlayer: {fileID: 1489902280508144, guid: c2954a45956026b4ea4fee807ea7ae3b,
     type: 3}
   createdPlayer: 0
+  isCampaign: 0
 --- !u!114 &6009366380080422212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,3 +105,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2301799ac07283f4499b0847611f1c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncInterval: 0.1
+--- !u!114 &4477576435002978678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798705481898108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79874ac94d5b1314788ecf0e86bd23fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncInterval: 0.1
+  ShowLobbyGUI: 1
+  ReadyToBegin: 0
+  Index: 0

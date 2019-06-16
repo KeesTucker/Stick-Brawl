@@ -36,36 +36,47 @@ public class PlayerManagement : NetworkBehaviour {
     // Use this for initialization
     IEnumerator Start()
     {
-        DontDestroyOnLoad(gameObject);
-        if (isLocalPlayer)
+        //DontDestroyOnLoad(gameObject);
+        if (SceneManager.GetActiveScene().name == "Main")
         {
-            if (SyncData.color == null || SyncData.color == new Color())
-            {
-                if (PlayerPrefs.HasKey("r") && PlayerPrefs.HasKey("g") && PlayerPrefs.HasKey("b"))
-                {
-                    SyncData.color = new Color(PlayerPrefs.GetFloat("r"), PlayerPrefs.GetFloat("g"), PlayerPrefs.GetFloat("b"));
-                }
-                else
-                {
-                    Color randomColour = Color.HSVToRGB(Random.Range(0, 1f), Random.Range(0.5f, 1f), Random.Range(0.5f, 1f));
-                    SyncData.color = randomColour;
-                    PlayerPrefs.SetFloat("r", randomColour.r);
-                    PlayerPrefs.SetFloat("g", randomColour.g);
-                    PlayerPrefs.SetFloat("b", randomColour.b);
-                }
-            }
-            CmdSetColorAndName(SyncData.name, SyncData.color, PlayerPrefs.GetInt(ShopItemType.Skin.ToString() + "selected"));
+            StartGameScene();
         }
         else
         {
-            yield return new WaitForSeconds(2f);
-            if (!createdPlayer)
+            if (isLocalPlayer)
             {
-                lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity, transform);
-                lobbyPlayerInstantiated.GetComponent<ColourSetterLoad>().SetColor(playerColor);
-                lobbyPlayerInstantiated.GetComponent<SkinApply>().UpdateSkin(skinID);
-                StartCoroutine(SetColorAndNameSecond(lobbyPlayerInstantiated));
-                createdPlayer = true;
+                if (!isServer)
+                {
+                    GetComponent<NetworkLobbyPlayer>().CmdChangeReadyState(true);
+                }
+                if (SyncData.color == null || SyncData.color == new Color())
+                {
+                    if (PlayerPrefs.HasKey("r") && PlayerPrefs.HasKey("g") && PlayerPrefs.HasKey("b"))
+                    {
+                        SyncData.color = new Color(PlayerPrefs.GetFloat("r"), PlayerPrefs.GetFloat("g"), PlayerPrefs.GetFloat("b"));
+                    }
+                    else
+                    {
+                        Color randomColour = Color.HSVToRGB(Random.Range(0, 1f), Random.Range(0.5f, 1f), Random.Range(0.5f, 1f));
+                        SyncData.color = randomColour;
+                        PlayerPrefs.SetFloat("r", randomColour.r);
+                        PlayerPrefs.SetFloat("g", randomColour.g);
+                        PlayerPrefs.SetFloat("b", randomColour.b);
+                    }
+                }
+                CmdSetColorAndName(SyncData.name, SyncData.color, PlayerPrefs.GetInt(ShopItemType.Skin.ToString() + "selected"));
+            }
+            else
+            {
+                yield return new WaitForSeconds(2f);
+                if (!createdPlayer)
+                {
+                    lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity, transform);
+                    lobbyPlayerInstantiated.GetComponent<ColourSetterLoad>().SetColor(playerColor);
+                    lobbyPlayerInstantiated.GetComponent<SkinApply>().UpdateSkin(skinID);
+                    StartCoroutine(SetColorAndNameSecond(lobbyPlayerInstantiated));
+                    createdPlayer = true;
+                }
             }
         }
     }
@@ -165,27 +176,8 @@ public class PlayerManagement : NetworkBehaviour {
         lobbyPlayerInstantiatedS.GetComponent<SetupLoading>().nameTag.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = playerName;
     }
 
-    private IEnumerator SwitchGo()
+    private void StartGameScene()
     {
-        while (SceneManager.GetActiveScene().name != NetworkManager.singleton.gameScene)
-        {
-            yield return null;
-        }
-        while (!GameObject.Find("Items"))
-        {
-            Debug.Log("Waiting");
-            yield return null;
-        }
-        while (!GameObject.Find("Items").activeInHierarchy)
-        {
-            Debug.Log("Waiting");
-            yield return null;
-        }
-        yield return new WaitForSeconds(4f);
-        if (transform.childCount > 0)
-        {
-            Destroy(transform.GetChild(0).gameObject);
-        }
         numPlayers = SyncData.numPlayers;
         if (!isLocalPlayer && isServer)
         {
@@ -250,38 +242,6 @@ public class PlayerManagement : NetworkBehaviour {
                 gameMode = Random.Range(0, SyncData.gameModes.Length);
             }
             return gameMode;
-        }
-    }
-
-    public void StartGame(bool isCampaignS)
-    {
-        isCampaign = isCampaignS;
-        Debug.Log("StartGame Called on Server with no authority");
-        if (hasAuthority || isServer)
-        {
-            Debug.Log("StartGame Called on Server with authority");
-            StartCoroutine(SwitchGo());
-            //CmdStart(isCampaign);
-        }
-    }
-
-    [Command]
-    public void CmdStart(bool isCampaign)
-    {
-        RpcStart(isCampaign);
-        Debug.Log("SendingRPC");
-    }
-
-    [ClientRpc]
-    public void RpcStart(bool isCampaignS)
-    {
-        Debug.Log("StartGame Called on Server through RPC");
-        isCampaign = isCampaignS;
-        if (!isServer)
-        {
-            //NetworkManager.singleton.ClientChangeScene(NetworkManager.singleton.gameScene, true);
-            Debug.Log("StartGame Called on Client");
-            StartCoroutine(SwitchGo());
         }
     }
 

@@ -58,23 +58,6 @@ public class StartCampaignLevel : MonoBehaviour
             }
         }
 
-        StartCoroutine(Load());
-    }
-
-    IEnumerator Load()
-    {
-        yield return new WaitForEndOfFrame();
-
-        foreach (PlayerManagement playerManagement in FindObjectsOfType<PlayerManagement>())
-        {
-            playerManagement.CmdStart(true);
-        }
-
-        NetworkManager.singleton.StartGame();
-
-        foreach (PlayerManagement playerManagement in FindObjectsOfType<PlayerManagement>())
-        {
-            playerManagement.StartGame(true);
-        }
+        GameObject.Find("LocalConnection").GetComponent<NetworkLobbyPlayer>().CmdChangeReadyState(true);
     }
 }

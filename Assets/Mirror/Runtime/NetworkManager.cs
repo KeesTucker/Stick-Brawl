@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
-using System.Collections;
 
 namespace Mirror
 {
@@ -29,14 +28,13 @@ namespace Mirror
         public int serverTickRate = 30;
         [FormerlySerializedAs("m_ShowDebugMessages")] public bool showDebugMessages;
 
+        public NetworkErrorHandler networkErrorHandler;
+
         [Scene]
         [FormerlySerializedAs("m_OfflineScene")] public string offlineScene = "";
 
         [Scene]
         [FormerlySerializedAs("m_OnlineScene")] public string onlineScene = "";
-
-        [Scene]
-        public string gameScene = "";
 
         [Header("Network Info")]
         // transport layer
@@ -49,15 +47,13 @@ namespace Mirror
         [FormerlySerializedAs("m_AutoCreatePlayer")] public bool autoCreatePlayer = true;
         [FormerlySerializedAs("m_PlayerSpawnMethod")] public PlayerSpawnMethod playerSpawnMethod;
 
-        [FormerlySerializedAs("m_SpawnPrefabs"),HideInInspector]
+        [FormerlySerializedAs("m_SpawnPrefabs"), HideInInspector]
         public List<GameObject> spawnPrefabs = new List<GameObject>();
 
         public static List<Transform> startPositions = new List<Transform>();
 
         [NonSerialized]
         public bool clientLoadedScene;
-
-        public NetworkErrorHandler networkErrorHandler;
 
         // only really valid on the server
         public int numPlayers => NetworkServer.connections.Count(kv => kv.Value.playerController != null);
@@ -90,6 +86,8 @@ namespace Mirror
 
             // setup OnSceneLoaded callback
             SceneManager.sceneLoaded += OnSceneLoaded;
+
+            networkErrorHandler = GetComponent<NetworkErrorHandler>();
         }
 
         // headless mode detection
@@ -264,7 +262,6 @@ namespace Mirror
             if (!NetworkServer.Listen(maxConnections))
             {
                 Debug.LogError("StartServer listen failed.");
-                //Error
                 return false;
             }
 
@@ -284,31 +281,17 @@ namespace Mirror
             if (LogFilter.Debug) Debug.Log("NetworkManager StartServer");
             isNetworkActive = true;
 
+            // Only change scene if the requested online scene is not blank, and is not already loaded
+            string loadedSceneName = SceneManager.GetActiveScene().name;
+            if (!string.IsNullOrEmpty(onlineScene) && onlineScene != loadedSceneName && onlineScene != offlineScene)
+            {
+                ServerChangeScene(onlineScene);
+            }
+            else
+            {
+                NetworkServer.SpawnObjects();
+            }
             return true;
-        }
-
-        public void StartGame()
-        {
-            //isNetworkActive = true;
-            //SceneManager.LoadScene(gameScene);
-            ServerChangeScene(gameScene);
-            //NetworkServer.SpawnObjects();
-            //StartCoroutine(WaitForScene());
-        }
-
-        IEnumerator WaitForScene()
-        {
-            while (!GameObject.Find("Items"))
-            {
-                Debug.Log("WaitingToSetClients");
-                yield return null;
-            }
-            yield return new WaitForSeconds(5f);
-            for (int i = 0; i < NetworkServer.connections.Count; i++)
-            {
-                Debug.Log("SetClientsReady");
-                NetworkServer.SetClientReady(NetworkServer.connections[i]);
-            }
         }
 
         void RegisterClientMessages()
@@ -359,7 +342,6 @@ namespace Mirror
         public virtual void StartHost()
         {
             OnStartHost();
-            Debug.Log("Starting Server");
             if (StartServer())
             {
                 ConnectLocalClient();
@@ -374,7 +356,6 @@ namespace Mirror
             NetworkServer.ActivateLocalClientScene();
             NetworkClient.ConnectLocalServer();
             RegisterClientMessages();
-            Debug.Log("Started client");
         }
 
         public void StopHost()
@@ -463,7 +444,7 @@ namespace Mirror
             }
         }
 
-        public void ClientChangeScene(string newSceneName, bool forceReload)
+        void ClientChangeScene(string newSceneName, bool forceReload)
         {
             ClientChangeScene(newSceneName, forceReload, LoadSceneMode.Single, LocalPhysicsMode.None);
         }
@@ -593,7 +574,7 @@ namespace Mirror
 
             if (networkSceneName != "" && networkSceneName != offlineScene)
             {
-                SceneMessage msg = new SceneMessage() {sceneName = networkSceneName};
+                SceneMessage msg = new SceneMessage() { sceneName = networkSceneName };
                 conn.Send(msg);
             }
 
@@ -684,7 +665,7 @@ namespace Mirror
         #endregion
 
         #region Server System Callbacks
-        public virtual void OnServerConnect(NetworkConnection conn) {}
+        public virtual void OnServerConnect(NetworkConnection conn) { }
 
         public virtual void OnServerDisconnect(NetworkConnection conn)
         {
@@ -723,7 +704,7 @@ namespace Mirror
                 Debug.LogError("There is already a player for this connections.");
                 return;
             }
-            
+
             Transform startPos = GetStartPosition();
             GameObject player = startPos != null
                 ? Instantiate(playerPrefab, startPos.position, startPos.rotation)
@@ -732,25 +713,25 @@ namespace Mirror
             NetworkServer.AddPlayerForConnection(conn, player);
         }
 
-		public Transform GetStartPosition()
-		{
-			// first remove any dead transforms
-			startPositions.RemoveAll(t => t == null);
+        public Transform GetStartPosition()
+        {
+            // first remove any dead transforms
+            startPositions.RemoveAll(t => t == null);
 
-			if (startPositions.Count == 0)
-				return null;
+            if (startPositions.Count == 0)
+                return null;
 
-			if (playerSpawnMethod == PlayerSpawnMethod.Random)
-			{
-				return startPositions[UnityEngine.Random.Range(0, startPositions.Count)];
-			}
-			else
-			{
-				Transform startPosition = startPositions[startPositionIndex];
-				startPositionIndex = (startPositionIndex + 1) % startPositions.Count;
-				return startPosition;
-			}
-		}
+            if (playerSpawnMethod == PlayerSpawnMethod.Random)
+            {
+                return startPositions[UnityEngine.Random.Range(0, startPositions.Count)];
+            }
+            else
+            {
+                Transform startPosition = startPositions[startPositionIndex];
+                startPositionIndex = (startPositionIndex + 1) % startPositions.Count;
+                return startPosition;
+            }
+        }
 
         public virtual void OnServerRemovePlayer(NetworkConnection conn, NetworkIdentity player)
         {
@@ -760,11 +741,12 @@ namespace Mirror
             }
         }
 
-        public virtual void OnServerError(NetworkConnection conn, int errorCode) {
+        public virtual void OnServerError(NetworkConnection conn, int errorCode)
+        {
             networkErrorHandler.ErrorSend("Couldn't establish connection with client.");
         }
 
-        public virtual void OnServerSceneChanged(string sceneName) {}
+        public virtual void OnServerSceneChanged(string sceneName) { }
         #endregion
 
         #region Client System Callbacks
@@ -786,15 +768,16 @@ namespace Mirror
             StopClient();
         }
 
-        public virtual void OnClientError(NetworkConnection conn, int errorCode) {
+        public virtual void OnClientError(NetworkConnection conn, int errorCode)
+        {
             networkErrorHandler.ErrorSend("Couldn't establish connection with server.");
         }
 
-        public virtual void OnClientNotReady(NetworkConnection conn) {}
+        public virtual void OnClientNotReady(NetworkConnection conn) { }
 
         // Called from ClientChangeScene immediately before SceneManager.LoadSceneAsync is executed
         // This allows client to do work / cleanup / prep before the scene changes.
-        public virtual void OnClientChangeScene(string newSceneName) {}
+        public virtual void OnClientChangeScene(string newSceneName) { }
 
         public virtual void OnClientSceneChanged(NetworkConnection conn)
         {
@@ -814,10 +797,10 @@ namespace Mirror
         // their functionality, users would need override all the versions. Instead these callbacks are invoked
         // from all versions, so users only need to implement this one case.
 
-        public virtual void OnStartHost() {}
-        public virtual void OnStartServer() {}
+        public virtual void OnStartHost() { }
+        public virtual void OnStartServer() { }
         [EditorBrowsable(EditorBrowsableState.Never), Obsolete("Use OnStartClient() instead of OnStartClient(NetworkClient client). All NetworkClient functions are static now, so you can use NetworkClient.Send(message) instead of client.Send(message) directly now.")]
-        public virtual void OnStartClient(NetworkClient client) {}
+        public virtual void OnStartClient(NetworkClient client) { }
         public virtual void OnStartClient()
         {
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -825,9 +808,9 @@ namespace Mirror
 #pragma warning restore CS0618 // Type or member is obsolete
         }
 
-        public virtual void OnStopServer() {}
-        public virtual void OnStopClient() {}
-        public virtual void OnStopHost() {}
+        public virtual void OnStopServer() { }
+        public virtual void OnStopClient() { }
+        public virtual void OnStopHost() { }
         #endregion
     }
 }

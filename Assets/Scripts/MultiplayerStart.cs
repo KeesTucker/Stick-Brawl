@@ -43,23 +43,6 @@ public class MultiplayerStart : MonoBehaviour
             }
         }
 
-        StartCoroutine(Load());
-    }
-
-    IEnumerator Load()
-    {
-        yield return new WaitForEndOfFrame();
-
-        foreach (PlayerManagement playerManagement in FindObjectsOfType<PlayerManagement>())
-        {
-            playerManagement.CmdStart(false);
-        }
-
-        NetworkManager.singleton.StartGame();
-
-        foreach (PlayerManagement playerManagement in FindObjectsOfType<PlayerManagement>())
-        {
-            playerManagement.StartGame(false);
-        }
+        //Move to game scene
     }
 }
