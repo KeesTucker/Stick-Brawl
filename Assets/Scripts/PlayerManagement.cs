@@ -49,7 +49,7 @@ public class PlayerManagement : NetworkBehaviour {
         //DontDestroyOnLoad(gameObject);
         if (SceneManager.GetActiveScene().name == "Main")
         {
-            if (isLobbyPlayer)
+            /*if (isLobbyPlayer)
             {
                 Destroy(gameObject);
             }
@@ -59,7 +59,7 @@ public class PlayerManagement : NetworkBehaviour {
                 {
                     Destroy(cunt);
                 }
-            }
+            }*/
 
             isCampaign = SyncData.isCampaign;
             Debug.Log(isCampaign);

@@ -9,14 +9,14 @@ public class PlayerConnection : NetworkBehaviour {
 	void Start () {
         if (isLocalPlayer)
         {
-            if (GetComponent<PlayerManagement>().isLobbyPlayer)
-            {
-                gameObject.name = "LocalConnectionG";
-            }
-            else
+            /*if (GetComponent<PlayerManagement>().isLobbyPlayer)
             {
                 gameObject.name = "LocalConnection";
             }
+            else
+            {*/
+                gameObject.name = "LocalConnection";
+            //}
         }	
 	}
 

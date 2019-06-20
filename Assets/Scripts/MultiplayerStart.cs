@@ -51,6 +51,6 @@ public class MultiplayerStart : MonoBehaviour
         yield return new WaitForSeconds(1f);
         SyncData.isCampaign = false;
         SceneManager.LoadScene("Main");
-        GameObject.Find("LocalConnectionG").GetComponent<NetworkLobbyPlayer>().CmdChangeReadyState(true);
+        GameObject.Find("LocalConnection").GetComponent<NetworkLobbyPlayer>().CmdChangeReadyState(true);
     }
 }
