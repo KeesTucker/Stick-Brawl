@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using Mirror.LiteNetLib4Mirror;
+using UnityEngine.SceneManagement;
 
 public class MultiplayerStart : MonoBehaviour
 {
@@ -42,7 +43,14 @@ public class MultiplayerStart : MonoBehaviour
                 NetworkManager.singleton.StartHost();
             }
         }
+        StartCoroutine(WaitForReady());
+    }
 
-        //Move to game scene
+    IEnumerator WaitForReady()
+    {
+        yield return new WaitForSeconds(1f);
+        SyncData.isCampaign = false;
+        SceneManager.LoadScene("Main");
+        GameObject.Find("LocalConnectionG").GetComponent<NetworkLobbyPlayer>().CmdChangeReadyState(true);
     }
 }

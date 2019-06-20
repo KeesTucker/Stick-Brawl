@@ -242,14 +242,14 @@ MonoBehaviour:
   runInBackground: 0
   startOnHeadless: 0
   serverTickRate: 30
-  showDebugMessages: 0
+  showDebugMessages: 1
   networkErrorHandler: {fileID: 1572629010505688323}
   offlineScene: Start
-  onlineScene: Main
+  onlineScene: 
   transport: {fileID: 363097206}
   networkAddress: localhost
   maxConnections: 4
-  playerPrefab: {fileID: 1798705481898108, guid: 9559fef88bd38da419844d62e9fff83d,
+  playerPrefab: {fileID: 1798705481898108, guid: 6ac8af7033a184148b7fac7e7d1efde7,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
   - {fileID: 1757743736535976, guid: a2ab57fb811728d4b8e6d0fd2cc945ba, type: 3}
   - {fileID: 1881230412041522, guid: eddec3f38fcb0644da1b4a8e5d33588a, type: 3}
   - {fileID: 1989945171437490, guid: b89332b51ea1ef04c9ae97043df98cd5, type: 3}
-  - {fileID: 1554290044306088, guid: 9a0fd4c42c5d249c8896b66cc9a2985c, type: 3}
+  - {fileID: 1822163060209856, guid: 98dd924f011935e4a9d28ee383b99329, type: 3}
   - {fileID: 1812291429154494, guid: 3e3d265b7e73163438623709c2ebd8c1, type: 3}
   - {fileID: 1518451573490538, guid: 5f2943bf059b13548be7f82c2c00422f, type: 3}
   - {fileID: 1367329845884602, guid: 1a072b5345bcc6943b070d6a03bf0b9c, type: 3}

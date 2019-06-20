@@ -10992,7 +10992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderers:
   - {fileID: 212722218474636988}
-  - {fileID: 212029506457864442}
+  - {fileID: 212148182246959662}
   - {fileID: 212758116946495260}
   - {fileID: 212727403250434520}
   - {fileID: 212528064467403670}
@@ -11004,7 +11004,7 @@ MonoBehaviour:
   - {fileID: 212967226107401848}
   - {fileID: 212171785505347776}
   - {fileID: 212195903985540642}
-  - {fileID: 212351449847609102}
+  - {fileID: 212676389681358048}
   - {fileID: 212351449847609102}
   sprites: []
   shopItems:

@@ -12,18 +12,11 @@ public class ColourSetterAI : NetworkBehaviour
 
     public bool local = false;
 
-    void Start()
-    {
-        foreach (ColouriserAI cai in GetComponentsInChildren<ColouriserAI>())
-        {
-            cai.ColourFind();
-        }
-    }
-
     public override void OnStartAuthority()
     {
         if (hasAuthority)
         {
+            Debug.Log("Color: " + SyncData.color);
             CmdSetColor(SyncData.color, SyncData.skinID);
         }
     }
@@ -43,8 +36,10 @@ public class ColourSetterAI : NetworkBehaviour
 
         foreach (ColouriserAI cai in GetComponentsInChildren<ColouriserAI>())
         {
-            cai.ColourFind();
+            cai.ColourFind(m_NewColor);
         }
+
+        Debug.Log("Color object NameCmd: " + gameObject.name);
 
         RpcTriggerChildrenColour(m_NewColor, id);
     }
@@ -59,7 +54,9 @@ public class ColourSetterAI : NetworkBehaviour
         }
         foreach (ColouriserAI cai in GetComponentsInChildren<ColouriserAI>())
         {
-            cai.ColourFind();
+            cai.ColourFind(m_NewColor);
         }
+
+        Debug.Log("Color object NameRpc: " + gameObject.name);
     }
 }

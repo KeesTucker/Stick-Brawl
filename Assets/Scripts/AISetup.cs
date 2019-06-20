@@ -45,7 +45,7 @@ public class AISetup : NetworkBehaviour
         }
         else
         {
-            playerManagement = GameObject.Find("PlayerConnect(Clone)").GetComponent<PlayerManagement>();
+            playerManagement = GameObject.Find("PlayerInGameConnection(Clone)").GetComponent<PlayerManagement>();
         }
         playerManagement.totalPlayers++;
     }

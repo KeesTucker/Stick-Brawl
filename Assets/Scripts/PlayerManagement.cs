@@ -33,12 +33,37 @@ public class PlayerManagement : NetworkBehaviour {
 
     public bool isCampaign;
 
+    public bool isLobbyPlayer;
+
+    void Awake()
+    {
+        if (SceneManager.GetActiveScene().name == "Main" && isLobbyPlayer)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Use this for initialization
     IEnumerator Start()
     {
         //DontDestroyOnLoad(gameObject);
         if (SceneManager.GetActiveScene().name == "Main")
         {
+            if (isLobbyPlayer)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                foreach (GameObject cunt in GameObject.FindGameObjectsWithTag("cunt"))
+                {
+                    Destroy(cunt);
+                }
+            }
+
+            isCampaign = SyncData.isCampaign;
+            Debug.Log(isCampaign);
+
             StartGameScene();
         }
         else
@@ -201,11 +226,14 @@ public class PlayerManagement : NetworkBehaviour {
                 {
                     SyncData.gameMode = ChooseGamemode();
                 }
-                
+
+                Debug.Log("Got Gamemode: " + SyncData.gameMode.ToString());
+
                 if (SyncData.gameMode == 1)
                 {
                     for (int i = 0; i < numPlayers; i++)
                     {
+                        Debug.Log("Spawning a bot");
                         CmdBotSpawn();
                     }
                 }

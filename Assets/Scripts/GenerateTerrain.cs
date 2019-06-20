@@ -34,7 +34,6 @@ public class GenerateTerrain : NetworkBehaviour {
     public float startPos;
 	// Use this for initialization
 	void Start () {
-
         if (isServer)
         {
             SyncData.worldSize = 1;
@@ -74,7 +73,7 @@ public class GenerateTerrain : NetworkBehaviour {
         }
         if (isServer)
         {
-            if (!GameObject.Find("LocalConnection").GetComponent<PlayerManagement>().isCampaign)
+            if (!SyncData.isCampaign)
             {
                 bool hasActivated = false;
                 for (int i = 0; i < SyncData.maps.Length; i++)

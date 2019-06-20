@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using Mirror.LiteNetLib4Mirror;
+using UnityEngine.SceneManagement;
 
 public class StartCampaignLevel : MonoBehaviour
 {
@@ -58,6 +59,14 @@ public class StartCampaignLevel : MonoBehaviour
             }
         }
 
-        GameObject.Find("LocalConnection").GetComponent<NetworkLobbyPlayer>().CmdChangeReadyState(true);
+        StartCoroutine(WaitForReady());
+    }
+
+    IEnumerator WaitForReady()
+    {
+        yield return new WaitForSeconds(1f);
+        SyncData.isCampaign = true;
+        SceneManager.LoadScene("Main");
+        GameObject.Find("LocalConnectionG").GetComponent<NetworkLobbyPlayer>().CmdChangeReadyState(true);
     }
 }

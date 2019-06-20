@@ -41,7 +41,7 @@ public class HealthAI : NetworkBehaviour {
         }
         else
         {
-            health = GameObject.Find("Player(Clone)").GetComponent<HealthAI>().health;
+            health = GameObject.Find("PlayerLocal(Clone)").GetComponent<HealthAI>().health;
             oldHealth = health;
         }
         while (!GameObject.Find("LocalPlayer") && !GameObject.Find("LoadingPlayer"))
