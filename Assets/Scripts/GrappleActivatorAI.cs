@@ -132,7 +132,10 @@ public class GrappleActivatorAI : MonoBehaviour {
                 rb.AddForce(rb.velocity.normalized * (100000 / 50) * Time.deltaTime);
             }
         }
-        angle = AngleBetweenPoints(hand.GetComponent<Transform>().position, transform.position);
+        if (hand)
+        {
+            angle = AngleBetweenPoints(hand.GetComponent<Transform>().position, transform.position);
+        }
         rotation = Quaternion.Euler(0, 0, angle);
         direction = rotation * -Vector3.right;
         if (Collided)

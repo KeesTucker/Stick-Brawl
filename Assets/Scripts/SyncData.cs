@@ -32,9 +32,11 @@ public static class SyncData : object {
 
     public static int skinID;
 
+    public static int chunkID;
+
     public static bool isCampaign;
 
-    public static int chunkID;
+    public static int botHealth;
 
     public static float gunScale;
     public static float moveScale;

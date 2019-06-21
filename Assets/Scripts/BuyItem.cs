@@ -160,9 +160,9 @@ public class BuyItem : MonoBehaviour
                     syncName.UpdateColor();
                 }
             }
-            if (GameObject.Find("LocalConnection"))
+            if (GameObject.Find("LocalConnectionLobby"))
             {
-                GameObject.Find("LocalConnection").GetComponent<PlayerManagement>().CmdUpdateColorAndName(SyncData.name, SyncData.color, PlayerPrefs.GetInt(ShopItemType.Skin.ToString() + "selected"));
+                GameObject.Find("LocalConnectionLobby").GetComponent<PlayerManagement>().CmdUpdateColorAndName(SyncData.name, SyncData.color, PlayerPrefs.GetInt(ShopItemType.Skin.ToString() + "selected"));
             }
         }
     }

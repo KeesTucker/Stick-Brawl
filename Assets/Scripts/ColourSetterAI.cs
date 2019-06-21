@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Mirror;
+using System.Collections;
 
 public class ColourSetterAI : NetworkBehaviour
 {
@@ -12,11 +13,34 @@ public class ColourSetterAI : NetworkBehaviour
 
     public bool local = false;
 
+    void Start()
+    {
+        if (gameObject.name == "Player(Clone)")
+        {
+            m_NewColor = Random.ColorHSV(0f, 1f, 0.3f, 0.7f, 0.5f, 1f);
+            foreach (ColouriserAI cai in GetComponentsInChildren<ColouriserAI>())
+            {
+                cai.ColourFind();
+            }
+        }
+    }
+
     public override void OnStartAuthority()
     {
-        if (hasAuthority)
+        StartCoroutine(ServerSet());
+    }
+
+    IEnumerator ServerSet()
+    {
+        yield return new WaitForEndOfFrame();
+        if (gameObject.name == "LocalPlayer")
         {
-            Debug.Log("Color: " + SyncData.color);
+            CmdSetColor(SyncData.color, SyncData.skinID);
+            yield return new WaitForSeconds(0.3f);
+            CmdSetColor(SyncData.color, SyncData.skinID);
+            yield return new WaitForSeconds(1f);
+            CmdSetColor(SyncData.color, SyncData.skinID);
+            yield return new WaitForSeconds(5f);
             CmdSetColor(SyncData.color, SyncData.skinID);
         }
     }
@@ -36,12 +60,10 @@ public class ColourSetterAI : NetworkBehaviour
 
         foreach (ColouriserAI cai in GetComponentsInChildren<ColouriserAI>())
         {
-            cai.ColourFind(m_NewColor);
+            cai.ColourFind();
         }
 
-        Debug.Log("Color object NameCmd: " + gameObject.name);
-
-        RpcTriggerChildrenColour(m_NewColor, id);
+        RpcTriggerChildrenColour(c, id);
     }
 
     [ClientRpc]
@@ -54,9 +76,7 @@ public class ColourSetterAI : NetworkBehaviour
         }
         foreach (ColouriserAI cai in GetComponentsInChildren<ColouriserAI>())
         {
-            cai.ColourFind(m_NewColor);
+            cai.ColourFind();
         }
-
-        Debug.Log("Color object NameRpc: " + gameObject.name);
     }
 }

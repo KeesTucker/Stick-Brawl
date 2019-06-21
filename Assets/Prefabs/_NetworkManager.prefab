@@ -242,14 +242,14 @@ MonoBehaviour:
   runInBackground: 0
   startOnHeadless: 0
   serverTickRate: 30
-  showDebugMessages: 1
+  showDebugMessages: 0
   networkErrorHandler: {fileID: 1572629010505688323}
   offlineScene: Start
   onlineScene: 
   transport: {fileID: 363097206}
   networkAddress: localhost
   maxConnections: 4
-  playerPrefab: {fileID: 1798705481898108, guid: 6ac8af7033a184148b7fac7e7d1efde7,
+  playerPrefab: {fileID: 1798705481898108, guid: 9559fef88bd38da419844d62e9fff83d,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
@@ -283,7 +283,7 @@ MonoBehaviour:
   - {fileID: 1805788155736632, guid: b687d0250711cda45a640536700202c5, type: 3}
   showLobbyGUI: 1
   minPlayers: 1
-  lobbyPlayerPrefab: {fileID: 4477576435002978678, guid: 9559fef88bd38da419844d62e9fff83d,
+  lobbyPlayerPrefab: {fileID: 4477576435002978678, guid: f9f5ecaec380e2b408c9ca81412968d1,
     type: 3}
   LobbyScene: Start
   GameplayScene: Main

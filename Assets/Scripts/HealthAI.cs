@@ -37,12 +37,19 @@ public class HealthAI : NetworkBehaviour {
         if (GetComponent<AISetup>().isServer)
         {
             health = SyncData.health;
+            if (SyncData.isCampaign && GetComponent<BaseControl>())
+            {
+                //Campaign Bot Health!
+                health = SyncData.botHealth;
+            }
             oldHealth = health;
         }
         else
         {
+            //ERROR maybe? not sure if that will get the correct refrence.
             health = GameObject.Find("PlayerLocal(Clone)").GetComponent<HealthAI>().health;
             oldHealth = health;
+            //Check to make sure player gets right amount;
         }
         while (!GameObject.Find("LocalPlayer") && !GameObject.Find("LoadingPlayer"))
         {

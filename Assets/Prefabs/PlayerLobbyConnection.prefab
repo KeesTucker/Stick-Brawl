@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 114635493950171358}
   - component: {fileID: 114913565836709824}
   - component: {fileID: 6009366380080422212}
+  - component: {fileID: 4477576435002978678}
   m_Layer: 0
-  m_Name: PlayerInGameConnection
+  m_Name: PlayerLobbyConnection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 6ac8af7033a184148b7fac7e7d1efde7
+  m_AssetId: f9f5ecaec380e2b408c9ca81412968d1
   m_SceneId: 0
 --- !u!114 &114635493950171358
 MonoBehaviour:
@@ -92,6 +93,7 @@ MonoBehaviour:
     type: 3}
   createdPlayer: 0
   isCampaign: 0
+  isLobby: 1
 --- !u!114 &6009366380080422212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,3 +107,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncInterval: 0.1
+--- !u!114 &4477576435002978678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798705481898108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79874ac94d5b1314788ecf0e86bd23fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncInterval: 0.1
+  ShowLobbyGUI: 1
+  ReadyToBegin: 0
+  Index: 0

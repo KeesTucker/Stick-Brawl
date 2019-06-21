@@ -6867,7 +6867,7 @@ MonoBehaviour:
   speed: 5
   weapon: {fileID: 0}
   isAWeapon: 0
-  particle: {fileID: 2903, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
+  particle: {fileID: 450, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
   gunParticle: {fileID: 1778453083565316, guid: 4a5282bb60a81fd489c6629f11bf7beb,
     type: 3}
   rb: {fileID: 0}
@@ -8610,7 +8610,7 @@ MonoBehaviour:
   speed: 5
   weapon: {fileID: 0}
   isAWeapon: 0
-  particle: {fileID: 2903, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
+  particle: {fileID: 450, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
   gunParticle: {fileID: 1778453083565316, guid: 4a5282bb60a81fd489c6629f11bf7beb,
     type: 3}
   rb: {fileID: 0}
@@ -8925,6 +8925,7 @@ MonoBehaviour:
   offset: 0
   health: {fileID: 114469010814628966}
   frames: 0
+  start: 0
 --- !u!1 &1467105453988206
 GameObject:
   m_ObjectHideFlags: 0
@@ -11541,7 +11542,7 @@ MonoBehaviour:
   speed: 5
   weapon: {fileID: 0}
   isAWeapon: 0
-  particle: {fileID: 2903, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
+  particle: {fileID: 450, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
   gunParticle: {fileID: 1778453083565316, guid: 4a5282bb60a81fd489c6629f11bf7beb,
     type: 3}
   rb: {fileID: 0}
@@ -13148,7 +13149,7 @@ MonoBehaviour:
   speed: 5
   weapon: {fileID: 0}
   isAWeapon: 0
-  particle: {fileID: 2903, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
+  particle: {fileID: 450, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
   gunParticle: {fileID: 1778453083565316, guid: 4a5282bb60a81fd489c6629f11bf7beb,
     type: 3}
   rb: {fileID: 0}

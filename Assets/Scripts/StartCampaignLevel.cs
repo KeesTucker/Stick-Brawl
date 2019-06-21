@@ -17,7 +17,9 @@ public class StartCampaignLevel : MonoBehaviour
 
     public int chunkID;
 
-    public int health = 100;
+    public int health = 200;
+
+    public int botHealth = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +45,7 @@ public class StartCampaignLevel : MonoBehaviour
         SyncData.numPlayers = numBots;
         SyncData.gameMode = gameMode;
         SyncData.chunkID = chunkID;
+        SyncData.botHealth = botHealth;
 
         if (!NetworkServer.active)
         {
@@ -59,14 +62,15 @@ public class StartCampaignLevel : MonoBehaviour
             }
         }
 
-        StartCoroutine(WaitForReady());
+        SyncData.isCampaign = true;
+
+        StartCoroutine(WaitForServer());
     }
 
-    IEnumerator WaitForReady()
+    IEnumerator WaitForServer()
     {
-        yield return new WaitForSeconds(1f);
-        SyncData.isCampaign = true;
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Main");
-        GameObject.Find("LocalConnection").GetComponent<NetworkLobbyPlayer>().CmdChangeReadyState(true);
+        GameObject.Find("LocalConnectionLobby").GetComponent<NetworkLobbyPlayer>().CmdChangeReadyState(true);
     }
 }

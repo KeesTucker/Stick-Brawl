@@ -26,7 +26,7 @@ public class SpawnRocket : NetworkBehaviour {
     public bool done = false;
 
 	IEnumerator Start () {
-        GameObject.Find("Local/Main Camera").GetComponent<Camera>().orthographicSize = 100;
+        //GameObject.Find("Local/Main Camera").GetComponent<Camera>().orthographicSize = 100;
         rocketGO = Instantiate(rocket, transform.position, transform.rotation); //Spawn Rocket
         rocketGO.transform.GetChild(1).gameObject.SetActive(false);
         StartCoroutine("timerToKill");
@@ -80,13 +80,13 @@ public class SpawnRocket : NetworkBehaviour {
 
     IEnumerator destroy()
     {
-        float size = 100;
-        for (int i = 0; i < 60; i++)
-        {
-            GameObject.Find("Local/Main Camera").GetComponent<Camera>().orthographicSize = size;
-            size--;
-            yield return new WaitForEndOfFrame();
-        }
+        //float size = 100;
+        //for (int i = 0; i < 60; i++)
+        //{
+         //   GameObject.Find("Local/Main Camera").GetComponent<Camera>().orthographicSize = size;
+         //   size--;
+         //   yield return new WaitForEndOfFrame();
+        //}
         yield return new WaitForSeconds(0.3f);
         Destroy(rocketGO);
     }

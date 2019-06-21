@@ -93,7 +93,6 @@ MonoBehaviour:
     type: 3}
   createdPlayer: 0
   isCampaign: 0
-  isLobbyPlayer: 1
 --- !u!114 &6009366380080422212
 MonoBehaviour:
   m_ObjectHideFlags: 0

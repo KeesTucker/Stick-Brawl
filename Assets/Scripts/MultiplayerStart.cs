@@ -43,14 +43,16 @@ public class MultiplayerStart : MonoBehaviour
                 NetworkManager.singleton.StartHost();
             }
         }
-        StartCoroutine(WaitForReady());
+
+        SyncData.isCampaign = false;
+
+        StartCoroutine(WaitForServer());
     }
 
-    IEnumerator WaitForReady()
+    IEnumerator WaitForServer()
     {
-        yield return new WaitForSeconds(1f);
-        SyncData.isCampaign = false;
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Main");
-        GameObject.Find("LocalConnection").GetComponent<NetworkLobbyPlayer>().CmdChangeReadyState(true);
+        GameObject.Find("LocalConnectionLobby").GetComponent<NetworkLobbyPlayer>().CmdChangeReadyState(true);
     }
 }

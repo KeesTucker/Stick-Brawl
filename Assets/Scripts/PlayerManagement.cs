@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using Mirror.LiteNetLib4Mirror;
 using UnityEngine.SceneManagement;
 
 public class PlayerManagement : NetworkBehaviour {
@@ -33,40 +31,22 @@ public class PlayerManagement : NetworkBehaviour {
 
     public bool isCampaign;
 
-    public bool isLobbyPlayer;
-
-    void Awake()
-    {
-        if (SceneManager.GetActiveScene().name == "Main" && isLobbyPlayer)
-        {
-            Destroy(gameObject);
-        }
-    }
+    public bool isLobby;
 
     // Use this for initialization
     IEnumerator Start()
     {
-        //DontDestroyOnLoad(gameObject);
-        if (SceneManager.GetActiveScene().name == "Main")
+        if (isLobby && SceneManager.GetActiveScene().name == "Main")
         {
-            /*if (isLobbyPlayer)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                foreach (GameObject cunt in GameObject.FindGameObjectsWithTag("cunt"))
-                {
-                    Destroy(cunt);
-                }
-            }*/
+            Destroy(gameObject);
+        }
 
-            isCampaign = SyncData.isCampaign;
-            Debug.Log(isCampaign);
-
+        //DontDestroyOnLoad(gameObject);
+        if (!isLobby && SceneManager.GetActiveScene().name == "Main")
+        {
             StartGameScene();
         }
-        else
+        else if(SceneManager.GetActiveScene().name != "Main")
         {
             if (isLocalPlayer)
             {
@@ -89,6 +69,7 @@ public class PlayerManagement : NetworkBehaviour {
                         PlayerPrefs.SetFloat("b", randomColour.b);
                     }
                 }
+                SyncData.skinID = PlayerPrefs.GetInt(ShopItemType.Skin.ToString() + "selected");
                 CmdSetColorAndName(SyncData.name, SyncData.color, PlayerPrefs.GetInt(ShopItemType.Skin.ToString() + "selected"));
             }
             else
@@ -96,7 +77,7 @@ public class PlayerManagement : NetworkBehaviour {
                 yield return new WaitForSeconds(2f);
                 if (!createdPlayer)
                 {
-                    lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity, transform);
+                    lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity);
                     lobbyPlayerInstantiated.GetComponent<ColourSetterLoad>().SetColor(playerColor);
                     lobbyPlayerInstantiated.GetComponent<SkinApply>().UpdateSkin(skinID);
                     StartCoroutine(SetColorAndNameSecond(lobbyPlayerInstantiated));
@@ -126,7 +107,7 @@ public class PlayerManagement : NetworkBehaviour {
     {
         if (!isLocalPlayer)
         {
-            lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity, transform);
+            lobbyPlayerInstantiated = Instantiate(lobbyPlayer, new Vector3(Random.Range(-25f, 25f), 0, -1.4f), Quaternion.identity);
             lobbyPlayerInstantiated.GetComponent<ColourSetterLoad>().SetColor(playerColorSS);
             lobbyPlayerInstantiated.GetComponent<SkinApply>().UpdateSkin(skinIDS);
             StartCoroutine(SetColorAndNameSecond(lobbyPlayerInstantiated));
@@ -222,18 +203,15 @@ public class PlayerManagement : NetworkBehaviour {
 
             if (isServer)
             {
-                if (!isCampaign)
+                if (!SyncData.isCampaign)
                 {
                     SyncData.gameMode = ChooseGamemode();
                 }
-
-                Debug.Log("Got Gamemode: " + SyncData.gameMode.ToString());
-
+                
                 if (SyncData.gameMode == 1)
                 {
                     for (int i = 0; i < numPlayers; i++)
                     {
-                        Debug.Log("Spawning a bot");
                         CmdBotSpawn();
                     }
                 }
@@ -243,6 +221,28 @@ public class PlayerManagement : NetworkBehaviour {
                 }
             }
         }
+
+        StartCoroutine(GameModeUpdate());
+    }
+
+    IEnumerator GameModeUpdate()
+    {
+        yield return new WaitForSeconds(4f);
+        CmdServerGamemodeUpdate(SyncData.gameMode, SyncData.isCampaign);
+    }
+
+    [Command]
+    void CmdServerGamemodeUpdate(int gameMode, bool isCampaign)
+    {
+        RpcClientGamemodeUpdate(gameMode, isCampaign);
+    }
+
+    [ClientRpc]
+    void RpcClientGamemodeUpdate(int gameMode, bool isCampaign)
+    {
+        Debug.Log("Got Gamemode: " + gameMode.ToString() + isCampaign.ToString());
+        SyncData.gameMode = gameMode;
+        SyncData.isCampaign = isCampaign;
     }
 
     public int ChooseGamemode()

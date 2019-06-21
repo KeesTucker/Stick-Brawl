@@ -19,7 +19,7 @@ public class HostServer : MonoBehaviour
     void Start()
     {
         SyncData.serverName = "Unnamed Server!";
-        SyncData.health = 100;
+        SyncData.health = 200;
 
         transport = NetworkManager.singleton.gameObject.GetComponent<LiteNetLib4MirrorTransport>();
         transport.port = 2345;

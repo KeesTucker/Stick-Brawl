@@ -26,9 +26,9 @@ public class AccountSettings : MonoBehaviour
         }
         text.text = SyncData.name;
 
-        if (GameObject.Find("LocalConnection"))
+        if (GameObject.Find("LocalConnectionLobby"))
         {
-            GameObject.Find("LocalConnection").GetComponent<PlayerManagement>().CmdUpdateColorAndNameN(SyncData.name);
+            GameObject.Find("LocalConnectionLobby").GetComponent<PlayerManagement>().CmdUpdateColorAndNameN(SyncData.name);
         }
     }
 

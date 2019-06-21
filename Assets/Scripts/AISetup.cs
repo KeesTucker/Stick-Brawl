@@ -27,6 +27,9 @@ public class AISetup : NetworkBehaviour
 
     public SpawnRocketAI spawnRocket;
 
+    [SyncVar]
+    public bool serverLocal;
+
     // Use this for initialization
     void Start()
     {
@@ -45,7 +48,8 @@ public class AISetup : NetworkBehaviour
         }
         else
         {
-            playerManagement = GameObject.Find("PlayerInGameConnection(Clone)").GetComponent<PlayerManagement>();
+            //ERROR maybe? not sure if that will get the correct refrence.
+            playerManagement = GameObject.Find("PlayerConnect(Clone)").GetComponent<PlayerManagement>();
         }
         playerManagement.totalPlayers++;
     }
@@ -55,7 +59,7 @@ public class AISetup : NetworkBehaviour
         if (hasAuthority)
         {
             manager = GameObject.Find("_NetworkManager").GetComponent<NetworkManager>();
-            if (SyncData.gameMode == 1)
+            /*if (SyncData.gameMode == 1)
             {
                 if (GameObject.Find("Player(Clone)").GetComponent<SpawnRocketAI>().ready)
                 {
@@ -66,8 +70,9 @@ public class AISetup : NetworkBehaviour
                 {
                     SyncData.failed = false;
                 }
-            }
-            
+            }*/
+            SyncData.failed = false;
+
             local = true;
             if (GetComponent<PlayerControl>())
             {
@@ -78,9 +83,15 @@ public class AISetup : NetworkBehaviour
                 }
                 GameObject.Find("Inventory").GetComponent<UpdateUI>().refrenceKeeper = GetComponent<RefrenceKeeperAI>();
 
-                CmdSpawnName();
+                StartCoroutine(WaitForNameSpawn());
             }
         }
+    }
+
+    IEnumerator WaitForNameSpawn()
+    {
+        yield return new WaitForSeconds(3f);
+        CmdSpawnName();
     }
 
     [Command]

@@ -249,7 +249,7 @@ MonoBehaviour:
   speed: 5
   weapon: {fileID: 0}
   isAWeapon: 0
-  particle: {fileID: 2903, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
+  particle: {fileID: 450, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
   gunParticle: {fileID: 1778453083565316, guid: 4a5282bb60a81fd489c6629f11bf7beb,
     type: 3}
   rb: {fileID: 0}
@@ -264,8 +264,7 @@ MonoBehaviour:
   local: {fileID: 0}
   splat: {fileID: 8300000, guid: 4da03d73ebf7c2c43ba8d7bad8f57d4e, type: 3}
   ping: {fileID: 8300000, guid: cdc0921fbb1ad0549aeafc797a29b97d, type: 3}
-  audioSource: {fileID: 82631197377766896, guid: ff97ee52b8bc425479a64c5d916c105d,
-    type: 3}
+  audioSource: {fileID: 82741639553486378}
   hasKilled: 0
   playerFire: 0
   localFired: 0

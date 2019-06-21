@@ -22,4 +22,5 @@ public class SyncColourAI : NetworkBehaviour
     {
         m_NewColor = newColor;
     }
+
 }

@@ -112,7 +112,6 @@ public class DamageDealer : MonoBehaviour {
         }
         else if (collisionInfo.gameObject.layer == 24 && !particleDone && gameObject.tag != "WeaponItem" && punching)
         {
-            Debug.Log("WTF");
             if (local)
             {
                 audioSource.PlayOneShot(splat, SyncData.sfx * 1.3f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
@@ -267,7 +266,8 @@ public class DamageDealer : MonoBehaviour {
                     if (onServer)
                     {
                         hasKilled = true;
-                        if (!(SyncData.gameMode == 2 && playerFire && collisionInfo.gameObject.GetComponent<PlayerControl>()))
+                        //ERROR - maybe if clients cant get iscampaign
+                        if (!((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && playerFire && collisionInfo.gameObject.GetComponent<PlayerControl>()))
                         {
                             collisionInfo.gameObject.GetComponent<HealthAI>().CmdUpdateHealth(damage);
                         }
@@ -296,7 +296,7 @@ public class DamageDealer : MonoBehaviour {
                     {
                         
                         hasKilled = true;
-                        if (!(SyncData.gameMode == 2 && playerFire && collisionInfo.transform.parent.gameObject.GetComponent<PlayerControl>()))
+                        if (!((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && playerFire && collisionInfo.transform.parent.gameObject.GetComponent<PlayerControl>()))
                         {
                             collisionInfo.transform.parent.gameObject.GetComponent<HealthAI>().CmdUpdateHealth(damage);
                         }
@@ -325,7 +325,7 @@ public class DamageDealer : MonoBehaviour {
                     {
                         
                         hasKilled = true;
-                        if (!(SyncData.gameMode == 2 && playerFire && collisionInfo.transform.parent.parent.gameObject.GetComponent<PlayerControl>()))
+                        if (!((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && playerFire && collisionInfo.transform.parent.parent.gameObject.GetComponent<PlayerControl>()))
                         {
                             collisionInfo.transform.parent.parent.gameObject.GetComponent<HealthAI>().CmdUpdateHealth(damage);
                         }
@@ -354,7 +354,7 @@ public class DamageDealer : MonoBehaviour {
                     {
                         
                         hasKilled = true;
-                        if (!(SyncData.gameMode == 2 && playerFire && collisionInfo.transform.parent.parent.parent.gameObject.GetComponent<PlayerControl>()))
+                        if (!((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && playerFire && collisionInfo.transform.parent.parent.parent.gameObject.GetComponent<PlayerControl>()))
                         {
                             collisionInfo.transform.parent.parent.parent.gameObject.GetComponent<HealthAI>().CmdUpdateHealth(damage);
                         }
@@ -394,9 +394,15 @@ public class DamageDealer : MonoBehaviour {
                     system.startColor = Color.red;
                 }
 
-                GameObject ouchParticle = Instantiate(particle, info.contacts[0].point, Quaternion.identity);
+                GameObject ouchParticle = null;
+
+                ouchParticle = Instantiate(particle, info.contacts[0].point, Quaternion.identity);
+
+                if (ouchParticle != null)
+                {
+                    ouchParticle.transform.forward = new Vector3(-info.contacts[0].normal.x, -info.contacts[info.contacts.Length - 1].normal.y, info.contacts[info.contacts.Length - 1].normal.z);
+                }
                 
-                ouchParticle.transform.forward = new Vector3(-info.contacts[0].normal.x, -info.contacts[info.contacts.Length - 1].normal.y, info.contacts[info.contacts.Length - 1].normal.z);
                 if (punching)
                 {
                     hit = Instantiate(hitMarker, info.contacts[0].point, Quaternion.identity);
@@ -416,7 +422,7 @@ public class DamageDealer : MonoBehaviour {
                 yield return new WaitForEndOfFrame();
                 //info.gameObject.GetComponent<SpriteRenderer>().color = oldColor;
             }
-            else if (gameObject.layer == 24)
+            else if (info.gameObject.layer == 24)
             {
                 ParticleSystem.MainModule system = particle.GetComponent<ParticleSystem>().main;
 
@@ -461,7 +467,7 @@ public class DamageDealer : MonoBehaviour {
                 //info.transform.GetChild(0).GetComponent<SpriteRenderer>().color = oldColor;
             }
         }
-        else if (gameObject.layer == 9)
+        else if (info.gameObject.layer == 9)
         {
             GameObject particleG = Instantiate(gunParticle, new Vector3(info.contacts[0].point.x, info.contacts[0].point.y, 1), Quaternion.identity);
             particleG.transform.forward = info.contacts[0].normal;

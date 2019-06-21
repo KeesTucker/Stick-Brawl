@@ -46,6 +46,10 @@ public class PlayerControl : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (refrenceKeeper.weaponInventory.Count < 1)
+        {
+            e = true;
+        }
         if (hasAuthority)
         {
             if (gameObject.GetComponent<SpawnRocketAI>().spaceDepressed)

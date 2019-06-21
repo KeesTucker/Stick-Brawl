@@ -22,7 +22,6 @@ TagManager:
   - ButtonMenu
   - FlagSpawn
   - ghostLocal
-  - cunt
   layers:
   - Default
   - TransparentFX

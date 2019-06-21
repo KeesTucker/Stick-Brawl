@@ -52,7 +52,10 @@ public class ColourSetterLoad : MonoBehaviour {
             PlayerPrefs.SetFloat("r", color.r);
             PlayerPrefs.SetFloat("g", color.g);
             PlayerPrefs.SetFloat("b", color.b);
-            SyncData.color = color;
+            if (gameObject.name == "LoadingPlayer")
+            {
+                SyncData.color = color;
+            }
             cai.ColourFind();
         }
     }

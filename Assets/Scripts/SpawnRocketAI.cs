@@ -65,7 +65,7 @@ public class SpawnRocketAI : NetworkBehaviour
         yield return new WaitForSeconds(0.2f);
         if (gameObject.name == "LocalPlayer" && hasAuthority)
         {
-            mainCam = GameObject.Find("Main Camera(Clone)");
+            //mainCam = GameObject.Find("Main Camera(Clone)");
             //mainCam.GetComponent<Camera>().orthographicSize = 100;
             camActive = true;
         }
@@ -192,6 +192,16 @@ public class SpawnRocketAI : NetworkBehaviour
 
     IEnumerator destroy()
     {
+        if (camActive)
+        {
+            //float size = 100;
+            //for (int i = 0; i < 60; i++)
+            //{
+             //   mainCam.GetComponent<Camera>().orthographicSize = size;
+             //   size--;
+             //   yield return new WaitForEndOfFrame();
+            //}
+        }
         yield return new WaitForSeconds(0.5f);
         destroyed = true;
         Destroy(rocketGO);

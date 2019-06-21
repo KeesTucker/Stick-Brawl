@@ -69,7 +69,7 @@ public class AITarget : MonoBehaviour {
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
         layerMask = ~layerMask;
         frames = Random.Range(0, 12);
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(7f);
         start = true;
     }
 
@@ -133,14 +133,14 @@ public class AITarget : MonoBehaviour {
                                     closestPlayer = objectCol.transform;
                                     startCheckP = false;
                                 }
-                                else if (SyncData.gameMode == 2 && !objectCol.gameObject.GetComponent<HealthAI>().deaded && objectCol.gameObject.GetComponent<PlayerControl>())
+                                else if ((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && !objectCol.gameObject.GetComponent<HealthAI>().deaded && objectCol.gameObject.GetComponent<PlayerControl>())
                                 {
                                     minPlayerDistance = 0;
                                     closestPlayer = objectCol.transform;
                                 }
                                 else if (Vector3.Distance(objectCol.transform.position, parent.transform.position) < minPlayerDistance && !objectCol.gameObject.GetComponent<HealthAI>().deaded)
                                 {
-                                    minPlayerDistance = Vector3.Distance(objectCol.transform.position, parent.transform.position);
+                                    minPlayerDistance = 9999f;//Vector3.Distance(objectCol.transform.position, parent.transform.position);
                                     closestPlayer = objectCol.transform;
                                 }
                             }
