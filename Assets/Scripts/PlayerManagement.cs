@@ -228,21 +228,23 @@ public class PlayerManagement : NetworkBehaviour {
     IEnumerator GameModeUpdate()
     {
         yield return new WaitForSeconds(4f);
-        CmdServerGamemodeUpdate(SyncData.gameMode, SyncData.isCampaign);
+        CmdServerGamemodeUpdate(SyncData.gameMode, SyncData.isCampaign, SyncData.health, SyncData.chunkID);
     }
 
     [Command]
-    void CmdServerGamemodeUpdate(int gameMode, bool isCampaign)
+    void CmdServerGamemodeUpdate(int gameMode, bool isCampaign, int health, int chunkID)
     {
-        RpcClientGamemodeUpdate(gameMode, isCampaign);
+        RpcClientGamemodeUpdate(gameMode, isCampaign, health, chunkID);
     }
 
     [ClientRpc]
-    void RpcClientGamemodeUpdate(int gameMode, bool isCampaign)
+    void RpcClientGamemodeUpdate(int gameMode, bool isCampaign, int health, int chunkID)
     {
         Debug.Log("Got Gamemode: " + gameMode.ToString() + isCampaign.ToString());
         SyncData.gameMode = gameMode;
         SyncData.isCampaign = isCampaign;
+        SyncData.health = health;
+        SyncData.chunkID = chunkID;
     }
 
     public int ChooseGamemode()

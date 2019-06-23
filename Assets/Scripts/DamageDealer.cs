@@ -267,7 +267,7 @@ public class DamageDealer : MonoBehaviour {
                     {
                         hasKilled = true;
                         //ERROR - maybe if clients cant get iscampaign
-                        if (!((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && playerFire && collisionInfo.gameObject.GetComponent<PlayerControl>()))
+                        if (!((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && playerFire && collisionInfo.gameObject.GetComponent<PlayerControl>()) && !((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && !playerFire && collisionInfo.gameObject.GetComponent<BaseControl>()))
                         {
                             collisionInfo.gameObject.GetComponent<HealthAI>().CmdUpdateHealth(damage);
                         }

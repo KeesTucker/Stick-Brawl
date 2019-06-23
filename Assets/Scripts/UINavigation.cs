@@ -52,6 +52,10 @@ public class UINavigation : MonoBehaviour
 
     public void Switch()
     {
+        if (gameObject.name != "SinglePlayer")
+        {
+            SyncData.openCampaignScreen = false;
+        }
         for (int i = 0; i < menus.Length; i++)
         {
             if ((menus[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("IdleMinor") || menus[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("IdleMain")) && targetMenu != i)// && gameObject.activeInHierarchy)

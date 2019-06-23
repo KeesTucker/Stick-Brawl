@@ -30,6 +30,11 @@ public class AISetup : NetworkBehaviour
     [SyncVar]
     public bool serverLocal;
 
+    public List<HealthAI> healths = new List<HealthAI>();
+
+    private int count;
+    private bool ready = false;
+
     // Use this for initialization
     void Start()
     {
@@ -52,6 +57,19 @@ public class AISetup : NetworkBehaviour
             playerManagement = GameObject.Find("PlayerConnect(Clone)").GetComponent<PlayerManagement>();
         }
         playerManagement.totalPlayers++;
+    }
+
+    IEnumerator checkPlayers()
+    {
+        yield return new WaitForSeconds(1f);
+        foreach (HealthAI health in FindObjectsOfType<HealthAI>())
+        {
+            if (health.gameObject.name == "Player(Clone)")
+            {
+                healths.Add(health);
+            }
+        }
+        ready = true;
     }
 
     public override void OnStartAuthority()
@@ -85,6 +103,8 @@ public class AISetup : NetworkBehaviour
 
                 StartCoroutine(WaitForNameSpawn());
             }
+
+            StartCoroutine(checkPlayers());
         }
     }
 
@@ -104,32 +124,77 @@ public class AISetup : NetworkBehaviour
 
     void Update()
     {
-        if (playerManagement)
+        if (playerManagement && ready)
         {
-            if (playerManagement.totalPlayers <= 1 && !health.deaded && gameObject.name != "Player(Clone)" && hasAuthority && SyncData.gameMode == 1 && spawnRocket.ready)
+            if (Input.GetKey("f") && GetComponent<PlayerControl>() && hasAuthority && stop)
             {
-                GetComponent<RefrenceKeeperAI>().updateUI.won.SetActive(true);
-                if (PlayerPrefs.HasKey("wins") && !stop)
+                if (SyncData.isCampaign)
                 {
-                    PlayerPrefs.SetInt("wins", PlayerPrefs.GetInt("wins") + 1);
-                    stop = true;
+                    SyncData.openCampaignScreen = true;
                 }
-                else if (!stop)
+                if (!isServer)
                 {
-                    PlayerPrefs.SetInt("wins", 1);
-                    stop = true;
+                    manager.StopClient();
                 }
-                
-                if (Input.GetKey("f") && GetComponent<PlayerControl>() && hasAuthority)
+                else
                 {
-                    if (!isServer)
+                    manager.StopClient();
+                    manager.StopServer();
+                }
+            }
+            count++;
+            if (count > 30)
+            {
+                count = 0;
+                if (SyncData.isCampaign)
+                {
+                    bool allDead = true;
+                    foreach (HealthAI health in healths)
                     {
-                        manager.StopClient();
+                        if (!health.deaded)
+                        {
+                            allDead = false;
+                        }
                     }
-                    else
+                    if (allDead && !health.deaded && gameObject.name != "Player(Clone)" && hasAuthority && spawnRocket.ready)
                     {
-                        manager.StopClient();
-                        manager.StopServer();
+                        Debug.Log((float)health.health / (float)health.health * 100f);
+                        if (!PlayerPrefs.HasKey(SyncData.chunkID.ToString() + "level"))
+                        {
+                            PlayerPrefs.SetFloat(SyncData.chunkID.ToString() + "level", (float)health.health / (float)SyncData.health * 100f);
+                        }
+                        else if (PlayerPrefs.GetFloat(SyncData.chunkID.ToString() + "level") < (float)health.health / (float)SyncData.health * 100f)
+                        {
+                            PlayerPrefs.SetFloat(SyncData.chunkID.ToString() + "level", (float)health.health / (float)SyncData.health * 100f);
+                        }
+                        GetComponent<RefrenceKeeperAI>().updateUI.won.SetActive(true);
+                        if (PlayerPrefs.HasKey("wins") && !stop)
+                        {
+                            PlayerPrefs.SetInt("wins", PlayerPrefs.GetInt("wins") + 1);
+                            stop = true;
+                        }
+                        else if (!stop)
+                        {
+                            PlayerPrefs.SetInt("wins", 1);
+                            stop = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (playerManagement.totalPlayers <= 1 && !health.deaded && gameObject.name != "Player(Clone)" && hasAuthority && spawnRocket.ready)
+                    {
+                        GetComponent<RefrenceKeeperAI>().updateUI.won.SetActive(true);
+                        if (PlayerPrefs.HasKey("wins") && !stop)
+                        {
+                            PlayerPrefs.SetInt("wins", PlayerPrefs.GetInt("wins") + 1);
+                            stop = true;
+                        }
+                        else if (!stop)
+                        {
+                            PlayerPrefs.SetInt("wins", 1);
+                            stop = true;
+                        }
                     }
                 }
             }

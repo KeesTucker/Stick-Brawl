@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using Mirror.LiteNetLib4Mirror;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartCampaignLevel : MonoBehaviour
 {
@@ -21,10 +22,24 @@ public class StartCampaignLevel : MonoBehaviour
 
     public int botHealth = 100;
 
-    // Start is called before the first frame update
+    private string[] grades = new string[] { "F", "F Plus", "D", "D Plus", "C", "C Plus", "B", "B Plus", "A", "A Plus" };
+
     void Start()
     {
         transport = NetworkManager.singleton.gameObject.GetComponent<LiteNetLib4MirrorTransport>();
+        if (PlayerPrefs.HasKey(chunkID.ToString() + "level"))
+        {
+            Debug.Log(PlayerPrefs.GetFloat(chunkID.ToString() + "level"));
+            transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = "Grade: " + grades[Mathf.Clamp((int)(PlayerPrefs.GetFloat(chunkID.ToString() + "level") / 10) - 1, 0, 10)];
+        }
+        else
+        {
+            transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = "Uncompleted";
+            if (!PlayerPrefs.HasKey((chunkID - 1).ToString() + "level") && chunkID != 0)
+            {
+                GetComponent<Button>().interactable = false;
+            }
+        }
     }
 
     void CheckPorts()

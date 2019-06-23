@@ -129,7 +129,14 @@ public class AITarget : MonoBehaviour {
                             {
                                 if (startCheckP && !objectCol.gameObject.GetComponent<HealthAI>().deaded)
                                 {
-                                    minPlayerDistance = Vector3.Distance(objectCol.transform.position, parent.transform.position);
+                                    if (SyncData.isCampaign)
+                                    {
+                                        minPlayerDistance = 9999f;
+                                    }
+                                    else
+                                    {
+                                        minPlayerDistance = Vector3.Distance(objectCol.transform.position, parent.transform.position);
+                                    }
                                     closestPlayer = objectCol.transform;
                                     startCheckP = false;
                                 }
@@ -141,7 +148,7 @@ public class AITarget : MonoBehaviour {
                                 else if (Vector3.Distance(objectCol.transform.position, parent.transform.position) < minPlayerDistance && !objectCol.gameObject.GetComponent<HealthAI>().deaded)
                                 {
                                     minPlayerDistance = 9999f;//Vector3.Distance(objectCol.transform.position, parent.transform.position);
-                                    closestPlayer = objectCol.transform;
+                                    //closestPlayer = objectCol.transform;
                                 }
                             }
                             else if (objectCol.gameObject.layer == 11 && objectCol.transform.name != "Heal")

@@ -74,7 +74,7 @@ public class GenerateTerrain : NetworkBehaviour {
         }
         if (isServer)
         {
-            if (SyncData.isCampaign)
+            if (!SyncData.isCampaign)
             {
                 bool hasActivated = false;
                 for (int i = 0; i < SyncData.maps.Length; i++)
@@ -97,8 +97,8 @@ public class GenerateTerrain : NetworkBehaviour {
             }
             else
             {
+                chunksEdit.Clear();
                 chunksEdit.Add(chunks[SyncData.chunkID]);
-                Debug.Log(chunksEdit[0].ToString());
             }
 
             chunksFinal = chunksEdit.ToArray();
