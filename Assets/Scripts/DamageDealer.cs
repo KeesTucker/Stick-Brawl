@@ -296,7 +296,7 @@ public class DamageDealer : MonoBehaviour {
                     {
                         
                         hasKilled = true;
-                        if (!((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && playerFire && collisionInfo.transform.parent.gameObject.GetComponent<PlayerControl>()))
+                        if (!((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && playerFire && collisionInfo.transform.parent.gameObject.GetComponent<PlayerControl>()) && !((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && !playerFire && collisionInfo.gameObject.GetComponent<BaseControl>()))
                         {
                             collisionInfo.transform.parent.gameObject.GetComponent<HealthAI>().CmdUpdateHealth(damage);
                         }
@@ -325,7 +325,7 @@ public class DamageDealer : MonoBehaviour {
                     {
                         
                         hasKilled = true;
-                        if (!((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && playerFire && collisionInfo.transform.parent.parent.gameObject.GetComponent<PlayerControl>()))
+                        if (!((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && playerFire && collisionInfo.transform.parent.parent.gameObject.GetComponent<PlayerControl>()) && !((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && !playerFire && collisionInfo.gameObject.GetComponent<BaseControl>()))
                         {
                             collisionInfo.transform.parent.parent.gameObject.GetComponent<HealthAI>().CmdUpdateHealth(damage);
                         }
@@ -354,7 +354,7 @@ public class DamageDealer : MonoBehaviour {
                     {
                         
                         hasKilled = true;
-                        if (!((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && playerFire && collisionInfo.transform.parent.parent.parent.gameObject.GetComponent<PlayerControl>()))
+                        if (!((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && playerFire && collisionInfo.transform.parent.parent.parent.gameObject.GetComponent<PlayerControl>()) && !((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && !playerFire && collisionInfo.gameObject.GetComponent<BaseControl>()))
                         {
                             collisionInfo.transform.parent.parent.parent.gameObject.GetComponent<HealthAI>().CmdUpdateHealth(damage);
                         }

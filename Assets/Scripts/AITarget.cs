@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AITarget : MonoBehaviour {
+public class AITarget : MonoBehaviour
+{
 
     public SpawnRocketAI spawnRocket;
     public RefrenceKeeperAI refrenceKeeper;
@@ -59,18 +60,30 @@ public class AITarget : MonoBehaviour {
 
     GameObject[] weapons;
 
-    public bool start = false;
+    public bool ready = false;
+
+    public List<Collider> players = new List<Collider>();
 
     // Use this for initialization
-    IEnumerator Start () {
+    void Start()
+    {
         isServer = parent.GetComponent<AISetup>().isServer;
         spawnWeapons = GameObject.Find("Items").GetComponent<SpawnWeapons>();
         // This would cast rays only against colliders in layer 8.
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
         layerMask = ~layerMask;
         frames = Random.Range(0, 12);
-        yield return new WaitForSeconds(7f);
-        start = true;
+        StartCoroutine(Wait());
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(5f);
+        foreach (PlayerControl player in FindObjectsOfType<PlayerControl>())
+        {
+            players.Add(player.gameObject.GetComponent<Collider>());
+        }
+        ready = true;
     }
 
     void OnDrawGizmos()
@@ -93,9 +106,10 @@ public class AITarget : MonoBehaviour {
         Gizmos.DrawWireSphere(transform.position, 4f);
     }
 
-	// Update is called once per frame
-	void Update () {
-        if (start)
+    // Update is called once per frame
+    void Update()
+    {
+        if (ready)
         {
             frames++;
             if (frames >= 12 && !health.deaded)
@@ -123,35 +137,24 @@ public class AITarget : MonoBehaviour {
                         startCheckP = true;
                         startCheckW = true;
 
+                        foreach (Collider objectCol in players)
+                        {
+                            if (startCheckP && !objectCol.gameObject.GetComponent<HealthAI>().deaded)
+                            {
+                                minPlayerDistance = Vector3.Distance(objectCol.transform.position, parent.transform.position);
+                                closestPlayer = objectCol.transform;
+                                startCheckP = false;
+                            }
+                            else if (Vector3.Distance(objectCol.transform.position, parent.transform.position) < minPlayerDistance && !objectCol.gameObject.GetComponent<HealthAI>().deaded)
+                            {
+                                minPlayerDistance = Vector3.Distance(objectCol.transform.position, parent.transform.position);
+                                closestPlayer = objectCol.transform;
+                            }
+                        }
+
                         foreach (Collider objectCol in Physics.OverlapSphere(parent.transform.position, radius))
                         {
-                            if (objectCol.gameObject.GetComponent<AISetup>() && objectCol.gameObject != parent)
-                            {
-                                if (startCheckP && !objectCol.gameObject.GetComponent<HealthAI>().deaded)
-                                {
-                                    if (SyncData.isCampaign)
-                                    {
-                                        minPlayerDistance = 9999f;
-                                    }
-                                    else
-                                    {
-                                        minPlayerDistance = Vector3.Distance(objectCol.transform.position, parent.transform.position);
-                                    }
-                                    closestPlayer = objectCol.transform;
-                                    startCheckP = false;
-                                }
-                                else if ((/*SyncData.gameMode == 2 || */SyncData.isCampaign) && !objectCol.gameObject.GetComponent<HealthAI>().deaded && objectCol.gameObject.GetComponent<PlayerControl>())
-                                {
-                                    minPlayerDistance = 0;
-                                    closestPlayer = objectCol.transform;
-                                }
-                                else if (Vector3.Distance(objectCol.transform.position, parent.transform.position) < minPlayerDistance && !objectCol.gameObject.GetComponent<HealthAI>().deaded)
-                                {
-                                    minPlayerDistance = 9999f;//Vector3.Distance(objectCol.transform.position, parent.transform.position);
-                                    //closestPlayer = objectCol.transform;
-                                }
-                            }
-                            else if (objectCol.gameObject.layer == 11 && objectCol.transform.name != "Heal")
+                            if (objectCol.gameObject.layer == 11 && objectCol.transform.name != "Heal")
                             {
                                 if (startCheckW)
                                 {
@@ -483,14 +486,15 @@ public class AITarget : MonoBehaviour {
                 }
 
                 //Movement
-                if (transform.position.x > parent.transform.position.x)
+                /*if (transform.position.x > parent.transform.position.x)
                 {
                     offset = (SyncData.health - health.health) / SyncData.health * 150;
                 }
                 else if (transform.position.x < parent.transform.position.x)
                 {
                     offset = (-SyncData.health + health.health) / SyncData.health * 150;
-                }
+                }*/
+                offset = 0;
 
                 if (targetType == 0 || targetType == 2)
                 {
