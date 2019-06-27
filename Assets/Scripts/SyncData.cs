@@ -44,6 +44,16 @@ public static class SyncData : object {
 
     public static bool openCampaignScreen;
 
+    public static bool reconnect = false;
+
+    public static bool reconnectServer = false;
+
+    public static string ipAddress;
+
+    public static int port;
+
+    public static int numOfClients;
+
     public static KeyCode a = KeyCode.A;
     public static KeyCode d = KeyCode.D;
     public static KeyCode s = KeyCode.S;

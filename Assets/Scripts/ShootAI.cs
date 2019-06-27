@@ -169,7 +169,11 @@ public class ShootAI : MonoBehaviour {
         }
         muzzleMaterial = muzzleFlash.GetComponent<Renderer>().material;
         muzzleMaterial.SetFloat("Vector1_B173D9FB", 0);
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.5f);
+        if (isPlayer)
+        {
+            reloadHUD.gameObject.SetActive(false);
+        }
     }
 
     public void Setup(GameObject relay)
@@ -287,12 +291,12 @@ public class ShootAI : MonoBehaviour {
         if (reloading && hasMag && isPlayer)
         {
             reloadTime += Time.deltaTime;
-            reloadHUD.fillAmount = reloadTime / timerReload;
+            //reloadHUD.fillAmount = reloadTime / timerReload;
         }
         if (firing && isPlayer)
         {
             fireTime += Time.deltaTime;
-            fireHUD.fillAmount = fireTime / timerFire;
+            //fireHUD.fillAmount = fireTime / timerFire;
         }
         if (healing)
         {
@@ -424,6 +428,10 @@ public class ShootAI : MonoBehaviour {
     {
         audioSource.PlayOneShot(reload, SyncData.sfx * 0.8f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
         reloading = true;
+        if (isPlayer)
+        {
+            reloadHUD.gameObject.SetActive(true);
+        }
         reloadTime = 0;
         if (refrenceKeeper.weaponInventory[refrenceKeeper.activeSlot].magazineSize > 1)
         {
@@ -495,6 +503,10 @@ public class ShootAI : MonoBehaviour {
                     }
                 }
             }
+        }
+        if (isPlayer)
+        {
+            reloadHUD.gameObject.SetActive(false);
         }
     }
 

@@ -22,7 +22,7 @@ public class KillSync : MonoBehaviour {
         if (kills != SyncData.kills)
         {
             kills = SyncData.kills;
-            text.text = kills.ToString();
+            text.text = "Kills: " + kills.ToString();
         }
     }
 }

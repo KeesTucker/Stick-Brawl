@@ -26,7 +26,7 @@ public class PlayersLeft : MonoBehaviour {
             yield return null;
         }
         players = playerManagement.totalPlayers;
-        text.text = players.ToString();
+        text.text = "Players Left: " + players.ToString();
         if (SyncData.gameMode == 2)
         {
             while (playerManagement.playerSpawnedReal == null)
@@ -47,7 +47,7 @@ public class PlayersLeft : MonoBehaviour {
                 if (players != playerManagement.totalPlayers)
                 {
                     players = playerManagement.totalPlayers;
-                    text.text = players.ToString();
+                    text.text = "Players Left: " + players.ToString();
                 }
             }
             else if (SyncData.gameMode == 2 && spawnRocket.ready && health.health > 0)

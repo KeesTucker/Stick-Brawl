@@ -10218,6 +10218,7 @@ GameObject:
   - component: {fileID: 114712726320990698}
   - component: {fileID: 8785708382678422509}
   - component: {fileID: 8464569921030421821}
+  - component: {fileID: 5123768124244577594}
   m_Layer: 24
   m_Name: PlayerLocal
   m_TagString: PosRelay
@@ -10563,6 +10564,8 @@ MonoBehaviour:
   nameTag: {fileID: 1989945171437490, guid: b89332b51ea1ef04c9ae97043df98cd5, type: 3}
   stop: 0
   spawnRocket: {fileID: 0}
+  serverLocal: 0
+  healths: []
 --- !u!114 &114339696921955500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11017,6 +11020,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9683252283586b74e80b52b99119265e, type: 2}
   - {fileID: 11400000, guid: 191e9e968bae8b341b7d1e2bfc7f3e75, type: 2}
   - {fileID: 11400000, guid: 2103e058e2cb2fd4a928cffd6a0a44e2, type: 2}
+--- !u!114 &5123768124244577594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617520046985736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13d59c61f6701443bb5004662f307e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1627744383871120
 GameObject:
   m_ObjectHideFlags: 0

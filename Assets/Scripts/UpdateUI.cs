@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class UpdateUI : MonoBehaviour {
 
@@ -18,7 +19,7 @@ public class UpdateUI : MonoBehaviour {
     public GameObject deadPanel;
     public GameObject deadMessageServer;
     public GameObject won;
-    public GameObject[] HUDSlots; 
+    public GameObject[] HUDSlots;
 
     void Start()
     {
@@ -86,4 +87,14 @@ public class UpdateUI : MonoBehaviour {
         HUDSlots[activeSlot].SetActive(true);
     }
 
+    public void DeadButton()
+    {
+        BackToHome();
+    }
+
+    public void BackToHome()
+    {
+        SyncData.openCampaignScreen = true;
+        GameObject.Find("LocalPlayer").GetComponent<Reconnect>().CmdBackToHome();
+    }
 }

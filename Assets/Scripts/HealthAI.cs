@@ -114,12 +114,12 @@ public class HealthAI : NetworkBehaviour {
         }
         if (hasAuthority && GetComponent<PlayerControl>() && !refrenceKeeper.updateUI.won.activeInHierarchy)
         {
-            refrenceKeeper.updateUI.deadMessage.SetActive(true);
+            //refrenceKeeper.updateUI.deadMessage.SetActive(true);
             if (SyncData.gameMode == 1)
             {
-                refrenceKeeper.updateUI.deadPanel.SetActive(true);
+                //refrenceKeeper.updateUI.deadPanel.SetActive(true);
                 yield return new WaitForSeconds(3f);
-                refrenceKeeper.updateUI.deadPanel.SetActive(false);
+                //refrenceKeeper.updateUI.deadPanel.SetActive(false);
             }
             
         }

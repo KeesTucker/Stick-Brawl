@@ -127,7 +127,7 @@ public class JoinServerList : MonoBehaviour
         NetworkManager.singleton.maxConnections = 2;
         LiteNetLib4MirrorTransport.Singleton.clientAddress = ip;
         LiteNetLib4MirrorTransport.Singleton.port = port;
-        LiteNetLib4MirrorTransport.Singleton.maxConnections = 2;
+        //LiteNetLib4MirrorTransport.Singleton.maxConnections = 2;
         NetworkManager.singleton.StartClient();
         if (GameObject.Find("Canvas/Join").GetComponent<Animator>())
         {

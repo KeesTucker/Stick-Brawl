@@ -199,19 +199,39 @@ public class AISetup : NetworkBehaviour
                 }
             }
         }
-        
+
+        if (dead && isServer && gameObject.name == "LocalPlayer")
+        {
+            Debug.Log("What");
+            bool everyoneIsFucked = true;
+            foreach (PlayerControl player in FindObjectsOfType<PlayerControl>())
+            {
+                if (player.gameObject.GetComponent<HealthAI>().health > 0)
+                {
+                    Debug.Log("What");
+                    everyoneIsFucked = false;
+                }
+            }
+            if (everyoneIsFucked)
+            {
+                GetComponent<RefrenceKeeperAI>().updateUI.deadMessageServer.SetActive(true);
+            }
+        }
+
         if (health.health <= 0 && spawnRocket.ready)
         {
             if (!dead)
             {
                 playerManagement.totalPlayers--;
                 dead = true;
-                if (isServer && GetComponent<PlayerControl>() && !GetComponent<RefrenceKeeperAI>().updateUI.won.activeInHierarchy)
-                {
-                    GetComponent<RefrenceKeeperAI>().updateUI.deadMessageServer.SetActive(true);
-                }
             }
-            
+
+            /*if (isServer && GetComponent<PlayerControl>() && !GetComponent<RefrenceKeeperAI>().updateUI.won.activeInHierarchy)
+            {
+                GetComponent<RefrenceKeeperAI>().updateUI.deadMessageServer.SetActive(true);
+                GetComponent<RefrenceKeeperAI>().updateUI.callBack = this;
+            }*/
+
             if (Input.GetKey("f") && GetComponent<PlayerControl>() && hasAuthority)
             {
                 if (!isServer)

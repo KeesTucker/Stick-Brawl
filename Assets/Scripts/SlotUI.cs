@@ -20,6 +20,7 @@ public class SlotUI : MonoBehaviour {
         item = newItem;
         icon.sprite = item.icon;
         HUDicon.sprite = item.icon;
+        HUDicon.color = Color.grey;
         icon.enabled = true;
     }
 
@@ -29,6 +30,7 @@ public class SlotUI : MonoBehaviour {
         if (HUDicon)
         {
             HUDicon.sprite = null;
+            HUDicon.color = Color.clear;
         }
         icon.sprite = null;
         icon.enabled = false;

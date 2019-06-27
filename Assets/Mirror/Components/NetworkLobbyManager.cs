@@ -236,8 +236,10 @@ namespace Mirror
         {
             if (sceneName == LobbyScene)
             {
+                Debug.Log("Going to Lobby");
                 foreach (NetworkLobbyPlayer lobbyPlayer in lobbySlots)
                 {
+                    Debug.Log(lobbyPlayer.name.ToString());
                     if (lobbyPlayer == null) continue;
 
                     // find the game-player object for this connection, and destroy it
@@ -256,6 +258,7 @@ namespace Mirror
             }
             else
             {
+                Debug.Log("Going to Game");
                 if (dontDestroyOnLoad)
                 {
                     foreach (NetworkLobbyPlayer lobbyPlayer in lobbySlots)

@@ -29,7 +29,6 @@ public class StartCampaignLevel : MonoBehaviour
         transport = NetworkManager.singleton.gameObject.GetComponent<LiteNetLib4MirrorTransport>();
         if (PlayerPrefs.HasKey(chunkID.ToString() + "level"))
         {
-            Debug.Log(PlayerPrefs.GetFloat(chunkID.ToString() + "level"));
             transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = "Grade: " + grades[Mathf.Clamp((int)(PlayerPrefs.GetFloat(chunkID.ToString() + "level") / 10) - 1, 0, 10)];
         }
         else
