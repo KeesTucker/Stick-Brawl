@@ -54,6 +54,8 @@ public static class SyncData : object {
 
     public static int numOfClients;
 
+    public static int reconnectLevel;
+
     public static KeyCode a = KeyCode.A;
     public static KeyCode d = KeyCode.D;
     public static KeyCode s = KeyCode.S;

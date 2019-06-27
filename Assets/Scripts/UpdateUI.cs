@@ -94,7 +94,7 @@ public class UpdateUI : MonoBehaviour {
 
     public void BackToHome()
     {
-        SyncData.openCampaignScreen = true;
+        //SyncData.openCampaignScreen = true;
         GameObject.Find("LocalPlayer").GetComponent<Reconnect>().CmdBackToHome();
     }
 }
