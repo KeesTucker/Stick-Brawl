@@ -7,12 +7,11 @@ using Mirror.LiteNetLib4Mirror;
 public class Reconnect : NetworkBehaviour
 {
     [Command]
-    public void CmdBackToHome()
+    public void CmdLevelUpdate()
     {
         SyncData.reconnectServer = true;
         SyncData.numOfClients = NetworkServer.connections.Count;
-        SyncData.reconnectLevel = SyncData.chunkID;
-        RpcBackToHome();
+        RpcLevelUpdate(SyncData.backToHome);
         StartCoroutine(WaitToKill());
     }
 
@@ -31,10 +30,11 @@ public class Reconnect : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcBackToHome()
+    public void RpcLevelUpdate(bool home)
     {
-        if (!GetComponent<AISetup>().isServer)
+        if (!isServer)
         {
+            SyncData.backToHome = home;
             SyncData.reconnect = true;
             SyncData.ipAddress = LiteNetLib4MirrorTransport.Singleton.clientAddress;
             SyncData.port = LiteNetLib4MirrorTransport.Singleton.port;

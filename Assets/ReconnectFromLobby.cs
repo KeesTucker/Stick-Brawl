@@ -7,6 +7,7 @@ using Mirror.LiteNetLib4Mirror;
 public class ReconnectFromLobby : MonoBehaviour
 {
     public Transform campaignLevels;
+    public Transform multiplayerLevels;
     public Transform playPanel;
 
     private bool safety = false;
@@ -17,7 +18,6 @@ public class ReconnectFromLobby : MonoBehaviour
         if (SyncData.reconnect)
         {
             Debug.Log("Waiting for host");
-            SyncData.reconnect = false;
             StartCoroutine(WaitForHost());
         }
         else if (SyncData.reconnectServer)
@@ -50,7 +50,26 @@ public class ReconnectFromLobby : MonoBehaviour
         {
             Debug.Log("CorrectNumOfConnections");
             safety = true;
-            campaignLevels.GetChild(20 - SyncData.reconnectLevel).GetComponent<StartCampaignLevel>().StartLevel();
+            if (SyncData.retryLevel)
+            {
+                Debug.Log("retry level");
+                campaignLevels.GetChild(20 - SyncData.reconnectLevel).GetComponent<StartCampaignLevel>().StartLevel();
+            }
+            else if (SyncData.nextLevel)
+            {
+                Debug.Log("next level");
+                if (SyncData.isCampaignLevel)
+                {
+                    //Need to make sure we dont go past last level!
+                    Debug.Log(20 - SyncData.reconnectLevel - 1);
+                    campaignLevels.GetChild(20 - SyncData.reconnectLevel - 1).GetComponent<StartCampaignLevel>().StartLevel();
+                }
+                else
+                {
+                    multiplayerLevels.GetChild(1).GetComponent<MultiplayerStart>().StartLevel();
+                }
+            }
+            
         }
         SyncData.reconnectServer = false;
     }
@@ -69,6 +88,7 @@ public class ReconnectFromLobby : MonoBehaviour
     IEnumerator WaitForHost()
     {
         yield return new WaitForSeconds(0.5f);
+        SyncData.reconnect = false;
         NetworkManager.singleton.networkAddress = SyncData.ipAddress;
         //NetworkManager.singleton.maxConnections = 2;
         LiteNetLib4MirrorTransport.Singleton.clientAddress = SyncData.ipAddress;

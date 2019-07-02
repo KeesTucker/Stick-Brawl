@@ -208,17 +208,17 @@ public class PlayerManagement : NetworkBehaviour {
                     SyncData.gameMode = ChooseGamemode();
                 }
                 
-                if (SyncData.gameMode == 1)
+                if (isCampaign)
                 {
                     for (int i = 0; i < numPlayers; i++)
                     {
                         CmdBotSpawn();
                     }
                 }
-                else if (SyncData.gameMode == 2)
+                /*else if (SyncData.gameMode == 2)
                 {
                     StartCoroutine(Onslaught());
-                }
+                }*/
             }
         }
 

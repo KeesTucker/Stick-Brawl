@@ -43,18 +43,16 @@ public static class SyncData : object {
     public static bool fixedFloating;
 
     public static bool openCampaignScreen;
-
     public static bool reconnect = false;
-
     public static bool reconnectServer = false;
-
     public static string ipAddress;
-
     public static int port;
-
     public static int numOfClients;
-
     public static int reconnectLevel;
+    public static bool backToHome;
+    public static bool nextLevel;
+    public static bool retryLevel;
+    public static bool isCampaignLevel;
 
     public static KeyCode a = KeyCode.A;
     public static KeyCode d = KeyCode.D;

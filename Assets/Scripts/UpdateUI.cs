@@ -18,7 +18,11 @@ public class UpdateUI : MonoBehaviour {
     public GameObject deadMessage;
     public GameObject deadPanel;
     public GameObject deadMessageServer;
+    public GameObject deadMessageClient;
+    public GameObject multiWonServer;
     public GameObject won;
+    public GameObject clientWon;
+    public GameObject clientMultiWon;
     public GameObject[] HUDSlots;
 
     void Start()
@@ -87,14 +91,57 @@ public class UpdateUI : MonoBehaviour {
         HUDSlots[activeSlot].SetActive(true);
     }
 
-    public void DeadButton()
-    {
-        BackToHome();
-    }
-
     public void BackToHome()
     {
-        //SyncData.openCampaignScreen = true;
-        GameObject.Find("LocalPlayer").GetComponent<Reconnect>().CmdBackToHome();
+        if (GameObject.Find("LocalPlayer").GetComponent<Reconnect>().isServer)
+        {
+            SyncData.backToHome = true;
+            SyncData.nextLevel = false;
+            SyncData.retryLevel = false;
+            SyncData.isCampaignLevel = false;
+            LevelUpdate();
+        }
+        else
+        {
+            SyncData.backToHome = true;
+            SyncData.nextLevel = false;
+            SyncData.retryLevel = false;
+            SyncData.isCampaignLevel = false;
+            NetworkManager.singleton.StopClient();
+        }
+    }
+
+    public void NextCampaignLevel()
+    {
+        SyncData.backToHome = false;
+        SyncData.nextLevel = true;
+        SyncData.reconnectLevel = SyncData.chunkID;
+        SyncData.retryLevel = false;
+        SyncData.isCampaignLevel = true;
+        LevelUpdate();
+    }
+
+    public void NextMultiplayerLevel()
+    {
+        SyncData.backToHome = false;
+        SyncData.nextLevel = true;
+        SyncData.retryLevel = false;
+        SyncData.isCampaignLevel = false;
+        LevelUpdate();
+    }
+
+    public void RetryCampaignLevel()
+    {
+        SyncData.backToHome = false;
+        SyncData.nextLevel = false;
+        SyncData.reconnectLevel = SyncData.chunkID;
+        SyncData.retryLevel = true;
+        SyncData.isCampaignLevel = true;
+        LevelUpdate();
+    }
+
+    public void LevelUpdate()
+    {
+        GameObject.Find("LocalPlayer").GetComponent<Reconnect>().CmdLevelUpdate();
     }
 }

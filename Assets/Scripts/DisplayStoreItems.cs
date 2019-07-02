@@ -43,12 +43,16 @@ public class DisplayStoreItems : MonoBehaviour
         for (int i = 0; i < buttonImages.Length; i++)
         {
             buttonImages[i].transform.GetChild(0).GetComponent<Image>().color = Color.grey;
-            buttons[i].interactable = true;
-            if (moveTextWithClicks[i].disabled)
+            if (i != 2)
             {
-                moveTextWithClicks[i].disabled = false;
-                moveTextWithClicks[i].Enable();
+                buttons[i].interactable = true;
+                if (moveTextWithClicks[i].disabled)
+                {
+                    moveTextWithClicks[i].disabled = false;
+                    moveTextWithClicks[i].Enable();
+                }
             }
+            
         }
 
         if (itemType != ShopItemType.Currency)
