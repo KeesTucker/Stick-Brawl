@@ -135,19 +135,19 @@ public class PlayerControl : NetworkBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    lClick = true;
+                    //lClick = true;
                 }
                 if (Input.GetMouseButtonUp(0))
                 {
-                    lClick = false;
+                    //lClick = false;
                 }
                 if (Input.GetMouseButtonDown(1))
                 {
-                    rClick = true;
+                    //rClick = true;
                 }
                 if (Input.GetMouseButtonUp(1))
                 {
-                    rClick = false;
+                    //rClick = false;
                 }
                 if (Input.GetKeyDown(SyncData.i))
                 {

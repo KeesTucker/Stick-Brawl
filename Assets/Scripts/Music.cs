@@ -26,6 +26,7 @@ public class Music : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+        audioSource.volume = (float)SyncData.volume / 100f;
     }
 
     void Update()
