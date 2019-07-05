@@ -37,16 +37,22 @@ public class ControlScaler : MonoBehaviour
             if (PlayerPrefs.GetInt("fixedFloating") == 1)
             {
                 SyncData.fixedFloating = true;
+                move.parent.GetComponent<VariableJoystick>().joystickType = JoystickType.Floating;
+                gun.parent.GetComponent<VariableJoystick>().joystickType = JoystickType.Floating;
             }
             else
             {
                 SyncData.fixedFloating = false;
+                move.parent.GetComponent<VariableJoystick>().joystickType = JoystickType.Fixed;
+                gun.parent.GetComponent<VariableJoystick>().joystickType = JoystickType.Fixed;
             }
         }
         else
         {
             PlayerPrefs.SetInt("fixedFloating", 0);
             SyncData.fixedFloating = false;
+            move.parent.GetComponent<VariableJoystick>().joystickType = JoystickType.Fixed;
+            gun.parent.GetComponent<VariableJoystick>().joystickType = JoystickType.Fixed;
         }
 
         if (PlayerPrefs.HasKey("moveJX"))

@@ -207,8 +207,7 @@ public class PlayerManagement : NetworkBehaviour {
                 {
                     SyncData.gameMode = ChooseGamemode();
                 }
-                
-                if (isCampaign)
+                else
                 {
                     for (int i = 0; i < numPlayers; i++)
                     {

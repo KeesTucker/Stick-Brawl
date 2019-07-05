@@ -132,7 +132,6 @@ public class AISetup : NetworkBehaviour
 
     void Update()
     {
-        Debug.Log("state: " + SyncData.isCampaign.ToString());
         if (playerManagement && ready)
         {
             if (Input.GetKey("f") && GetComponent<PlayerControl>() && hasAuthority && stop)
@@ -167,7 +166,6 @@ public class AISetup : NetworkBehaviour
                     }
                     if (allDead && gameObject.name != "Player(Clone)" && hasAuthority && spawnRocket.ready)
                     {
-                        Debug.Log((float)health.health / (float)health.health * 100f);
                         if (!PlayerPrefs.HasKey(SyncData.chunkID.ToString() + "level"))
                         {
                             PlayerPrefs.SetFloat(SyncData.chunkID.ToString() + "level", (float)health.health / (float)SyncData.health * 100f);
@@ -233,10 +231,8 @@ public class AISetup : NetworkBehaviour
                 int everyoneIsFucked = 0;
                 foreach (PlayerControl player in FindObjectsOfType<PlayerControl>())
                 {
-                    Debug.Log("Live PLayer Base");
                     if (player.gameObject.GetComponent<HealthAI>().health > 0)
                     {
-                        Debug.Log("Live PLayer");
                         everyoneIsFucked++;
                     }
                 }

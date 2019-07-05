@@ -22,36 +22,39 @@ public class MovementJoyStick : MonoBehaviour
 
     void Update()
     {
-        if (joystick.Direction.x == 0)
+        if (playerControl)
         {
-            playerControl.d = false;
-            playerControl.a = false;
-        }
-        else if (joystick.Direction.x > 0)
-        {
-            playerControl.d = true;
-            playerControl.a = false;
-        }
-        else
-        {
-            playerControl.d = false;
-            playerControl.a = true;
-        }
+            if (joystick.Direction.x == 0)
+            {
+                playerControl.d = false;
+                playerControl.a = false;
+            }
+            else if (joystick.Direction.x > 0)
+            {
+                playerControl.d = true;
+                playerControl.a = false;
+            }
+            else
+            {
+                playerControl.d = false;
+                playerControl.a = true;
+            }
 
-        if (joystick.Direction.y > 0.7f)
-        {
-            playerControl.space = true;
-            playerControl.s = false;
-        }
-        else if (joystick.Direction.y < -0.7f)
-        {
-            playerControl.space = false;
-            playerControl.s = true;
-        }
-        else
-        {
-            playerControl.space = false;
-            playerControl.s = false;
+            if (joystick.Direction.y > 0.7f)
+            {
+                playerControl.space = true;
+                playerControl.s = false;
+            }
+            else if (joystick.Direction.y < -0.7f)
+            {
+                playerControl.space = false;
+                playerControl.s = true;
+            }
+            else
+            {
+                playerControl.space = false;
+                playerControl.s = false;
+            }
         }
     }
 }

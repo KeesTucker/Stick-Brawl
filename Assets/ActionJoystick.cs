@@ -28,22 +28,28 @@ public class ActionJoystick : MonoBehaviour
 
     void Update()
     {
-        aim.position = joystick.Direction * 100f + new Vector2(player.position.x, player.position.y);
+        if (playerControl && aim)
+        {
+            if (Vector2.Distance(joystick.Direction, Vector2.zero) > 0.1f)
+            {
+                aim.position = joystick.Direction * 75f + new Vector2(player.position.x, player.position.y);
+            }
 
-        if (Vector2.Distance(joystick.Direction, Vector2.zero) > 0.98f)
-        {
-            playerControl.rClick = true;
-            playerControl.lClick = false;
-        }
-        else if (Vector2.Distance(joystick.Direction, Vector2.zero) > 0.4f)
-        {
-            playerControl.rClick = false;
-            playerControl.lClick = true;
-        }
-        else
-        {
-            playerControl.lClick = false;
-            playerControl.rClick = false;
+            if (Vector2.Distance(joystick.Direction, Vector2.zero) > 0.99f)
+            {
+                playerControl.rClick = true;
+                playerControl.lClick = false;
+            }
+            else if (Vector2.Distance(joystick.Direction, Vector2.zero) > 0.2f)
+            {
+                playerControl.rClick = false;
+                playerControl.lClick = true;
+            }
+            else
+            {
+                playerControl.lClick = false;
+                playerControl.rClick = false;
+            }
         }
     }
 }
