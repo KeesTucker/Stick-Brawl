@@ -30,8 +30,8 @@ public class ControlSettings : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetFloat("scaleMove", 1f);
-            SyncData.moveScale = 1f;
+            PlayerPrefs.SetFloat("scaleMove", 1.5f);
+            SyncData.moveScale = 1.5f;
         }
         if (PlayerPrefs.HasKey("scaleGun"))
         {
@@ -42,8 +42,8 @@ public class ControlSettings : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetFloat("scaleGun", 1f);
-            SyncData.gunScale = 1f;
+            PlayerPrefs.SetFloat("scaleGun", 1.5f);
+            SyncData.gunScale = 1.5f;
         }
 
         if (PlayerPrefs.HasKey("fixedFloating"))

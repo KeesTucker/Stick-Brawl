@@ -5365,8 +5365,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 0
-  m_AssetId: 
-  m_SceneId: 2293937079
+  m_AssetId: 3b3f8908bfdad3444b5c2e767917e1e1
+  m_SceneId: 0
 --- !u!114 &875645040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13148,6 +13148,26 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114400169972812482, guid: 3b3f8908bfdad3444b5c2e767917e1e1,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114400169972812482, guid: 3b3f8908bfdad3444b5c2e767917e1e1,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114400169972812482, guid: 3b3f8908bfdad3444b5c2e767917e1e1,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114400169972812482, guid: 3b3f8908bfdad3444b5c2e767917e1e1,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b3f8908bfdad3444b5c2e767917e1e1, type: 3}
 --- !u!1 &1796173423
@@ -14094,8 +14114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 0
-  m_AssetId: 
-  m_SceneId: 927322123
+  m_AssetId: 3b3f8908bfdad3444b5c2e767917e1e1
+  m_SceneId: 0
 --- !u!1 &1974641677
 GameObject:
   m_ObjectHideFlags: 0
