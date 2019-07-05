@@ -35,17 +35,17 @@ public class ActionJoystick : MonoBehaviour
     {
         if (playerControl && aim)
         {
-            if (Vector2.Distance(joystick.Direction, Vector2.zero) > 0.1f)
+            if (joystick.Direction.magnitude > 0.1f)
             {
                 aim.position = joystick.Direction * 75f + new Vector2(player.position.x, player.position.y);
             }
 
-            if (Vector2.Distance(joystick.Direction, Vector2.zero) > 0.99f)
+            /*if (Vector2.Distance(joystick.Direction, Vector2.zero) > 0.99f)
             {
                 playerControl.rClick = true;
                 playerControl.lClick = false;
             }
-            else if (Vector2.Distance(joystick.Direction, Vector2.zero) > 0.2f)
+            else */if (joystick.Direction.magnitude > 0.3f)
             {
                 playerControl.rClick = false;
                 playerControl.lClick = true;

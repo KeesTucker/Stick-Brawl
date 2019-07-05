@@ -40,7 +40,7 @@ public class MovementJoyStick : MonoBehaviour
                 playerControl.a = true;
             }
 
-            if (joystick.Direction.y > 0.7f)
+            if (joystick.Direction.y > 0.6f)
             {
                 playerControl.space = true;
                 playerControl.s = false;
