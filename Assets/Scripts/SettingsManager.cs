@@ -91,7 +91,7 @@ public class SettingsManager : MonoBehaviour
         }
         else
         {
-            res = new Vector2(Screen.resolutions[Screen.resolutions.Length - 1].width, Screen.resolutions[Screen.resolutions.Length - 1].height);
+            res = resList[0]; //new Vector2(Screen.resolutions[Screen.resolutions.Length - 1].width, Screen.resolutions[Screen.resolutions.Length - 1].height);
             PlayerPrefs.SetInt("resX", Screen.currentResolution.width);
             PlayerPrefs.SetInt("resY", Screen.currentResolution.height);
             PlayerPrefs.Save();

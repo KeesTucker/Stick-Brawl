@@ -62,7 +62,7 @@ public class DamageSpike : MonoBehaviour {
                         collisionInfo.gameObject.GetComponent<HealthAI>().CmdUpdateHealth(damage);
                     }
                     damagable = false;
-                    audioSource.PlayOneShot(splat, SyncData.sfx * 1.3f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+                    audioSource.PlayOneShot(splat, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
                     StartCoroutine(SpawnParticle(collisionInfo));
                     yield return new WaitForSeconds(0.5f);
                     damagable = true;
@@ -82,7 +82,7 @@ public class DamageSpike : MonoBehaviour {
                         collisionInfo.transform.parent.gameObject.GetComponent<HealthAI>().CmdUpdateHealth(damage);
                     }
                     damagable = false;
-                    audioSource.PlayOneShot(splat, SyncData.sfx * 1.3f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+                    audioSource.PlayOneShot(splat, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
                     StartCoroutine(SpawnParticle(collisionInfo));
                     yield return new WaitForSeconds(0.5f);
                     damagable = true;
@@ -102,7 +102,7 @@ public class DamageSpike : MonoBehaviour {
                         collisionInfo.transform.parent.parent.gameObject.GetComponent<HealthAI>().CmdUpdateHealth(damage);
                     }
                     damagable = false;
-                    audioSource.PlayOneShot(splat, SyncData.sfx * 1.3f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+                    audioSource.PlayOneShot(splat, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
                     StartCoroutine(SpawnParticle(collisionInfo));
                     yield return new WaitForSeconds(0.5f);
                     damagable = true;
@@ -123,7 +123,7 @@ public class DamageSpike : MonoBehaviour {
                     }
                     damagable = false;
                     StartCoroutine(SpawnParticle(collisionInfo));
-                    audioSource.PlayOneShot(splat, SyncData.sfx * 1.3f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+                    audioSource.PlayOneShot(splat, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
                     yield return new WaitForSeconds(0.5f);
                     damagable = true;
                 }

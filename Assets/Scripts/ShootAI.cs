@@ -312,7 +312,7 @@ public class ShootAI : MonoBehaviour {
 
     IEnumerator Punch()
     {
-        audioSource.PlayOneShot(punch, SyncData.sfx * 0.2f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+        audioSource.PlayOneShot(punch, SyncData.sfx / 50f * 0.1f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
         int damager = 0;
         loopDown = false;
         if (groundForce.touchingWall || groundForce.touchingObject)
@@ -426,7 +426,7 @@ public class ShootAI : MonoBehaviour {
 
     IEnumerator Reload()
     {
-        audioSource.PlayOneShot(reload, SyncData.sfx * 0.8f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+        audioSource.PlayOneShot(reload, SyncData.sfx / 50f * 0.4f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
         reloading = true;
         if (isPlayer)
         {
@@ -515,7 +515,7 @@ public class ShootAI : MonoBehaviour {
         fireTime = 0;
         timerFire = 1f / fireRate;
         firing = true;
-        audioSource.PlayOneShot(gunShot, SyncData.sfx * 0.6f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+        audioSource.PlayOneShot(gunShot, SyncData.sfx / 50f * 0.3f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
         for (int x = 0; x < Mathf.Clamp(Random.Range(refrenceKeeper.weaponInventory[refrenceKeeper.activeSlot].bulletSplit / 2, refrenceKeeper.weaponInventory[refrenceKeeper.activeSlot].bulletSplit), 1, 9999); x++)
         {
             GameObject bullet = Instantiate(

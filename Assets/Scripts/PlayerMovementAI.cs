@@ -261,20 +261,20 @@ public class PlayerMovementAI : MonoBehaviour {
             {
                 for (int i = 0; i < 20; i++)
                 {
-                    body.AddForce(-walkForce * Time.deltaTime * 6f, 0, 0);
+                    body.AddForce(-walkForce * Time.deltaTime * 3f, 0, 0);
                 }
             }
             else
             {
                 for (int i = 0; i < 20; i++)
                 {
-                    body.AddForce(-walkForce * Time.deltaTime * 4f, 0, 0);
+                    body.AddForce(-walkForce * Time.deltaTime * 2f, 0, 0);
                 }
             }
         }
         else if (spaceDepressed && aDepressed && !dDepressed && Physics.Raycast(body.transform.position, Vector3.right, out hit, 20f, layerMask) && !Physics.Raycast(body.transform.position, Vector3.right, out hit, 20f, layerMask))
         {
-            body.AddForce(-walkForce * Time.deltaTime * 3f, 0, 0);
+            body.AddForce(-walkForce * Time.deltaTime * 1.5f, 0, 0);
         }
         else if (spaceDepressed && dDepressed && Physics.Raycast(body.transform.position, -Vector3.right, out hit, 20f, layerMask) && !Physics.Raycast(body.transform.position, Vector3.right, out hit, 20f, layerMask))
         {
@@ -282,20 +282,20 @@ public class PlayerMovementAI : MonoBehaviour {
             {
                 for (int i = 0; i < 20; i++)
                 {
-                    body.AddForce(walkForce * Time.deltaTime * 6f, 0, 0);
+                    body.AddForce(walkForce * Time.deltaTime * 3f, 0, 0);
                 }
             }
             else
             {
                 for (int i = 0; i < 20; i++)
                 {
-                    body.AddForce(walkForce * Time.deltaTime * 4f, 0, 0);
+                    body.AddForce(walkForce * Time.deltaTime * 2f, 0, 0);
                 }
             }
         }
         else if (spaceDepressed && dDepressed && !aDepressed && Physics.Raycast(body.transform.position, -Vector3.right, out hit, 20f, layerMask) && !Physics.Raycast(body.transform.position, Vector3.right, out hit, 20f, layerMask))
         {
-            body.AddForce(walkForce * Time.deltaTime * 3f, 0, 0);
+            body.AddForce(walkForce * Time.deltaTime * 1.5f, 0, 0);
         }
 
         if (groundforce.touchingGround)
@@ -307,7 +307,7 @@ public class PlayerMovementAI : MonoBehaviour {
         {
             if (spaceDepressed)
             {
-                audioSource.PlayOneShot(jump, SyncData.sfx * 0.2f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+                audioSource.PlayOneShot(jump, SyncData.sfx / 50f * 0.2f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
                 jumpable = false;
                 for (int i = 0; i < 15; i++)
                 {

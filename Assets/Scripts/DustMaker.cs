@@ -38,7 +38,7 @@ public class DustMaker : MonoBehaviour {
             {
                 if (foot)
                 {
-                    audioSource.PlayOneShot(footstep, SyncData.sfx * 0.3f * (Mathf.Clamp((200f - Vector3.Distance(transform.position, local.position) * 2f), 0, 200) / 200f));
+                    audioSource.PlayOneShot(footstep, SyncData.sfx / 50f * 0.1f * (Mathf.Clamp((200f - Vector3.Distance(transform.position, local.position) * 2f), 0, 200) / 200f));
                 }
                 Instantiate(particle, transform.position, Quaternion.identity);
             }
@@ -47,7 +47,7 @@ public class DustMaker : MonoBehaviour {
         {
             if (foot)
             {
-                audioSource.PlayOneShot(footstep, SyncData.sfx * 0.3f * (Mathf.Clamp((200f - Vector3.Distance(transform.position, local.position) * 2f), 0, 200) / 200f));
+                audioSource.PlayOneShot(footstep, SyncData.sfx / 50f * 0.1f * (Mathf.Clamp((200f - Vector3.Distance(transform.position, local.position) * 2f), 0, 200) / 200f));
             }
             Instantiate(particle, transform.position, Quaternion.identity);
         }

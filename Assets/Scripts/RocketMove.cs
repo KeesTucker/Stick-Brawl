@@ -61,7 +61,7 @@ public class RocketMove : MonoBehaviour {
     {
         if (local && !done)
         {
-            audioSource.volume = SyncData.sfx * 0.35f * (Mathf.Clamp((200f - Vector3.Distance(transform.position, local.position)), 0, 200) / 200f);
+            audioSource.volume = SyncData.sfx / 50f * 0.35f * (Mathf.Clamp((200f - Vector3.Distance(transform.position, local.position)), 0, 200) / 200f);
         }
         else
         {
@@ -107,7 +107,7 @@ public class RocketMove : MonoBehaviour {
         {
             if (!done && spawnRocket.spaceDepressed)
             {
-                ragdoll.GetComponent<AudioSource>().PlayOneShot(explosion, SyncData.sfx * 0.6f * (Mathf.Clamp((600f - Vector3.Distance(transform.position, local.position)), 0, 600) / 600f));
+                ragdoll.GetComponent<AudioSource>().PlayOneShot(explosion, SyncData.sfx / 50f * 0.3f * (Mathf.Clamp((600f - Vector3.Distance(transform.position, local.position)), 0, 600) / 600f));
                 done = true;
                 Destroy(rb);
             }

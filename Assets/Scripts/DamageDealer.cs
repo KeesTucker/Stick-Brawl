@@ -86,7 +86,7 @@ public class DamageDealer : MonoBehaviour {
         {
             if (local)
             {
-                audioSource.PlayOneShot(ping, SyncData.sfx * 1.3f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+                audioSource.PlayOneShot(ping, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
             }
             
             destroyThis = collisionInfo.gameObject;
@@ -96,7 +96,7 @@ public class DamageDealer : MonoBehaviour {
         {
             if (local)
             {
-                audioSource.PlayOneShot(splat, SyncData.sfx * 1.3f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+                audioSource.PlayOneShot(splat, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
             }
             StartCoroutine(SpawnParticle(collisionInfo));
             particleDone = true;
@@ -105,7 +105,7 @@ public class DamageDealer : MonoBehaviour {
         {
             if (local)
             {
-                audioSource.PlayOneShot(splat, SyncData.sfx * 1.3f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+                audioSource.PlayOneShot(splat, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
             }
             StartCoroutine(SpawnParticle(collisionInfo));
             particleDone = true;
@@ -114,7 +114,7 @@ public class DamageDealer : MonoBehaviour {
         {
             if (local)
             {
-                audioSource.PlayOneShot(splat, SyncData.sfx * 1.3f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+                audioSource.PlayOneShot(splat, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
             }
             StartCoroutine(SpawnParticle(collisionInfo));
             particleDone = true;
@@ -125,7 +125,7 @@ public class DamageDealer : MonoBehaviour {
             {
                 if (audioSource.enabled && local)
                 {
-                    audioSource.PlayOneShot(ping, SyncData.sfx * 1.3f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+                    audioSource.PlayOneShot(ping, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
                 }
             }
             StartCoroutine(SpawnParticle(collisionInfo));
@@ -374,7 +374,7 @@ public class DamageDealer : MonoBehaviour {
         {
             if (splat && local)
             {
-                audioSource.PlayOneShot(splat, SyncData.sfx * 1.3f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+                audioSource.PlayOneShot(splat, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
             }
 
             if (info.gameObject.tag == "PosRelay" || info.gameObject.name == "LimbEnd" && info.gameObject.layer == 24)

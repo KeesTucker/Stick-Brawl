@@ -26,6 +26,11 @@ public class ActionJoystick : MonoBehaviour
         player = playerControl.transform;
     }
 
+    public void Pickup()
+    {
+        playerControl.e = true;
+    }
+
     void Update()
     {
         if (playerControl && aim)

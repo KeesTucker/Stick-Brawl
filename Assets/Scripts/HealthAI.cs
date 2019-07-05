@@ -84,7 +84,7 @@ public class HealthAI : NetworkBehaviour {
 
     public IEnumerator DestroyPlayer()
     {
-        audioSource.PlayOneShot(explosion, SyncData.sfx * 0.6f * (Mathf.Clamp((200f - Vector3.Distance(transform.position, local.position) * 2f), 0, 200) / 200f));
+        audioSource.PlayOneShot(explosion, SyncData.sfx / 50f * 0.3f * (Mathf.Clamp((200f - Vector3.Distance(transform.position, local.position) * 2f), 0, 200) / 200f));
         GetComponent<GroundForceAI>().dead = true;
         ParticleSystem.MainModule system = deathExplode.GetComponent<ParticleSystem>().main;
         system.startColor = GetComponent<ColourSetterAI>().m_NewColor;
@@ -165,7 +165,7 @@ public class HealthAI : NetworkBehaviour {
     [ClientRpc]
     public void RpcDestroyPlayer()
     {
-        audioSource.PlayOneShot(explosion, SyncData.sfx * 0.6f * (Mathf.Clamp((200f - Vector3.Distance(transform.position, local.position) * 2f), 0, 200) / 200f));
+        audioSource.PlayOneShot(explosion, SyncData.sfx / 50f * 0.3f * (Mathf.Clamp((200f - Vector3.Distance(transform.position, local.position) * 2f), 0, 200) / 200f));
         deaded = true;
         GetComponent<GroundForceAI>().dead = true;
         ParticleSystem.MainModule system = deathExplode.GetComponent<ParticleSystem>().main;
@@ -222,7 +222,7 @@ public class HealthAI : NetworkBehaviour {
     [Command]
     public void CmdDestroyPlayer()
     {
-        audioSource.PlayOneShot(explosion, SyncData.sfx * 0.6f * (Mathf.Clamp((200f - Vector3.Distance(transform.position, local.position) * 2f), 0, 200) / 200f));
+        audioSource.PlayOneShot(explosion, SyncData.sfx / 50f * 0.3f * (Mathf.Clamp((200f - Vector3.Distance(transform.position, local.position) * 2f), 0, 200) / 200f));
         deaded = true;
         GetComponent<GroundForceAI>().dead = true;
         ParticleSystem.MainModule system = deathExplode.GetComponent<ParticleSystem>().main;

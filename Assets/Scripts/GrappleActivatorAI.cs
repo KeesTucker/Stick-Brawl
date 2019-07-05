@@ -47,7 +47,7 @@ public class GrappleActivatorAI : MonoBehaviour {
         {
             local = GameObject.Find("LoadingPlayer").transform;
         }
-        audioSource.PlayOneShot(grappleSwoosh, SyncData.sfx * 0.4f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+        audioSource.PlayOneShot(grappleSwoosh, SyncData.sfx / 50f * 0.2f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
         GameObject[] playerParts_ = parent.GetComponent<GroundForceAI>().playerParts;
         StartCoroutine("endTime");
         aimShoot = parent.transform.GetChild(0).gameObject.GetComponent<AimShootAI>();
@@ -64,17 +64,17 @@ public class GrappleActivatorAI : MonoBehaviour {
         if (collsionInfo.gameObject.tag == "NoGrapple")
         {
             backTime = true;
-            audioSource.PlayOneShot(grappleFail, SyncData.sfx * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+            audioSource.PlayOneShot(grappleFail, SyncData.sfx / 50f * 0.5f * (float)(Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
             return;
         }
         else if (collsionInfo.gameObject.tag == "NoAttract")
         {
             attractable = false;
-            audioSource.PlayOneShot(grappled, SyncData.sfx * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+            audioSource.PlayOneShot(grappled, SyncData.sfx / 50f * 0.5f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
         }
         else
         {
-            audioSource.PlayOneShot(grappled, SyncData.sfx * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+            audioSource.PlayOneShot(grappled, SyncData.sfx / 50f * 0.5f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
         }
         grapple.layer = 14;
         hitTarg = collsionInfo.gameObject;
