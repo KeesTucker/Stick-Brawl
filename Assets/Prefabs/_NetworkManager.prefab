@@ -281,7 +281,7 @@ MonoBehaviour:
   - {fileID: 1563178683742798, guid: 7f35ffeeff3f2a64492125b5f907f1d5, type: 3}
   - {fileID: 1384572599709050, guid: 315485d8843a72f4f9ffe36c8f1f9892, type: 3}
   - {fileID: 1805788155736632, guid: b687d0250711cda45a640536700202c5, type: 3}
-  showLobbyGUI: 1
+  showLobbyGUI: 0
   minPlayers: 1
   lobbyPlayerPrefab: {fileID: 4477576435002978678, guid: f9f5ecaec380e2b408c9ca81412968d1,
     type: 3}

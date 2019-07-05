@@ -35,7 +35,7 @@ public class ActionJoystick : MonoBehaviour
 
     public void Grapple()
     {
-        grappling = !grappling;
+        grappling = !playerControl.rClick;
     }
 
     void Update()
