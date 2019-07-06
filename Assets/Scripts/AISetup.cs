@@ -36,6 +36,8 @@ public class AISetup : NetworkBehaviour
 
     private bool start = false;
 
+    private bool isPlayer = false;
+
     // Use this for initialization
     void Start()
     {
@@ -59,6 +61,10 @@ public class AISetup : NetworkBehaviour
         }
         playerManagement.totalPlayers++;
         StartCoroutine(WaitForCheckDeath());
+        if (GetComponent<PlayerControl>())
+        {
+            isPlayer = true;
+        }
     }
 
     IEnumerator WaitForCheckDeath()
@@ -134,7 +140,7 @@ public class AISetup : NetworkBehaviour
     {
         if (playerManagement && ready)
         {
-            if (Input.GetKey("f") && GetComponent<PlayerControl>() && hasAuthority && stop)
+            /*if (Input.GetKey("f") && isPlayer && hasAuthority && stop)
             {
                 if (SyncData.isCampaign)
                 {
@@ -149,7 +155,7 @@ public class AISetup : NetworkBehaviour
                     manager.StopClient();
                     manager.StopServer();
                 }
-            }
+            }*/
             count++;
             if (count > 30)
             {
@@ -166,83 +172,84 @@ public class AISetup : NetworkBehaviour
                     }
                     if (allDead && gameObject.name != "Player(Clone)" && hasAuthority && spawnRocket.ready)
                     {
-                        if (!PlayerPrefs.HasKey(SyncData.chunkID.ToString() + "level"))
+                        if (!stop)
                         {
-                            PlayerPrefs.SetFloat(SyncData.chunkID.ToString() + "level", (float)health.health / (float)SyncData.health * 100f);
-                        }
-                        else if (PlayerPrefs.GetFloat(SyncData.chunkID.ToString() + "level") < (float)health.health / (float)SyncData.health * 100f)
-                        {
-                            PlayerPrefs.SetFloat(SyncData.chunkID.ToString() + "level", (float)health.health / (float)SyncData.health * 100f);
-                        }
+                            if (!PlayerPrefs.HasKey(SyncData.chunkID.ToString() + "level"))
+                            {
+                                PlayerPrefs.SetFloat(SyncData.chunkID.ToString() + "level", (float)health.health / (float)SyncData.health * 100f);
+                            }
+                            else if (PlayerPrefs.GetFloat(SyncData.chunkID.ToString() + "level") < (float)health.health / (float)SyncData.health * 100f)
+                            {
+                                PlayerPrefs.SetFloat(SyncData.chunkID.ToString() + "level", (float)health.health / (float)SyncData.health * 100f);
+                            }
+                            if (isServer && start)
+                            {
+                                GetComponent<RefrenceKeeperAI>().updateUI.won.SetActive(true);
+                            }
+                            else if (!isServer && start)
+                            {
+                                GetComponent<RefrenceKeeperAI>().updateUI.clientWon.SetActive(true);
+                            }
+                            if (PlayerPrefs.HasKey("wins"))
+                            {
+                                PlayerPrefs.SetInt("wins", PlayerPrefs.GetInt("wins") + 1);
+                            }
+                            else
+                            {
+                                PlayerPrefs.SetInt("wins", 1);
+                            }
+                            stop = true;
+                        }                      
                         //Different for multiplayer
-                        if (isServer && start)
-                        {
-                            GetComponent<RefrenceKeeperAI>().updateUI.won.SetActive(true);
-                        }
-                        else if (!isServer && start)
-                        {
-                            GetComponent<RefrenceKeeperAI>().updateUI.clientWon.SetActive(true);
-                        }
-                        
-                        if (PlayerPrefs.HasKey("wins") && !stop)
-                        {
-                            PlayerPrefs.SetInt("wins", PlayerPrefs.GetInt("wins") + 1);
-                            stop = true;
-                        }
-                        else if (!stop)
-                        {
-                            PlayerPrefs.SetInt("wins", 1);
-                            stop = true;
-                        }
                     }
                 }
-            }
-        }
-
-        if (gameObject.name == "LocalPlayer")
-        {
-            if (SyncData.isCampaign)
-            {
-                if (dead) {
-                    bool everyoneIsFucked = true;
-                    foreach (PlayerControl player in FindObjectsOfType<PlayerControl>())
-                    {
-                        if (player.gameObject.GetComponent<HealthAI>().health > 0)
-                        {
-                            Debug.Log("What");
-                            everyoneIsFucked = false;
-                        }
-                    }
-                    if (everyoneIsFucked)
-                    {
-                        if (isServer)
-                        {
-                            GetComponent<RefrenceKeeperAI>().updateUI.deadMessageServer.SetActive(true);
-                        }
-                        else
-                        {
-                            GetComponent<RefrenceKeeperAI>().updateUI.deadMessageClient.SetActive(true);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                int everyoneIsFucked = 0;
-                foreach (PlayerControl player in FindObjectsOfType<PlayerControl>())
+                if (gameObject.name == "LocalPlayer")
                 {
-                    if (player.gameObject.GetComponent<HealthAI>().health > 0)
+                    if (SyncData.isCampaign)
                     {
-                        everyoneIsFucked++;
+                        if (dead)
+                        {
+                            bool everyoneIsFucked = true;
+                            foreach (PlayerControl player in FindObjectsOfType<PlayerControl>())
+                            {
+                                if (player.gameObject.GetComponent<HealthAI>().health > 0)
+                                {
+                                    Debug.Log("What");
+                                    everyoneIsFucked = false;
+                                }
+                            }
+                            if (everyoneIsFucked)
+                            {
+                                if (isServer)
+                                {
+                                    GetComponent<RefrenceKeeperAI>().updateUI.deadMessageServer.SetActive(true);
+                                }
+                                else
+                                {
+                                    GetComponent<RefrenceKeeperAI>().updateUI.deadMessageClient.SetActive(true);
+                                }
+                            }
+                        }
                     }
-                }
-                if (everyoneIsFucked == 1 && isServer && start)
-                {
-                    GetComponent<RefrenceKeeperAI>().updateUI.multiWonServer.SetActive(true);
-                }
-                else if (everyoneIsFucked == 1 && !isServer && start)
-                {
-                    GetComponent<RefrenceKeeperAI>().updateUI.clientMultiWon.SetActive(true);
+                    else
+                    {
+                        int everyoneIsFucked = 0;
+                        foreach (PlayerControl player in FindObjectsOfType<PlayerControl>())
+                        {
+                            if (player.gameObject.GetComponent<HealthAI>().health > 0)
+                            {
+                                everyoneIsFucked++;
+                            }
+                        }
+                        if (everyoneIsFucked == 1 && isServer && start)
+                        {
+                            GetComponent<RefrenceKeeperAI>().updateUI.multiWonServer.SetActive(true);
+                        }
+                        else if (everyoneIsFucked == 1 && !isServer && start)
+                        {
+                            GetComponent<RefrenceKeeperAI>().updateUI.clientMultiWon.SetActive(true);
+                        }
+                    }
                 }
             }
         }
@@ -261,7 +268,7 @@ public class AISetup : NetworkBehaviour
                 GetComponent<RefrenceKeeperAI>().updateUI.callBack = this;
             }*/
 
-            if (Input.GetKey("f") && GetComponent<PlayerControl>() && hasAuthority)
+            /*if (Input.GetKey("f") && GetComponent<PlayerControl>() && hasAuthority)
             {
                 if (!isServer)
                 {
@@ -272,7 +279,7 @@ public class AISetup : NetworkBehaviour
                     manager.StopClient();
                     manager.StopServer();
                 }
-            }
+            }*/
         }
     }
 }

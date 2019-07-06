@@ -26,7 +26,7 @@ public class UINavigation : MonoBehaviour
 
     public bool isChild = false;
 
-    void Start()
+    IEnumerator Start()
     {
         if (isSelectable)
         {
@@ -34,6 +34,9 @@ public class UINavigation : MonoBehaviour
             button = GetComponent<Button>();
             moveTextWithClick = GetComponent<MoveTextWithClick>();
         }
+
+        yield return new WaitForEndOfFrame();
+
         if (startOpen)
         {
             if (startObject)
@@ -107,13 +110,64 @@ public class UINavigation : MonoBehaviour
         {
             target.GetComponent<Animator>().SetTrigger("Exit");
         }
-        //yield return new WaitForSeconds(0.2f);
-        //target.SetActive(false);
+        StartCoroutine(WaitToFalse(target));
+    }
+
+    IEnumerator WaitToFalse(GameObject target)
+    {
+        yield return new WaitForSeconds(0.5f);
+        foreach (Image image in target.GetComponentsInChildren<Image>())
+        {
+            image.enabled = false;
+        }
+        foreach (TMPro.TextMeshProUGUI text in target.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+        {
+            text.enabled = false;
+        }
+        foreach (TMPro.TMP_Text text in target.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+        {
+            text.enabled = false;
+        }
+        if (GetComponent<Image>())
+        {
+            GetComponent<Image>().enabled = false;
+        }
+        if (GetComponent<TMPro.TextMeshProUGUI>())
+        {
+            GetComponent<TMPro.TextMeshProUGUI>().enabled = false;
+        }
+        if (GetComponent<TMPro.TMP_Text>())
+        {
+            GetComponent<TMPro.TMP_Text>().enabled = false;
+        }
     }
 
     void Enable(GameObject target)
     {
-        //target.SetActive(true);
+        foreach (Image image in target.GetComponentsInChildren<Image>())
+        {
+            image.enabled = true;
+        }
+        if (GetComponent<Image>())
+        {
+            GetComponent<Image>().enabled = true;
+        }
+        if (GetComponent<TMPro.TextMeshProUGUI>())
+        {
+            GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
+        }
+        if (GetComponent<TMPro.TMP_Text>())
+        {
+            GetComponent<TMPro.TMP_Text>().enabled = true;
+        }
+        foreach (TMPro.TextMeshProUGUI text in target.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+        {
+            text.enabled = true;
+        }
+        foreach (TMPro.TMP_Text text in target.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+        {
+            text.enabled = true;
+        }
         if (target.GetComponent<Animator>())
         {
             target.GetComponent<Animator>().SetTrigger("Entry");
