@@ -10,15 +10,24 @@ public class HideCanvas : MonoBehaviour
     {
         foreach (Image image in FindObjectsOfType<Image>())
         {
-            image.enabled = false;
+            if (image.gameObject.tag != "DontDisable")
+            {
+                image.enabled = false;
+            }
         }
         foreach (TMPro.TextMeshProUGUI text in FindObjectsOfType<TMPro.TextMeshProUGUI>())
         {
-            text.enabled = false;
+            if (text.gameObject.tag != "DontDisable")
+            {
+                text.enabled = false;
+            }
         }
         foreach (TMPro.TMP_Text text in FindObjectsOfType<TMPro.TextMeshProUGUI>())
         {
-            text.enabled = false;
+            if (text.gameObject.tag != "DontDisable")
+            {
+                text.enabled = false;
+            }
         }
     }
 }

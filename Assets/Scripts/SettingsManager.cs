@@ -65,6 +65,10 @@ public class SettingsManager : MonoBehaviour
         vsync = PlayerPrefs.GetInt("vsync");
         QualitySettings.vSyncCount = vsync;
 
+        //TESTING:
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 300;
+
         //Anti-Aliasing
         if (PlayerPrefs.HasKey("aA"))
         {
@@ -72,8 +76,8 @@ public class SettingsManager : MonoBehaviour
         }
         else
         {
-            AA = 2;
-            PlayerPrefs.SetInt("aA", 2);
+            AA = 0;
+            PlayerPrefs.SetInt("aA", 0);
         }
         QualitySettings.antiAliasing = AA;
         AADropdown.value = AA / 2;
@@ -83,7 +87,7 @@ public class SettingsManager : MonoBehaviour
             res = new Vector2(PlayerPrefs.GetInt("resX"), PlayerPrefs.GetInt("resY"));
             for (int i = 0; i < resList.Length; i++)
             {
-                if (res == resList[i])
+                if (res.x == resList[i].x)
                 {
                     ResDropdown.value = i;
                 }
@@ -91,7 +95,7 @@ public class SettingsManager : MonoBehaviour
         }
         else
         {
-            res = resList[0]; //new Vector2(Screen.resolutions[Screen.resolutions.Length - 1].width, Screen.resolutions[Screen.resolutions.Length - 1].height);
+            res = new Vector2(Screen.resolutions[Screen.resolutions.Length - 1].width, Screen.resolutions[Screen.resolutions.Length - 1].height);
             PlayerPrefs.SetInt("resX", Screen.currentResolution.width);
             PlayerPrefs.SetInt("resY", Screen.currentResolution.height);
             PlayerPrefs.Save();

@@ -35,7 +35,7 @@ public class ActionJoystick : MonoBehaviour
 
     public void Grapple()
     {
-        grappling = !playerControl.rClick;
+        grappling = !grappling;
     }
 
     void Update()
@@ -47,15 +47,18 @@ public class ActionJoystick : MonoBehaviour
                 aim.position = joystick.Direction * 75f + new Vector2(player.position.x, player.position.y);
             }
 
-            if (grappling)//Vector2.Distance(joystick.Direction, Vector2.zero) > 0.99f)
+            if (joystick.Direction.magnitude > 0.98f)
             {
-                playerControl.rClick = true;
-                playerControl.lClick = false;
-            }
-            else if (joystick.Direction.magnitude > 0.3f)
-            {
-                playerControl.rClick = false;
-                playerControl.lClick = true;
+                if (grappling)
+                {
+                    playerControl.rClick = true;
+                    playerControl.lClick = false;
+                }
+                else
+                {
+                    playerControl.rClick = false;
+                    playerControl.lClick = true;
+                }
             }
             else
             {

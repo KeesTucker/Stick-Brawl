@@ -43,6 +43,8 @@ public class SpawnRocketAI : NetworkBehaviour
     [SyncVar]
     public bool ready;
 
+    public bool doneUpdate = false;
+
     IEnumerator Start()
     {
         rocketGO = Instantiate(rocket, transform.position, transform.rotation); //Spawn Rocket
@@ -141,25 +143,26 @@ public class SpawnRocketAI : NetworkBehaviour
 
     void LateUpdate()
     {
-        if (boxHold && rocketGO)
+        /*if (boxHold && rocketGO)
         {
             rocketGO.transform.position = boxHold.transform.position;
             transform.position = boxHold.transform.position;
-        }
-        if (ready)
+        }*/
+        if (ready && !doneUpdate)
         {
             Destroy(boxHold);
             if (hasAuthority && !fall && GetComponent<PlayerControl>())
             {
                 fall = true;
-                if (SyncData.gameMode == 1)
+                /*if (SyncData.gameMode == 1)
                 {
                     foreach (FallTerrain ft in GameObject.Find("Terrain").transform.GetComponentsInChildren<FallTerrain>())
                     {
                         //ft.StartWrapper();
                     }
-                }
+                }*/
             }
+            doneUpdate = true;
         }
     }
 
