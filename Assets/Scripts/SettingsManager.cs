@@ -48,7 +48,7 @@ public class SettingsManager : MonoBehaviour
                 {
                     PlayerPrefs.SetInt("targetFPS", 60);
                     SyncData.targetFPS = PlayerPrefs.GetInt("targetFPS");
-                    Application.targetFrameRate = 60;
+                    Application.targetFrameRate = 120;
                     FPSDropdown.value = 2;
                 }
             }
@@ -64,11 +64,7 @@ public class SettingsManager : MonoBehaviour
         }
         vsync = PlayerPrefs.GetInt("vsync");
         QualitySettings.vSyncCount = vsync;
-
-        //TESTING:
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 300;
-
+        
         //Anti-Aliasing
         if (PlayerPrefs.HasKey("aA"))
         {
@@ -128,7 +124,7 @@ public class SettingsManager : MonoBehaviour
 
             Debug.Log("Target FPS: " + ((int)(15 * Mathf.Pow(2, value))).ToString());
             PlayerPrefs.SetInt("targetFPS", (int)(15 * Mathf.Pow(2, value)));
-            Application.targetFrameRate = (int)(15 * Mathf.Pow(2, value));
+            Application.targetFrameRate = (int)(22.5f * Mathf.Pow(2, value));
             SyncData.targetFPS = PlayerPrefs.GetInt("targetFPS");
         }
     }

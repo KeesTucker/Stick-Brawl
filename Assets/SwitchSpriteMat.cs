@@ -17,5 +17,9 @@ public class SwitchSpriteMat : MonoBehaviour
         {
             sprite.material = mat;
         }
+        foreach (DragonBones.UnityArmatureComponent anim in FindObjectsOfType<DragonBones.UnityArmatureComponent>())
+        {
+            anim.animation.Stop();
+        }
     }
 }

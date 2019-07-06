@@ -4,9 +4,8 @@
 	}
 
 		Category{
-		Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
+		Tags{ "Queue" = "Opaque" "IgnoreProjector" = "True" "RenderType" = "Opaque" }
 		ZWrite Off
-		Alphatest Greater 0
 		Blend SrcAlpha OneMinusSrcAlpha
 		SubShader{
 		Pass{

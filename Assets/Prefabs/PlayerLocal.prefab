@@ -757,7 +757,7 @@ MonoBehaviour:
   speed: 5
   weapon: {fileID: 0}
   isAWeapon: 0
-  particle: {fileID: 450, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
+  particle: {fileID: 449, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
   gunParticle: {fileID: 1778453083565316, guid: 4a5282bb60a81fd489c6629f11bf7beb,
     type: 3}
   rb: {fileID: 0}
@@ -6732,7 +6732,7 @@ MonoBehaviour:
   speed: 5
   weapon: {fileID: 0}
   isAWeapon: 0
-  particle: {fileID: 450, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
+  particle: {fileID: 449, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
   gunParticle: {fileID: 1778453083565316, guid: 4a5282bb60a81fd489c6629f11bf7beb,
     type: 3}
   rb: {fileID: 0}
@@ -7485,7 +7485,7 @@ MonoBehaviour:
   refrenceKeeper: {fileID: 114169648274511698}
   aimShoot: {fileID: 114770895989893686}
   muzzleFlash: {fileID: 1959343117674386}
-  muzzleMaterial: {fileID: 2100000, guid: e1b9e0bd58d480845bfdc05872b63c38, type: 2}
+  muzzleMaterial: {fileID: 0}
   groundForce: {fileID: 114248129533816724}
   mag: {fileID: 0}
   magSize: 0
@@ -7873,7 +7873,7 @@ MonoBehaviour:
   speed: 5
   weapon: {fileID: 0}
   isAWeapon: 0
-  particle: {fileID: 450, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
+  particle: {fileID: 449, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
   gunParticle: {fileID: 1778453083565316, guid: 4a5282bb60a81fd489c6629f11bf7beb,
     type: 3}
   rb: {fileID: 0}
@@ -10760,6 +10760,7 @@ MonoBehaviour:
   fall: 0
   rocketCount: 0
   ready: 0
+  doneUpdate: 0
 --- !u!114 &114406196234290654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12851,7 +12852,7 @@ MonoBehaviour:
   speed: 5
   weapon: {fileID: 0}
   isAWeapon: 0
-  particle: {fileID: 450, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
+  particle: {fileID: 449, guid: 0047934e19f5dfa4782fe618071f7125, type: 3}
   gunParticle: {fileID: 1778453083565316, guid: 4a5282bb60a81fd489c6629f11bf7beb,
     type: 3}
   rb: {fileID: 0}
@@ -13931,7 +13932,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e1b9e0bd58d480845bfdc05872b63c38, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

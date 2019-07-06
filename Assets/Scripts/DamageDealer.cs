@@ -467,7 +467,7 @@ public class DamageDealer : MonoBehaviour {
                 //info.transform.GetChild(0).GetComponent<SpriteRenderer>().color = oldColor;
             }
         }
-        else if (info.gameObject.layer == 9)
+        else if (info.gameObject.layer == 12)
         {
             GameObject particleG = Instantiate(gunParticle, new Vector3(info.contacts[0].point.x, info.contacts[0].point.y, 1), Quaternion.identity);
             particleG.transform.forward = info.contacts[0].normal;
