@@ -51,6 +51,8 @@ public class GroundForceAI : MonoBehaviour
     [SerializeField]
     public GameObject[] playerParts;
 
+    public List<HingeJoint> playerPartsR;
+
     public bool dead = false;
 
     //public grappleActivatorAI grappleActivatorScript;
@@ -67,6 +69,10 @@ public class GroundForceAI : MonoBehaviour
 
     IEnumerator Start()
     {
+        foreach (GameObject playerPart in playerParts)
+        {
+            playerPartsR.Add(playerPart.GetComponent<HingeJoint>());
+        }
         if (GetComponent<PlayerControl>())
         {
             playerControl = GetComponent<PlayerControl>();
@@ -156,11 +162,11 @@ public class GroundForceAI : MonoBehaviour
 
                     if (hitC.distance > 5.5)
                     {
-                        body.GetComponent<Rigidbody>().AddForce(Vector3.down * Time.deltaTime * 5000);
+                        body.AddForce(Vector3.down * Time.deltaTime * 5000);
                     }
                     else
                     {
-                        head.GetComponent<Rigidbody>().AddForce(Vector3.up * Time.deltaTime * 10000);
+                        head.AddForce(Vector3.up * Time.deltaTime * 10000);
                     }
                 }
                 else
@@ -174,26 +180,26 @@ public class GroundForceAI : MonoBehaviour
         if (!touchingGround && !dead)
         {
             //syncMoveState.CmdSetState(3);
-            foreach (GameObject playerPart in playerParts)
+            foreach (HingeJoint playerPart in playerPartsR)
             {
-                playerPart.GetComponent<HingeJoint>().useSpring = false;
+                playerPart.useSpring = false;
             }
         }
         else if (!dead)
         {
-            foreach (GameObject playerPart in playerParts)
+            foreach (HingeJoint playerPart in playerPartsR)
             {
-                playerPart.GetComponent<HingeJoint>().useSpring = true;
+                playerPart.useSpring = true;
             }
         }
 
         if (dead)
         {
-            foreach (GameObject playerPart in playerParts)
+            foreach (HingeJoint playerPart in playerPartsR)
             {
                 if (playerPart)
                 {
-                    Destroy(playerPart.GetComponent<HingeJoint>());
+                    Destroy(playerPart);
                 }
             }
         }

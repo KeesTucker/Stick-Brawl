@@ -13,6 +13,7 @@ public class IsFiniteBackup : MonoBehaviour {
 
     IEnumerator Start()
     {
+        Destroy(this);
         yield return new WaitForSeconds(0.5f);
         x = SyncData.worldSize * 1000;
         y = 2000;

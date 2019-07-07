@@ -128,10 +128,10 @@ public class UINavigation : MonoBehaviour
         {
             text.enabled = false;
         }
-        if (GetComponent<Image>())
+        /*if (GetComponent<Image>())
         {
             GetComponent<Image>().enabled = false;
-        }
+        }*/
         if (GetComponent<TMPro.TextMeshProUGUI>())
         {
             GetComponent<TMPro.TextMeshProUGUI>().enabled = false;

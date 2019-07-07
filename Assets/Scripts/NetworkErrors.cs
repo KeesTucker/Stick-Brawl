@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Mirror;
 using System;
 using System.Net.Sockets;
@@ -55,6 +56,30 @@ public class NetworkErrors : MonoBehaviour
             confirm.transform.GetChild(1).GetChild(0).GetComponent<TMPro.TMP_Text>().text = "ERROR";
             confirm.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<TMPro.TMP_Text>().text = "Network Error! INFO: " + msg;
             confirm.GetComponent<Animator>().SetTrigger("Entry");
+            foreach (Image image in confirm.GetComponentsInChildren<Image>())
+            {
+                image.enabled = true;
+            }
+            foreach (TMPro.TextMeshProUGUI text in confirm.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+            {
+                text.enabled = true;
+            }
+            foreach (TMPro.TMP_Text text in confirm.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+            {
+                text.enabled = true;
+            }
+            if (confirm.GetComponent<Image>())
+            {
+                confirm.GetComponent<Image>().enabled = true;
+            }
+            if (confirm.GetComponent<TMPro.TextMeshProUGUI>())
+            {
+                confirm.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
+            }
+            if (confirm.GetComponent<TMPro.TMP_Text>())
+            {
+                confirm.GetComponent<TMPro.TMP_Text>().enabled = true;
+            }
         }
     }
 }

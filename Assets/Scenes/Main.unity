@@ -5387,7 +5387,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875645036}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c6c05f073f581a4f888bd1e535adb9a, type: 3}
   m_Name: 
@@ -12037,6 +12037,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Post-process Volume
       objectReference: {fileID: 0}
+    - target: {fileID: 609615669948409791, guid: 5174c108038d1ed498dc3167002e0ca1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 609615669948409786, guid: 5174c108038d1ed498dc3167002e0ca1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12090,6 +12095,11 @@ PrefabInstance:
     - target: {fileID: 609615669948409786, guid: 5174c108038d1ed498dc3167002e0ca1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 609615669948409784, guid: 5174c108038d1ed498dc3167002e0ca1,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

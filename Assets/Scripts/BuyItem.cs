@@ -45,6 +45,30 @@ public class BuyItem : MonoBehaviour
                     confirm.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Button>().onClick.AddListener(Confirmed);
                     confirm.transform.GetChild(1).GetChild(1).GetChild(2).GetComponent<TMPro.TMP_Text>().text = "Are you sure you would like to purchase " + itemName + " for " + cost + " counters?";
                     confirm.GetComponent<Animator>().SetTrigger("Entry");
+                    foreach (Image image in confirm.GetComponentsInChildren<Image>())
+                    {
+                        image.enabled = true;
+                    }
+                    foreach (TMPro.TextMeshProUGUI text in confirm.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+                    {
+                        text.enabled = true;
+                    }
+                    foreach (TMPro.TMP_Text text in confirm.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+                    {
+                        text.enabled = true;
+                    }
+                    if (confirm.GetComponent<Image>())
+                    {
+                        confirm.GetComponent<Image>().enabled = true;
+                    }
+                    if (confirm.GetComponent<TMPro.TextMeshProUGUI>())
+                    {
+                        confirm.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
+                    }
+                    if (confirm.GetComponent<TMPro.TMP_Text>())
+                    {
+                        confirm.GetComponent<TMPro.TMP_Text>().enabled = true;
+                    }
                 }
                 else
                 {
@@ -54,6 +78,30 @@ public class BuyItem : MonoBehaviour
                     confirm.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Button>().onClick.AddListener(OpenIAP);
                     confirm.transform.GetChild(1).GetChild(1).GetChild(2).GetComponent<TMPro.TMP_Text>().text = "You do not have enough counters, purchase some?";
                     confirm.GetComponent<Animator>().SetTrigger("Entry");
+                    foreach (Image image in confirm.GetComponentsInChildren<Image>())
+                    {
+                        image.enabled = true;
+                    }
+                    foreach (TMPro.TextMeshProUGUI text in confirm.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+                    {
+                        text.enabled = true;
+                    }
+                    foreach (TMPro.TMP_Text text in confirm.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+                    {
+                        text.enabled = true;
+                    }
+                    if (confirm.GetComponent<Image>())
+                    {
+                        confirm.GetComponent<Image>().enabled = true;
+                    }
+                    if (confirm.GetComponent<TMPro.TextMeshProUGUI>())
+                    {
+                        confirm.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
+                    }
+                    if (confirm.GetComponent<TMPro.TMP_Text>())
+                    {
+                        confirm.GetComponent<TMPro.TMP_Text>().enabled = true;
+                    }
                 }
             }
         }

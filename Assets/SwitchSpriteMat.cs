@@ -2,24 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class SwitchSpriteMat : MonoBehaviour
 {
     public Material mat;
 
     IEnumerator Start()
     {
-        while (!GameObject.Find("LocalPlayer"))
+        yield return new WaitForSeconds(5f);
+        foreach (SpriteRenderer sprite in transform.GetComponentsInChildren<SpriteRenderer>())
         {
-            yield return null;
-        }
-        yield return new WaitForSeconds(1f);
-        foreach (SpriteRenderer sprite in FindObjectsOfType<SpriteRenderer>())
-        {
-            sprite.material = mat;
-        }
-        foreach (DragonBones.UnityArmatureComponent anim in FindObjectsOfType<DragonBones.UnityArmatureComponent>())
-        {
-            anim.animation.Stop();
+            if (sprite.material != mat)
+            {
+                Debug.Log(sprite.gameObject.name);
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ using Mirror;
 using Mirror.LiteNetLib4Mirror;
 using System.Net;
 using System.Net.Sockets;
+using UnityEngine.UI;
 
 public class HostServer : MonoBehaviour
 {
@@ -64,6 +65,30 @@ public class HostServer : MonoBehaviour
             confirm.transform.GetChild(1).GetChild(0).GetComponent<TMPro.TMP_Text>().text = "Message!";
             confirm.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<TMPro.TMP_Text>().text = msg;
             confirm.GetComponent<Animator>().SetTrigger("Entry");
+            foreach (Image image in confirm.GetComponentsInChildren<Image>())
+            {
+                image.enabled = true;
+            }
+            foreach (TMPro.TextMeshProUGUI text in confirm.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+            {
+                text.enabled = true;
+            }
+            foreach (TMPro.TMP_Text text in confirm.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+            {
+                text.enabled = true;
+            }
+            if (confirm.GetComponent<Image>())
+            {
+                confirm.GetComponent<Image>().enabled = true;
+            }
+            if (confirm.GetComponent<TMPro.TextMeshProUGUI>())
+            {
+                confirm.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
+            }
+            if (confirm.GetComponent<TMPro.TMP_Text>())
+            {
+                confirm.GetComponent<TMPro.TMP_Text>().enabled = true;
+            }
         }
     }
 
@@ -85,10 +110,110 @@ public class HostServer : MonoBehaviour
             NetworkManager.singleton.StartHost();
             if (GameObject.Find("Canvas/Host").GetComponent<Animator>())
             {
-                GameObject.Find("Canvas/Host").GetComponent<Animator>().SetTrigger("Exit");
-                GameObject.Find("Canvas/Main").GetComponent<Animator>().SetTrigger("Entry");
-                GameObject.Find("Canvas/JoinMinor").GetComponent<Animator>().SetTrigger("Exit");
-                GameObject.Find("Canvas/Minor").GetComponent<Animator>().SetTrigger("Entry");
+                GameObject go = GameObject.Find("Canvas/Host");
+                go.GetComponent<Animator>().SetTrigger("Exit");
+                foreach (Image image in go.GetComponentsInChildren<Image>())
+                {
+                    image.enabled = false;
+                }
+                foreach (TMPro.TextMeshProUGUI text in go.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+                {
+                    text.enabled = false;
+                }
+                foreach (TMPro.TMP_Text text in go.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+                {
+                    text.enabled = false;
+                }
+                if (go.GetComponent<Image>())
+                {
+                    go.GetComponent<Image>().enabled = false;
+                }
+                if (go.GetComponent<TMPro.TextMeshProUGUI>())
+                {
+                    go.GetComponent<TMPro.TextMeshProUGUI>().enabled = false;
+                }
+                if (go.GetComponent<TMPro.TMP_Text>())
+                {
+                    go.GetComponent<TMPro.TMP_Text>().enabled = false;
+                }
+                go = GameObject.Find("Canvas/Main");
+                go.GetComponent<Animator>().SetTrigger("Entry");
+                foreach (Image image in go.GetComponentsInChildren<Image>())
+                {
+                    image.enabled = true;
+                }
+                foreach (TMPro.TextMeshProUGUI text in go.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+                {
+                    text.enabled = true;
+                }
+                foreach (TMPro.TMP_Text text in go.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+                {
+                    text.enabled = true;
+                }
+                if (go.GetComponent<Image>())
+                {
+                    go.GetComponent<Image>().enabled = true;
+                }
+                if (go.GetComponent<TMPro.TextMeshProUGUI>())
+                {
+                    go.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
+                }
+                if (go.GetComponent<TMPro.TMP_Text>())
+                {
+                    go.GetComponent<TMPro.TMP_Text>().enabled = true;
+                }
+                go = GameObject.Find("Canvas/JoinMinor");
+                go.GetComponent<Animator>().SetTrigger("Exit");
+                foreach (Image image in go.GetComponentsInChildren<Image>())
+                {
+                    image.enabled = false;
+                }
+                foreach (TMPro.TextMeshProUGUI text in go.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+                {
+                    text.enabled = false;
+                }
+                foreach (TMPro.TMP_Text text in go.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+                {
+                    text.enabled = false;
+                }
+                if (go.GetComponent<Image>())
+                {
+                    go.GetComponent<Image>().enabled = false;
+                }
+                if (go.GetComponent<TMPro.TextMeshProUGUI>())
+                {
+                    go.GetComponent<TMPro.TextMeshProUGUI>().enabled = false;
+                }
+                if (go.GetComponent<TMPro.TMP_Text>())
+                {
+                    go.GetComponent<TMPro.TMP_Text>().enabled = false;
+                }
+                go = GameObject.Find("Canvas/Minor");
+                go.GetComponent<Animator>().SetTrigger("Entry");
+                foreach (Image image in go.GetComponentsInChildren<Image>())
+                {
+                    image.enabled = true;
+                }
+                foreach (TMPro.TextMeshProUGUI text in go.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+                {
+                    text.enabled = true;
+                }
+                foreach (TMPro.TMP_Text text in go.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+                {
+                    text.enabled = true;
+                }
+                if (go.GetComponent<Image>())
+                {
+                    go.GetComponent<Image>().enabled = true;
+                }
+                if (go.GetComponent<TMPro.TextMeshProUGUI>())
+                {
+                    go.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
+                }
+                if (go.GetComponent<TMPro.TMP_Text>())
+                {
+                    go.GetComponent<TMPro.TMP_Text>().enabled = true;
+                }
             }
         }
     }
