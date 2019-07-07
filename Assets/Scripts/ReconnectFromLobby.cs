@@ -24,7 +24,7 @@ public class ReconnectFromLobby : MonoBehaviour
         else if (SyncData.reconnectServer)
         {
             StartCoroutine(WaitForClients());
-            StartCoroutine(WaitForClientsBackup());
+            //StartCoroutine(WaitForClientsBackup());
         }
     }
 
@@ -43,39 +43,38 @@ public class ReconnectFromLobby : MonoBehaviour
         Debug.Log("Starting Host2");
         NetworkManager.singleton.StartHost();
         yield return new WaitForSeconds(0.5f);
-        while (NetworkServer.connections.Count < SyncData.numOfClients)
+        int count = 0;
+        while (NetworkServer.connections.Count < SyncData.numOfClients && count < 300)
         {
+            count++;
             yield return null;
         }
-        if (!safety)
+
+        Debug.Log("CorrectNumOfConnections");
+        if (SyncData.retryLevel)
         {
-            Debug.Log("CorrectNumOfConnections");
-            safety = true;
-            if (SyncData.retryLevel)
-            {
-                Debug.Log("retry level");
-                campaignLevels.GetChild(20 - SyncData.reconnectLevel).GetComponent<StartCampaignLevel>().StartLevel();
-            }
-            else if (SyncData.nextLevel)
-            {
-                Debug.Log("next level");
-                if (SyncData.isCampaignLevel)
-                {
-                    //Need to make sure we dont go past last level!
-                    Debug.Log(20 - SyncData.reconnectLevel - 1);
-                    campaignLevels.GetChild(20 - SyncData.reconnectLevel - 1).GetComponent<StartCampaignLevel>().StartLevel();
-                }
-                else
-                {
-                    multiplayerLevels.GetChild(1).GetComponent<MultiplayerStart>().StartLevel();
-                }
-            }
-            
+            Debug.Log("retry level");
+            campaignLevels.GetChild(20 - SyncData.reconnectLevel).GetComponent<StartCampaignLevel>().StartLevel();
         }
+        else if (SyncData.nextLevel)
+        {
+            Debug.Log("next level");
+            if (SyncData.isCampaignLevel)
+            {
+                //Need to make sure we dont go past last level!
+                Debug.Log(20 - SyncData.reconnectLevel - 1);
+                campaignLevels.GetChild(20 - SyncData.reconnectLevel - 1).GetComponent<StartCampaignLevel>().StartLevel();
+            }
+            else
+            {
+                multiplayerLevels.GetChild(1).GetComponent<MultiplayerStart>().StartLevel();
+            }
+        }
+
         SyncData.reconnectServer = false;
     }
 
-    IEnumerator WaitForClientsBackup()
+    /*IEnumerator WaitForClientsBackup()
     {
         yield return new WaitForSeconds(5f);
         if (!safety)
@@ -102,7 +101,7 @@ public class ReconnectFromLobby : MonoBehaviour
         }
         safety = false;
         SyncData.reconnectServer = false;
-    }
+    }*/
 
     IEnumerator WaitForHost()
     {
