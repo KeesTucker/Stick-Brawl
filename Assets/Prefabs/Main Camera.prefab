@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4707376036634888}
   - component: {fileID: 20511267341121622}
   - component: {fileID: 81840720734549370}
-  - component: {fileID: 114249282010940010}
   - component: {fileID: 114086849618373300}
   - component: {fileID: 54738944018266648}
   - component: {fileID: 114294897135451978}
@@ -47,7 +46,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.13333334, g: 0.14901961, b: 0.18039216, a: 1}
+  m_BackGroundColor: {r: 0.084, g: 0.084, b: 0.084, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -87,66 +86,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1372930870883988}
   m_Enabled: 1
---- !u!114 &114249282010940010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372930870883988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 4707376036634888}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 0
-  antialiasingMode: 1
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 1
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 1
-  m_ShowCustomSorter: 1
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
 --- !u!114 &114086849618373300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +104,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: -10}
   target: {x: 0, y: 0, z: 0}
   rb: {fileID: 54738944018266648}
-  force: 5000
+  force: 8000
   rocket: {fileID: 0}
 --- !u!54 &54738944018266648
 Rigidbody:
@@ -176,7 +115,7 @@ Rigidbody:
   m_GameObject: {fileID: 1372930870883988}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 10
+  m_Drag: 20
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0

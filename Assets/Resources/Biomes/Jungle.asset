@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -13,22 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Jungle
   BiomeIndex: 2
-  grassColor: {r: 0.13333334, g: 0.23529412, b: 0.105882354, a: 1}
-  baseColor: {r: 0.27450982, g: 0.1882353, b: 0.12156863, a: 1}
-  trunkColor: {r: 0.20392157, g: 0.2509804, b: 0.14509805, a: 1}
-  rockColor: {r: 0.273, g: 0.21567, b: 0.15834, a: 1}
+  grassColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 1}
+  baseColor: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
+  trunkColor: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}
+  rockColor: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
   detail:
-  - {fileID: 1372892261651362, guid: 6cad0f151008de74fbb5543dad34f471, type: 2}
-  - {fileID: 1367568753336642, guid: 184e4bf50e67d1940a090a5d4fa97232, type: 2}
-  - {fileID: 1354618937250432, guid: 61900831358f096458f41255b81c6677, type: 2}
-  - {fileID: 1937989537922988, guid: 99ed8a9629dad6448b6959bd7f072071, type: 2}
-  - {fileID: 1710892377670858, guid: 1d4772a5c23b02548878910e2e3f04ee, type: 2}
-  - {fileID: 1703801907561228, guid: 3f682603e2b59d64a9e4cb1ea88caf16, type: 2}
-  - {fileID: 1790065302771026, guid: e69fa68837c2b494bba625342c701b59, type: 2}
+  - {fileID: 1372892261651362, guid: 6cad0f151008de74fbb5543dad34f471, type: 3}
+  - {fileID: 1367568753336642, guid: 184e4bf50e67d1940a090a5d4fa97232, type: 3}
+  - {fileID: 1354618937250432, guid: 61900831358f096458f41255b81c6677, type: 3}
+  - {fileID: 1937989537922988, guid: 99ed8a9629dad6448b6959bd7f072071, type: 3}
+  - {fileID: 1710892377670858, guid: 1d4772a5c23b02548878910e2e3f04ee, type: 3}
+  - {fileID: 1703801907561228, guid: 3f682603e2b59d64a9e4cb1ea88caf16, type: 3}
+  - {fileID: 1790065302771026, guid: e69fa68837c2b494bba625342c701b59, type: 3}
   trees:
-  - {fileID: 1355971969950606, guid: 0cb85259ef0b85a4a9747bafe5643c5f, type: 2}
-  - {fileID: 1642208386534222, guid: 3fff1ea0ea6d20d40a3ce52be9ba0c0f, type: 2}
-  - {fileID: 1321231702334520, guid: d6e621135feb7ca4f9f796d216e531fc, type: 2}
-  - {fileID: 1520874021680574, guid: d6a7910ade10d2548a3a70bbb9f3a858, type: 2}
+  - {fileID: 1355971969950606, guid: 0cb85259ef0b85a4a9747bafe5643c5f, type: 3}
+  - {fileID: 1642208386534222, guid: 3fff1ea0ea6d20d40a3ce52be9ba0c0f, type: 3}
+  - {fileID: 1321231702334520, guid: d6e621135feb7ca4f9f796d216e531fc, type: 3}
+  - {fileID: 1520874021680574, guid: d6a7910ade10d2548a3a70bbb9f3a858, type: 3}
   background: {fileID: 21300000, guid: fc416648b48af424e97f07870e75fb9c, type: 3}
-  backColor: {r: 0.36770707, g: 0.385, b: 0.236775, a: 1}
+  backColor: {r: 0.38431373, g: 0.38431373, b: 0.38431373, a: 1}

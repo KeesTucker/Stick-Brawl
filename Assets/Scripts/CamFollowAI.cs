@@ -39,12 +39,12 @@ public class CamFollowAI : MonoBehaviour {
         }
     }
 
-    void Update()
+    /*void Update()
     {
         transform.position = parent.position + offset;
-    }
+    }*/
 
-	/*void FixedUpdate () {
+	void FixedUpdate () {
         if (rocket && !pos)
         {
             pos = rocket;
@@ -57,14 +57,10 @@ public class CamFollowAI : MonoBehaviour {
         {
             pos = parent;
         }
-        if (pos && aim)
-        {
-            target = (((pos.position * 3) + aim.position) / 4) + offset;
-        }
-        else if (pos)
+        if (pos)
         {
             target = pos.position;
         }
         rb.AddForce(new Vector3(force * Time.deltaTime * (target.x - transform.position.x), force * Time.deltaTime * (target.y - transform.position.y), 0));
-    }*/
+    }
 }

@@ -8808,7 +8808,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444014862026154}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 128.5, y: -12.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4874661863844668}
@@ -9061,8 +9061,8 @@ MonoBehaviour:
   groundforce: {fileID: 114248129533816724}
   unCrouch: 0
   Ragdoll: {fileID: 54859679174687922}
-  walkForce: 8000
-  jumpForce: 130000
+  walkForce: 6000
+  jumpForce: 110000
   grappleSince: 0
   anim: {fileID: 95787453140537200}
   shoot: {fileID: 114435935417007564}
@@ -10455,6 +10455,7 @@ MonoBehaviour:
   - {fileID: 1163115708275808}
   - {fileID: 1477960591381292}
   - {fileID: 1935441111687614}
+  playerPartsR: []
   dead: 0
   grapple: {fileID: 1030156325517882, guid: ae655a10819c70b459b21cde916ce01c, type: 3}
   grappled: 0

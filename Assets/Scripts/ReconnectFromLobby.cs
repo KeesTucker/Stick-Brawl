@@ -15,6 +15,7 @@ public class ReconnectFromLobby : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.Save();
         if (SyncData.reconnect)
         {
             Debug.Log("Waiting for host");
@@ -76,18 +77,36 @@ public class ReconnectFromLobby : MonoBehaviour
 
     IEnumerator WaitForClientsBackup()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         if (!safety)
         {
-            Debug.Log(NetworkServer.connections.Count.ToString() + " vs. " + SyncData.numOfClients.ToString());
-            campaignLevels.GetChild(20 - SyncData.reconnectLevel).GetComponent<StartCampaignLevel>().StartLevel();
+            if (SyncData.retryLevel)
+            {
+                Debug.Log("retry level");
+                campaignLevels.GetChild(20 - SyncData.reconnectLevel).GetComponent<StartCampaignLevel>().StartLevel();
+            }
+            else if (SyncData.nextLevel)
+            {
+                Debug.Log("next level");
+                if (SyncData.isCampaignLevel)
+                {
+                    //Need to make sure we dont go past last level!
+                    Debug.Log(20 - SyncData.reconnectLevel - 1);
+                    campaignLevels.GetChild(20 - SyncData.reconnectLevel - 1).GetComponent<StartCampaignLevel>().StartLevel();
+                }
+                else
+                {
+                    multiplayerLevels.GetChild(1).GetComponent<MultiplayerStart>().StartLevel();
+                }
+            }
         }
         safety = false;
+        SyncData.reconnectServer = false;
     }
 
     IEnumerator WaitForHost()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
         SyncData.reconnect = false;
         NetworkManager.singleton.networkAddress = SyncData.ipAddress;
         //NetworkManager.singleton.maxConnections = 2;

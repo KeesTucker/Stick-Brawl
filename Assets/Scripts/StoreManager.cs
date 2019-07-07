@@ -58,8 +58,6 @@ public class StoreManager : MonoBehaviour
             int id = Random.Range(0, shopItems.Length);
 
             PlayerPrefs.SetInt("Owned " + ShopItemType.Color.ToString() + " number " + id.ToString(), 1);
-            PlayerPrefs.SetInt(ShopItemType.Color.ToString() + "selected", id);
-
             GameObject.Find("LoadingPlayer").GetComponent<ColourSetterLoad>().SetColor(shopItems[id].foregroundColor);
             foreach (SyncName syncName in FindObjectsOfType<SyncName>())
             {

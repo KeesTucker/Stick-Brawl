@@ -37,7 +37,7 @@ public class SettingsManager : MonoBehaviour
             }
             else
             {
-                vsync = 0;
+                vsync = 1;
                 if (PlayerPrefs.HasKey("targetFPS"))
                 {
                     Application.targetFrameRate = PlayerPrefs.GetInt("targetFPS");
@@ -72,8 +72,8 @@ public class SettingsManager : MonoBehaviour
         }
         else
         {
-            AA = 0;
-            PlayerPrefs.SetInt("aA", 0);
+            AA = 2;
+            PlayerPrefs.SetInt("aA", 2);
         }
         QualitySettings.antiAliasing = AA;
         AADropdown.value = AA / 2;
@@ -98,6 +98,7 @@ public class SettingsManager : MonoBehaviour
             ResDropdown.value = 3;
         }
         Screen.SetResolution((int)res.x, (int)res.x * Screen.currentResolution.height / Screen.currentResolution.width, FullScreenMode.FullScreenWindow);
+        PlayerPrefs.Save();
     }
 
     public void AntiAliasingUpdate(int value)
@@ -105,6 +106,7 @@ public class SettingsManager : MonoBehaviour
         AA = value * 2;
         PlayerPrefs.SetInt("aA", value * 2);
         QualitySettings.antiAliasing = AA;
+        PlayerPrefs.Save();
     }
 
     public void FPSUpdate(int value)
@@ -120,13 +122,14 @@ public class SettingsManager : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("vsync", 0);
-            vsync = 0;
+            vsync = 1;
 
             Debug.Log("Target FPS: " + ((int)(15 * Mathf.Pow(2, value))).ToString());
             PlayerPrefs.SetInt("targetFPS", (int)(15 * Mathf.Pow(2, value)));
-            Application.targetFrameRate = (int)(22.5f * Mathf.Pow(2, value));
+            Application.targetFrameRate = (int)(15f * Mathf.Pow(2, value));
             SyncData.targetFPS = PlayerPrefs.GetInt("targetFPS");
         }
+        PlayerPrefs.Save();
     }
 
     public void ResUpdate(int value)
@@ -144,5 +147,6 @@ public class SettingsManager : MonoBehaviour
             PlayerPrefs.SetInt("resY", Screen.currentResolution.height);
         }
         Screen.SetResolution((int)res.x, (int)res.x * Screen.currentResolution.height / Screen.currentResolution.width, FullScreenMode.FullScreenWindow);
+        PlayerPrefs.Save();
     }
 }

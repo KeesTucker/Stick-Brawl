@@ -30,7 +30,15 @@ public class SetupLoading : MonoBehaviour
         yield return new WaitForEndOfFrame();
         if (preInstantiated)
         {
-            GetComponent<SkinApply>().UpdateSkin(PlayerPrefs.GetInt(ShopItemType.Skin.ToString() + "selected"));
+            if (PlayerPrefs.HasKey(ShopItemType.Skin.ToString() + "selected"))
+            {
+                GetComponent<SkinApply>().UpdateSkin(PlayerPrefs.GetInt(ShopItemType.Skin.ToString() + "selected"));
+            }
+            else
+            {
+                PlayerPrefs.SetInt(ShopItemType.Skin.ToString() + "selected", 8);
+                GetComponent<SkinApply>().UpdateSkin(8);
+            }
         }
     }
 }

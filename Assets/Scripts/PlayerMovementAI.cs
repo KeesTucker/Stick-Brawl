@@ -200,7 +200,7 @@ public class PlayerMovementAI : MonoBehaviour {
         }
         else if (aDepressed == true && Physics.Raycast(body.transform.position, -Vector3.right, out hit, 20f, layerMask))
         {
-            body.AddForce(-walkForce * Time.deltaTime * 3.5f, 0, 0);
+            body.AddForce(-walkForce * Time.deltaTime * 1.5f, 0, 0);
             anim.SetTrigger(walkingL);
             state = 1;
             //syncMoveState.CmdSetState(state);
@@ -229,7 +229,7 @@ public class PlayerMovementAI : MonoBehaviour {
         }
         else if (aDepressed == true && Physics.Raycast(body.transform.position, Vector3.right, out hit, 20f, layerMask))
         {
-            body.AddForce(walkForce * Time.deltaTime * 3.5f, 0, 0);
+            body.AddForce(walkForce * Time.deltaTime * 1.5f, 0, 0);
             anim.SetTrigger(walkingR);
             state = 1;
             //syncMoveState.CmdSetState(state);
@@ -261,20 +261,20 @@ public class PlayerMovementAI : MonoBehaviour {
             {
                 for (int i = 0; i < 20; i++)
                 {
-                    body.AddForce(-walkForce * Time.deltaTime * 3f, 0, 0);
+                    body.AddForce(-walkForce * Time.deltaTime * 0.75f, 0, 0);
                 }
             }
             else
             {
                 for (int i = 0; i < 20; i++)
                 {
-                    body.AddForce(-walkForce * Time.deltaTime * 2f, 0, 0);
+                    body.AddForce(-walkForce * Time.deltaTime * 0.5f, 0, 0);
                 }
             }
         }
         else if (spaceDepressed && aDepressed && !dDepressed && Physics.Raycast(body.transform.position, Vector3.right, out hit, 20f, layerMask) && !Physics.Raycast(body.transform.position, Vector3.right, out hit, 20f, layerMask))
         {
-            body.AddForce(-walkForce * Time.deltaTime * 1.5f, 0, 0);
+            body.AddForce(-walkForce * Time.deltaTime * 0.75f, 0, 0);
         }
         else if (spaceDepressed && dDepressed && Physics.Raycast(body.transform.position, -Vector3.right, out hit, 20f, layerMask) && !Physics.Raycast(body.transform.position, Vector3.right, out hit, 20f, layerMask))
         {
@@ -282,20 +282,20 @@ public class PlayerMovementAI : MonoBehaviour {
             {
                 for (int i = 0; i < 20; i++)
                 {
-                    body.AddForce(walkForce * Time.deltaTime * 3f, 0, 0);
+                    body.AddForce(walkForce * Time.deltaTime * 0.75f, 0, 0);
                 }
             }
             else
             {
                 for (int i = 0; i < 20; i++)
                 {
-                    body.AddForce(walkForce * Time.deltaTime * 2f, 0, 0);
+                    body.AddForce(walkForce * Time.deltaTime * 0.5f, 0, 0);
                 }
             }
         }
         else if (spaceDepressed && dDepressed && !aDepressed && Physics.Raycast(body.transform.position, -Vector3.right, out hit, 20f, layerMask) && !Physics.Raycast(body.transform.position, Vector3.right, out hit, 20f, layerMask))
         {
-            body.AddForce(walkForce * Time.deltaTime * 1.5f, 0, 0);
+            body.AddForce(walkForce * Time.deltaTime * 0.75f, 0, 0);
         }
 
         if (groundforce.touchingGround)

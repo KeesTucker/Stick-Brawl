@@ -11801,7 +11801,7 @@ MonoBehaviour:
   unCrouch: 0
   Ragdoll: {fileID: 54286267349051440}
   walkForce: 8000
-  jumpForce: 130000
+  jumpForce: 110000
   grappleSince: 0
   anim: {fileID: 95437191914235670}
   shoot: {fileID: 114787745658144268}
@@ -12101,6 +12101,7 @@ MonoBehaviour:
   - {fileID: 1312830156608114}
   - {fileID: 1599952542509708}
   - {fileID: 1716906454718612}
+  playerPartsR: []
   dead: 0
   grapple: {fileID: 1030156325517882, guid: ae655a10819c70b459b21cde916ce01c, type: 3}
   grappled: 0

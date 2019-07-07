@@ -140,10 +140,12 @@ public class UINavigation : MonoBehaviour
         {
             GetComponent<TMPro.TMP_Text>().enabled = false;
         }
+        //target.SetActive(false);
     }
 
     void Enable(GameObject target)
     {
+        //target.SetActive(true);
         foreach (Image image in target.GetComponentsInChildren<Image>())
         {
             image.enabled = true;
@@ -174,7 +176,7 @@ public class UINavigation : MonoBehaviour
         }
     }
 
-    void OnGUI()
+    /*void OnGUI()
     {
         if (isSelectable)
         {
@@ -199,5 +201,5 @@ public class UINavigation : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 }

@@ -570,16 +570,16 @@ public class ShootAI : MonoBehaviour {
         StartCoroutine("MuzzleOff");
         for (int i = 0; i < 25; i++) // normal values are i < 50 and no * 2 on the end make vairables for these
         {
-            recoilAdder.AddForce(-transform.right * Time.deltaTime * (recoil / 3) * 50 * 2); //add these to the arm, maybe make another child which is connected via a hingejoint;
+            recoilAdder.AddForce(-transform.right * Time.deltaTime * (recoil / 3) * 50 * 1.5f); //add these to the arm, maybe make another child which is connected via a hingejoint;
             if (!upsideDown)
             {
                 //recoilAdder.AddForce(transform.up * Time.deltaTime * recoil * 55 * 2);
-                GetComponent<Rigidbody>().AddForceAtPosition(transform.up * Time.deltaTime * (recoil / 3) * 55 * 2f, recoilAdder.transform.position);
+                GetComponent<Rigidbody>().AddForceAtPosition(transform.up * Time.deltaTime * (recoil / 3) * 55 * 1.5f, recoilAdder.transform.position);
             }
             else
             {
                 //recoilAdder.AddForce(transform.up * Time.deltaTime * recoil * -55 * 2);
-                GetComponent<Rigidbody>().AddForceAtPosition(transform.up * Time.deltaTime * (recoil / 3) * -55 * 2f, recoilAdder.transform.position);
+                GetComponent<Rigidbody>().AddForceAtPosition(transform.up * Time.deltaTime * (recoil / 3) * -55 * 1.5f, recoilAdder.transform.position);
             }
         }
 

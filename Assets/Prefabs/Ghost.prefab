@@ -204,10 +204,11 @@ MonoBehaviour:
   rb: {fileID: 54007819399371708}
   proj: {fileID: 0}
   parent: {fileID: 0}
-  force: 200
+  force: 100
   shots: 3
   abilityIndex: 0
   cameraGO: {fileID: 1372930870883988, guid: f3c184be121444a4e99a315347c1b84b, type: 3}
+  joystick: {fileID: 0}
 --- !u!212 &212662241278926964
 SpriteRenderer:
   m_ObjectHideFlags: 0

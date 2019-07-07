@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -24,18 +25,18 @@ MonoBehaviour:
   spawnScale: {x: 0.75, y: 0.75, z: 0.75}
   spawnRotation: {x: 0, y: -90, z: 0}
   switchOffset: {x: 0.4, y: 3.6, z: 0}
-  bullet: {fileID: 1970557568902668, guid: 2b1d4fd5c37e56b4da603f6d6c50ead1, type: 2}
-  shell: {fileID: 1934366033084884, guid: 8a2327c718fac0044b716a0b2e4d175d, type: 2}
+  bullet: {fileID: 1970557568902668, guid: 2b1d4fd5c37e56b4da603f6d6c50ead1, type: 3}
+  shell: {fileID: 1934366033084884, guid: 8a2327c718fac0044b716a0b2e4d175d, type: 3}
   magazineSize: 1
   reloadTime: 0
   mass: 1.5
   axisToFlip: 3
   bloom: 0
-  recoil: 750
+  recoil: 350
   impact: 3000
   fireRate: 0.4
   muzzleFlashScale: {x: 4.5, y: 16, z: 0}
-  itemModel: {fileID: 1856421119672694, guid: 240b879865ca8f644bbe6242a89ca88c, type: 2}
+  itemModel: {fileID: 1856421119672694, guid: 240b879865ca8f644bbe6242a89ca88c, type: 3}
   bulletSplit: 1
   burstSize: 0
   burstTime: 0
