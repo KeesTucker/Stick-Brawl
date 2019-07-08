@@ -9,7 +9,7 @@ public class Escape : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("esc"))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             GameObject esc = Instantiate(escape, GameObject.Find("Canvas").transform);
             esc.GetComponent<Animator>().SetTrigger("Entry");
