@@ -68,16 +68,16 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Bob Jeff Madlad
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a99f1610bd9e90143acf9745a654e7f7, type: 2}
-  m_sharedMaterial: {fileID: 21695316443296086, guid: a99f1610bd9e90143acf9745a654e7f7,
+  m_fontAsset: {fileID: 11400000, guid: fd7115934c6f8ee45a82a9dad655361d, type: 2}
+  m_sharedMaterial: {fileID: 21504774350329176, guid: fd7115934c6f8ee45a82a9dad655361d,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282006088
-  m_fontColor: {r: 0.2830189, g: 0.2309541, b: 0.2309541, a: 1}
+    rgba: 4292072403
+  m_fontColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
