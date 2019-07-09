@@ -83,7 +83,7 @@ public class SettingsManager : MonoBehaviour
             res = new Vector2(PlayerPrefs.GetInt("resX"), PlayerPrefs.GetInt("resY"));
             for (int i = 0; i < resList.Length; i++)
             {
-                if (res.x == resList[i].x)
+                if (res.x == resList[Mathf.Clamp(i, 0, resList.Length - 1)].x)
                 {
                     ResDropdown.value = i;
                 }
@@ -91,15 +91,17 @@ public class SettingsManager : MonoBehaviour
         }
         else
         {
-            res = new Vector2(Screen.resolutions[Screen.resolutions.Length - 1].width, Screen.resolutions[Screen.resolutions.Length - 1].height);
+            res = new Vector2(Screen.resolutions[Mathf.Clamp(Screen.resolutions.Length - 1, 0, Screen.resolutions.Length)].width, Screen.resolutions[Mathf.Clamp(Screen.resolutions.Length - 1, 0, Screen.resolutions.Length)].height);
             PlayerPrefs.SetInt("resX", Screen.currentResolution.width);
             PlayerPrefs.SetInt("resY", Screen.currentResolution.height);
             PlayerPrefs.Save();
             ResDropdown.value = 3;
         }
         Screen.SetResolution((int)res.x, (int)res.x * Screen.currentResolution.height / Screen.currentResolution.width, FullScreenMode.FullScreenWindow);
+        
         PlayerPrefs.Save();
     }
+    
 
     public void AntiAliasingUpdate(int value)
     {

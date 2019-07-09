@@ -30,14 +30,14 @@ public class ReconnectFromLobby : MonoBehaviour
 
     IEnumerator WaitForClients()
     {
-        if (NetworkServer.active)
+        /*if (NetworkServer.active)
         {
             NetworkManager.singleton.StopHost();
         }
         else if (NetworkClient.isConnected)
         {
             NetworkManager.singleton.StopClient();
-        }
+        }*/
         Debug.Log("Starting Host1");
         yield return new WaitForSeconds(0.2f);
         Debug.Log("Starting Host2");

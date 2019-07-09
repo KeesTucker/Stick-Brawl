@@ -17,7 +17,7 @@ public class HostServer : MonoBehaviour
     public TMPro.TMP_Text localIP;
     public TMPro.TMP_Text publicIP;
 
-    void Start()
+    IEnumerator Start()
     {
         SyncData.serverName = "Unnamed Server!";
         SyncData.health = 100;
@@ -25,8 +25,6 @@ public class HostServer : MonoBehaviour
         transport = NetworkManager.singleton.gameObject.GetComponent<LiteNetLib4MirrorTransport>();
         transport.port = 2345;
 
-        string externalip = new WebClient().DownloadString("http://icanhazip.com");
-        publicIP.text = externalip;
         foreach (IPAddress ip in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
         {
             if (ip.AddressFamily == AddressFamily.InterNetwork)
@@ -34,6 +32,14 @@ public class HostServer : MonoBehaviour
                 localIP.text = ip.ToString();
                 break;
             }
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (Application.internetReachability != NetworkReachability.NotReachable)
+        {
+            string externalip = new WebClient().DownloadString("http://icanhazip.com");
+            publicIP.text = externalip;
         }
     }
 
