@@ -20,7 +20,7 @@ public class HostServer : MonoBehaviour
     IEnumerator Start()
     {
         SyncData.serverName = "Unnamed Server!";
-        SyncData.health = 100;
+        //SyncData.health = 100;
 
         transport = NetworkManager.singleton.gameObject.GetComponent<LiteNetLib4MirrorTransport>();
         transport.port = 2345;
@@ -38,9 +38,16 @@ public class HostServer : MonoBehaviour
 
         if (Application.internetReachability != NetworkReachability.NotReachable)
         {
-            string externalip = new WebClient().DownloadString("http://icanhazip.com");
-            publicIP.text = externalip;
+            WebClient wc = new WebClient();
+            wc.DownloadStringAsync(new System.Uri("http://icanhazip.com"));
+            wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(Completed);
         }
+    }
+
+    void Completed(object sender, DownloadStringCompletedEventArgs args)
+    {
+        string externalip = args.Result;
+        publicIP.text = externalip;
     }
 
     void Update()
@@ -249,6 +256,7 @@ public class HostServer : MonoBehaviour
         if (!int.TryParse(health, out SyncData.health))
         {
             ShowError("Not a number!");
+            SyncData.health = 100;
         }
     }
 

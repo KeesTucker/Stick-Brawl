@@ -21,7 +21,7 @@ public static class SyncData : object {
 
     public static int worldSize = 13;
 
-    public static int health = 400;
+    public static int health = 100;
 
     public static float volume = 1f;
     public static float sfx = 1f;
