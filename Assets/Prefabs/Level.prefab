@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.72, g: 0.48374996, b: 0.21937497, a: 1}
+  m_Color: {r: 0.42352942, g: 0.42352942, b: 0.42352942, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -147,7 +147,9 @@ MonoBehaviour:
   id: 0
   gameMode: 1
   numBots: 5
-  chunks: []
+  chunkID: 0
+  health: 200
+  botHealth: 100
 --- !u!1 &1294153550
 GameObject:
   m_ObjectHideFlags: 0
