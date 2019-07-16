@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "800584044770",
+    "firebase_url": "https://stick-brawl-multiplayer-197153.firebaseio.com",
+    "project_id": "stick-brawl-multiplayer-197153",
+    "storage_bucket": "stick-brawl-multiplayer-197153.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800584044770:android:cf865c8f4d5f234d",
+        "android_client_info": {
+          "package_name": "com.TripleFinGames.StickBrawlOnline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800584044770-2h5vbrfg2ltqouv59j2a2fan9f8dfjbe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw2ZxvwtlEN9NiO0FPn-PuEgGLCHmePjU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800584044770-2h5vbrfg2ltqouv59j2a2fan9f8dfjbe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

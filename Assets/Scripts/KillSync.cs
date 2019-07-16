@@ -13,7 +13,7 @@ public class KillSync : MonoBehaviour {
     {
         SyncData.kills = 0;
         kills = 0;
-        text.text = kills.ToString();
+        text.text = "Kills: " + kills.ToString();
     }
 
     // Update is called once per frame

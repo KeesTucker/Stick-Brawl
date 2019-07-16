@@ -42,26 +42,13 @@ public class PlayersLeft : MonoBehaviour {
 	void Update () {
         if (playerManagement)
         {
-            if (SyncData.gameMode == 1)
+            if (players != playerManagement.totalPlayers)
             {
-                if (players != playerManagement.totalPlayers)
-                {
-                    players = playerManagement.totalPlayers;
-                    text.text = "Players Left: " + players.ToString();
-                }
-            }
-            else if (SyncData.gameMode == 2 && spawnRocket.ready && health.health > 0)
-            {
-                time += Time.deltaTime;
-                if (time > 60)
-                {
-                    time -= 60f;
-                    mins++;
-                }
-                text.text = ((mins * 60) + (int)time).ToString();
+                players = playerManagement.totalPlayers;
+                text.text = "Players Left: " + players.ToString();
             }
 
-            if (SyncData.gameMode == 2 && spawnRocket.ready && health.health <= 0)
+            /*if (SyncData.gameMode == 2 && spawnRocket.ready && health.health <= 0)
             {
                 secondsSurvived.SetActive(true);
                 textSeconds.text = "YOU SURVIVED " + ((mins * 60) + (int)time).ToString() + " SECONDS";
@@ -76,7 +63,7 @@ public class PlayersLeft : MonoBehaviour {
                 {
                     PlayerPrefs.SetInt("secondsSurvived", (mins * 60) + (int)time);
                 }
-            }
+            }*/
         }
 	}
 }

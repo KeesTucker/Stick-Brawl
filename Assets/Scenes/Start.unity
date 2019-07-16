@@ -24857,7 +24857,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012356043, y: -0.00002128825}
+  m_AnchoredPosition: {x: 0.00012356043, y: 0.000014101041}
   m_SizeDelta: {x: -0.07019043, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &739716896
@@ -37636,6 +37636,10 @@ GameObject:
   - component: {fileID: 1147644017}
   - component: {fileID: 1147644018}
   - component: {fileID: 1147644019}
+  - component: {fileID: 1147644021}
+  - component: {fileID: 1147644020}
+  - component: {fileID: 1147644022}
+  - component: {fileID: 1147644023}
   m_Layer: 0
   m_Name: SettingsManager
   m_TagString: Untagged
@@ -37727,6 +37731,80 @@ MonoBehaviour:
   oldfont2: {fileID: 0}
   newfont1: {fileID: 11400000, guid: c534927188f689a4d9aeaf521c42911f, type: 2}
   newfont2: {fileID: 11400000, guid: fd7115934c6f8ee45a82a9dad655361d, type: 2}
+--- !u!114 &1147644020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147644014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92a70751b2de4fe9bc6e5d4f721100e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appGUID_UnityEditor: kostick-brawl-multiplayer-action-32kxrjb
+  appGUID_iOS: 
+  appGUID_Android: kostick-brawl-multiplayer-action-32kxrjb
+  appGUID_WindowsStoreUWP: 
+  appGUID_WindowsPC: 
+  appGUID_MacOS: 
+  appGUID_Linux: 
+  appGUID_WebGL: 
+  kochavaPartnerName: 
+  kochavaPartnerApp: 
+  appAdLimitTracking: 0
+  logLevel: 0
+  sleepOnStart: 0
+  requestAttributionCallback: 0
+  attributionChangeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: KochavaConfiguration+AttributionChangeEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  intelligentConsentManagement: 0
+  manualManagedConsentRequirements: 0
+  consentStatusChangeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: KochavaConfiguration+ConsentStatusChangeEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1147644021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147644014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce84fd0594a29584abec07f5ec344f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1147644022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147644014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253a7891e3705db41b093151ad904b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1147644023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147644014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e7e098a13af3b4f9d94d453674efd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1151932253
 GameObject:
   m_ObjectHideFlags: 0
@@ -43392,7 +43470,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1147431582}
   m_HandleRect: {fileID: 1147431581}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9999994
   m_Size: 0.53777343
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -47744,7 +47822,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00012207031, y: -0.00006395982}
+  m_AnchoredPosition: {x: -0.00012207031, y: 0.00017854024}
   m_SizeDelta: {x: -0.07019043, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1455172634
@@ -58585,7 +58663,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000019073486, y: 0.000010121943}
+  m_AnchoredPosition: {x: 0.0000019073486, y: -0.00000842468}
   m_SizeDelta: {x: -21.699951, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1715125296
@@ -62267,7 +62345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00026088953, y: -0.000038373855}
+  m_AnchoredPosition: {x: 0.00026088953, y: -0.000009758802}
   m_SizeDelta: {x: -0.07019043, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1835487804
@@ -63134,7 +63212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00018459558, y: 0.000019341815}
+  m_AnchoredPosition: {x: 0.00018459558, y: -0.0000020984478}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1872658676
@@ -64352,7 +64430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -7866.794, y: 0}
+  m_AnchoredPosition: {x: -8036.4717, y: 0}
   m_SizeDelta: {x: 0, y: 0.000013306211}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1914175304
