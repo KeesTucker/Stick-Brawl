@@ -16,6 +16,13 @@ public class BuyItem : MonoBehaviour
 
     public void Start()
     {
+        if (itemType == ShopItemType.BrawlPro)
+        {
+            if (PlayerPrefs.HasKey("BrawlPro"))
+            {
+                Destroy(gameObject);
+            }
+        }
         if (PlayerPrefs.HasKey(itemType.ToString() + "selected"))
         {
             if (PlayerPrefs.GetInt(itemType.ToString() + "selected") == id)
@@ -27,7 +34,7 @@ public class BuyItem : MonoBehaviour
 
     public void Buy()
     {
-        if (itemType != ShopItemType.Currency)
+        if (itemType != ShopItemType.Currency && itemType != ShopItemType.BrawlPro)
         {
             if (PlayerPrefs.HasKey("Owned " + itemType.ToString() + " number " + id.ToString()))
             {
@@ -148,16 +155,51 @@ public class BuyItem : MonoBehaviour
 
     public void PurchaseIAP()
     {
-        //Open Google IAP
-
-        //On purchased
-        ConfirmedIAP();
+        if (itemType == ShopItemType.BrawlPro)
+        {
+            FindObjectOfType<IAPManager>().BrawlPro(this);
+        }
+        else
+        {
+            if (amount == 250)
+            {
+                FindObjectOfType<IAPManager>().BuyCounters250(this);
+            }
+            else if (amount == 750)
+            {
+                FindObjectOfType<IAPManager>().BuyCounters750(this);
+            }
+            if (amount == 2000)
+            {
+                FindObjectOfType<IAPManager>().BuyCounters2000(this);
+            }
+            if (amount == 5000)
+            {
+                FindObjectOfType<IAPManager>().BuyCounters5000(this);
+            }
+        }
     }
 
     public void ConfirmedIAP()
     {
-        Debug.Log("Bought " + amount.ToString() + " counters!");
-        PlayerPrefs.SetInt("Counters", PlayerPrefs.GetInt("Counters") + amount);
+        if (itemType == ShopItemType.Currency)
+        {
+            Debug.Log("Bought " + amount.ToString() + " counters!");
+            PlayerPrefs.SetInt("Counters", PlayerPrefs.GetInt("Counters") + amount);
+        }
+        else
+        {
+            Debug.Log("Got Brawl Pro");
+            PlayerPrefs.SetInt("BrawlPro", 1);
+            PlayerPrefs.SetInt("Owned " + ShopItemType.Skin.ToString() + " number 0", 1);
+            PlayerPrefs.SetInt("Owned " + ShopItemType.Skin.ToString() + " number 1", 1);
+            PlayerPrefs.SetInt("Owned " + ShopItemType.Skin.ToString() + " number 2", 1);
+            PlayerPrefs.SetInt("Owned " + ShopItemType.Skin.ToString() + " number 3", 1);
+            PlayerPrefs.SetInt("Owned " + ShopItemType.Maps.ToString() + " number 1", 1);
+            PlayerPrefs.SetInt("Owned " + ShopItemType.Maps.ToString() + " number 2", 1);
+            PlayerPrefs.SetInt("Counters", PlayerPrefs.GetInt("Counters") + 1000);
+            Destroy(gameObject);
+        }
     }
 
     public void DeselectAll()

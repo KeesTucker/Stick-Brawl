@@ -24,7 +24,13 @@
 
 public static class GPGSIds
 {
+        public const string achievement_beat_level_21 = "CgkI4qGctKYXEAIQBQ"; // <GPGSID>
+        public const string achievement_beat_level_1 = "CgkI4qGctKYXEAIQAg"; // <GPGSID>
         public const string achievement_win_your_first_game = "CgkI4qGctKYXEAIQAQ"; // <GPGSID>
+        public const string achievement_beat_level_5 = "CgkI4qGctKYXEAIQAw"; // <GPGSID>
+        public const string achievement_beat_level_15 = "CgkI4qGctKYXEAIQBA"; // <GPGSID>
+        public const string leaderboard_enemies_killed = "CgkI4qGctKYXEAIQBg"; // <GPGSID>
+        public const string leaderboard_games_played = "CgkI4qGctKYXEAIQBw"; // <GPGSID>
 
 }
 

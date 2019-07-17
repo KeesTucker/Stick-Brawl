@@ -185,6 +185,22 @@ public class AISetup : NetworkBehaviour
                             if (isServer && start)
                             {
                                 GetComponent<RefrenceKeeperAI>().updateUI.won.SetActive(true);
+                                if (SyncData.chunkID == 0)
+                                {
+                                    FindObjectOfType<PlayGames>().Level1();
+                                }
+                                else if (SyncData.chunkID == 4)
+                                {
+                                    FindObjectOfType<PlayGames>().Level5();
+                                }
+                                else if (SyncData.chunkID == 14)
+                                {
+                                    FindObjectOfType<PlayGames>().Level15();
+                                }
+                                else if (SyncData.chunkID == 20)
+                                {
+                                    FindObjectOfType<PlayGames>().Level21();
+                                }
                             }
                             else if (!isServer && start)
                             {
@@ -196,6 +212,7 @@ public class AISetup : NetworkBehaviour
                             }
                             else
                             {
+                                FindObjectOfType<PlayGames>().WinFirstGame();
                                 PlayerPrefs.SetInt("wins", 1);
                             }
                             stop = true;
@@ -258,6 +275,8 @@ public class AISetup : NetworkBehaviour
         {
             if (!dead)
             {
+                //Maybe BUGGGY, Not quite the right value lol ERROR
+                FindObjectOfType<PlayGames>().Kill();
                 playerManagement.totalPlayers--;
                 dead = true;
             }

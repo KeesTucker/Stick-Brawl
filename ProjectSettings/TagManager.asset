@@ -23,6 +23,7 @@ TagManager:
   - FlagSpawn
   - ghostLocal
   - DontDisable
+  - settings
   layers:
   - Default
   - TransparentFX
