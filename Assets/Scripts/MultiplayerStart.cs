@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using Mirror.LiteNetLib4Mirror;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MultiplayerStart : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class MultiplayerStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.DeleteAll();
         transport = NetworkManager.singleton.gameObject.GetComponent<LiteNetLib4MirrorTransport>();
     }
 
@@ -29,24 +31,67 @@ public class MultiplayerStart : MonoBehaviour
 
     public void StartLevel()
     {
-        if (!NetworkServer.active)
+        if (PlayerPrefs.HasKey("BrawlPro"))
         {
-            CheckPorts();
-            SyncData.serverName = SyncData.name + "s FFA Server!";
-            if (NetworkClient.isConnected)
+            if (!NetworkServer.active)
             {
-                NetworkManager.singleton.StopClient();
-                NetworkManager.singleton.StartHost();
+                CheckPorts();
+                SyncData.serverName = SyncData.name + "s FFA Server!";
+                if (NetworkClient.isConnected)
+                {
+                    NetworkManager.singleton.StopClient();
+                    NetworkManager.singleton.StartHost();
+                }
+                else
+                {
+                    NetworkManager.singleton.StartHost();
+                }
             }
-            else
+
+            SyncData.isCampaign = false;
+
+            StartCoroutine(WaitForServer());
+        }
+        else
+        {
+            ShowError();
+        }
+    }
+
+    private void ShowError()
+    {
+        GameObject confirm;
+        if (GameObject.Find("NoDestroyCanvas/Message"))
+        {
+            confirm = GameObject.Find("NoDestroyCanvas/Message");
+            confirm.transform.GetChild(1).GetChild(0).GetComponent<TMPro.TMP_Text>().text = "ERROR";
+            confirm.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<TMPro.TMP_Text>().text = "You need to purchase brawl pro to unlock free for all multiplayer mode, please visit the store :).";
+            confirm.GetComponent<Animator>().SetTrigger("Entry");
+            foreach (Image image in confirm.GetComponentsInChildren<Image>())
             {
-                NetworkManager.singleton.StartHost();
+                image.enabled = true;
+            }
+            foreach (TMPro.TextMeshProUGUI text in confirm.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+            {
+                text.enabled = true;
+            }
+            foreach (TMPro.TMP_Text text in confirm.GetComponentsInChildren<TMPro.TextMeshProUGUI>())
+            {
+                text.enabled = true;
+            }
+            if (confirm.GetComponent<Image>())
+            {
+                confirm.GetComponent<Image>().enabled = true;
+            }
+            if (confirm.GetComponent<TMPro.TextMeshProUGUI>())
+            {
+                confirm.GetComponent<TMPro.TextMeshProUGUI>().enabled = true;
+            }
+            if (confirm.GetComponent<TMPro.TMP_Text>())
+            {
+                confirm.GetComponent<TMPro.TMP_Text>().enabled = true;
             }
         }
-
-        SyncData.isCampaign = false;
-
-        StartCoroutine(WaitForServer());
     }
 
     IEnumerator WaitForServer()
