@@ -11,11 +11,11 @@ public class IAPManager : MonoBehaviour, IStoreListener
     private static IStoreController m_StoreController;          // The Unity Purchasing system.
     private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.
 
-    public static string product_BrawlPro = "BrawlPro";
-    public static string product_Counters250 = "Counters250";
-    public static string product_Counters750 = "Counters750";
-    public static string product_Counters2000 = "Counters2000";
-    public static string product_Counters5000 = "Counters5000";
+    public static string product_BrawlPro = "brawlpro";
+    public static string product_Counters250 = "counters250";
+    public static string product_Counters750 = "counters500";
+    public static string product_Counters2000 = "counters2000";
+    public static string product_Counters5000 = "counters5000";
 
     public BuyItem refrence;
 
