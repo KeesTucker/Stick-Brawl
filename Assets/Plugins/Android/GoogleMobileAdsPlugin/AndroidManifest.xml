@@ -4,14 +4,15 @@
   <application>
     <uses-library android:required="false" android:name="org.apache.http.legacy" />
     <!-- Your AdMob App ID will look similar to this sample ID: ca-app-pub-3940256099942544~3347511713 -->
+    <meta-data android:name="com.google.android.gms.ads.ca-app-pub-3563227024265510~3692129622" android:value="ca-app-pub-3563227024265510~3692129622" />
+    <activity android:name="com.unity3d.player.UnityPlayerNativeActivity" android:label="@string/app_name">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+      <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
+    </activity>
     <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3563227024265510~3692129622" />
   </application>
-  <activity android:name="com.unity3d.player.UnityPlayerNativeActivity" android:label="@string/app_name">
-    <intent-filter>
-      <action android:name="android.intent.action.MAIN" />
-      <category android:name="android.intent.category.LAUNCHER" />
-    </intent-filter>
-    <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
-    <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
-  </activity>
 </manifest>
