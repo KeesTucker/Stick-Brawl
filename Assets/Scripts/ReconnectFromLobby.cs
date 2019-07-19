@@ -26,6 +26,13 @@ public class ReconnectFromLobby : MonoBehaviour
             StartCoroutine(WaitForClients());
             //StartCoroutine(WaitForClientsBackup());
         }
+        else
+        {
+            if (Random.Range(0, 2) == 1 && !PlayerPrefs.HasKey("BrawlPro"))
+            {
+                FindObjectOfType<ShowAds>().IntersitialAd();
+            }
+        }
     }
 
     IEnumerator WaitForClients()

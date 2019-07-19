@@ -31,8 +31,8 @@ public class MultiplayerStart : MonoBehaviour
 
     public void StartLevel()
     {
-        if (PlayerPrefs.HasKey("BrawlPro"))
-        {
+        //if (PlayerPrefs.HasKey("BrawlPro"))
+        //{
             if (!NetworkServer.active)
             {
                 CheckPorts();
@@ -51,22 +51,24 @@ public class MultiplayerStart : MonoBehaviour
             SyncData.isCampaign = false;
 
             StartCoroutine(WaitForServer());
-        }
+        /*}
         else
         {
             ShowError();
-        }
+        }*/
     }
 
-    private void ShowError()
+    /*private void ShowError()
     {
         GameObject confirm;
         if (GameObject.Find("NoDestroyCanvas/Message"))
         {
             confirm = GameObject.Find("NoDestroyCanvas/Message");
             confirm.transform.GetChild(1).GetChild(0).GetComponent<TMPro.TMP_Text>().text = "ERROR";
-            confirm.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<TMPro.TMP_Text>().text = "You need to purchase brawl pro to unlock free for all multiplayer mode, please visit the store :).";
+            confirm.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<TMPro.TMP_Text>().text = "You need to purchase brawl pro to unlock free for all multiplayer mode, please visit the store :). You can play campaign mode without purchasing Brawl Pro";
             confirm.GetComponent<Animator>().SetTrigger("Entry");
+            GameObject.Find("OtherMinor/Close").GetComponent<UINavigation>().Switch();
+            GameObject.Find("Main/Store").GetComponent<UINavigation>().Switch();
             foreach (Image image in confirm.GetComponentsInChildren<Image>())
             {
                 image.enabled = true;
@@ -92,7 +94,7 @@ public class MultiplayerStart : MonoBehaviour
                 confirm.GetComponent<TMPro.TMP_Text>().enabled = true;
             }
         }
-    }
+    }*/
 
     IEnumerator WaitForServer()
     {
