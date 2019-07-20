@@ -74,7 +74,7 @@ public class ReconnectFromLobby : MonoBehaviour
             }
             else
             {
-                multiplayerLevels.GetChild(1).GetComponent<MultiplayerStart>().StartLevel();
+                multiplayerLevels.GetChild(0).GetComponent<MultiplayerStart>().StartLevel();
             }
         }
 
