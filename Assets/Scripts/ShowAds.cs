@@ -6,15 +6,14 @@ using GoogleMobileAds.Api;
 public class ShowAds : MonoBehaviour
 {
     private InterstitialAd interstitial;
-    //private RewardBasedVideoAd reward;
+    private RewardBasedVideoAd reward;
     //private BannerView banner;
     private bool requested = false;
-    //private bool rewardRequested = false;
-    //public string placementId = "rewardedVideo";
+    private bool rewardRequested = false;
 
     void Start()
     {
-        /*this.reward = RewardBasedVideoAd.Instance;
+        this.reward = RewardBasedVideoAd.Instance;
 
         // Called when an ad request has successfully loaded.
         reward.OnAdLoaded += HandleRewardBasedVideoLoaded;
@@ -62,14 +61,14 @@ public class ShowAds : MonoBehaviour
             }
             requested = false;
         }
-        /*if (rewardRequested)
+        if (rewardRequested)
         {
             if (this.reward.IsLoaded())
             {
                 this.reward.Show();
             }
             rewardRequested = false;
-        }*/
+        }
     }
 
     /*public void ShowAd(string id)
@@ -108,9 +107,9 @@ public class ShowAds : MonoBehaviour
         }
     }*/
 
-    /*private void RequestReward()
+    private void RequestReward()
     {
-        string adUnitId = "ca-app-pub-3563227024265510/9335485964";
+        string adUnitId = "ca-app-pub-3563227024265510/9098624692";
         //string adUnitId = "ca-app-pub-3940256099942544~3347511713"; //test
 
         // Create an empty ad request.
@@ -150,25 +149,21 @@ public class ShowAds : MonoBehaviour
 
     public void HandleRewardBasedVideoRewarded(object sender, Reward args)
     {
-        string type = args.Type;
-        double amount = args.Amount;
-        MonoBehaviour.print(
-            "HandleRewardBasedVideoRewarded event received for "
-                        + amount.ToString() + " " + type);
-        if (PlayerPrefs.HasKey("Stars"))
+        if (PlayerPrefs.HasKey("Counters"))
         {
-            PlayerPrefs.SetInt("Stars", (int)amount + PlayerPrefs.GetInt("Stars"));
+            PlayerPrefs.SetInt("Counters", 125);
         }
         else
         {
-            PlayerPrefs.SetInt("Stars", (int)amount);
+            PlayerPrefs.SetInt("Counters", PlayerPrefs.GetInt("Counters") + 125);
         }
+        FindObjectOfType<CreditsDisplay>().UpdateAmount();
     }
 
     public void HandleRewardBasedVideoLeftApplication(object sender, System.EventArgs args)
     {
         MonoBehaviour.print("HandleRewardBasedVideoLeftApplication event received");
-    }*/
+    }
 
     private void RequestInterstitial()
     {
@@ -290,10 +285,10 @@ public class ShowAds : MonoBehaviour
     public void HideBanner()
     {
         //this.banner.Hide();
-    }
+    }*/
     public void Reward()
     {
         rewardRequested = true;
         //ShowAd(placementId);
-    }*/
+    }
 }
