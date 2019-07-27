@@ -15,8 +15,10 @@ MonoBehaviour:
   itemName: 5000 Counters
   shopItemType: 5
   cost: 20
-  sprite: {fileID: 21300000, guid: a36b67308c11d5341aefa35efd0b7c7c, type: 3}
+  sprite: {fileID: 21300000, guid: b7444484311fbad4c920af0fed5ae07d, type: 3}
   backgroundColor: {r: 0.67686826, g: 0.4009434, b: 1, a: 1}
   foregroundColor: {r: 1, g: 1, b: 1, a: 1}
   itemID: 3
   amount: 5000
+  sprites: []
+  applyOnSprite: {fileID: 0}
