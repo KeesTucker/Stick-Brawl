@@ -32,6 +32,38 @@ public class MultiplayerStart : MonoBehaviour
     {
         //if (PlayerPrefs.HasKey("BrawlPro"))
         //{
+        FindObjectOfType<Energy>().DepleteEnergy();
+
+        if (!NetworkServer.active)
+        {
+            CheckPorts();
+            SyncData.serverName = SyncData.name + "s FFA Server!";
+            if (NetworkClient.isConnected)
+            {
+                NetworkManager.singleton.StopClient();
+                NetworkManager.singleton.StartHost();
+            }
+            else
+            {
+                NetworkManager.singleton.StartHost();
+            }
+        }
+
+        SyncData.isCampaign = false;
+
+        StartCoroutine(WaitForServer());
+        /*}
+        else
+        {
+            ShowError();
+        }*/
+    }
+
+    IEnumerator WaitForAd()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (PlayerPrefs.GetInt("Energy") > 0)
+        {
             if (!NetworkServer.active)
             {
                 CheckPorts();
@@ -50,11 +82,7 @@ public class MultiplayerStart : MonoBehaviour
             SyncData.isCampaign = false;
 
             StartCoroutine(WaitForServer());
-        /*}
-        else
-        {
-            ShowError();
-        }*/
+        }
     }
 
     /*private void ShowError()

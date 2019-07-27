@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
+using Mirror;
 
 public class ShowAds : MonoBehaviour
 {
     private InterstitialAd interstitial;
     private RewardBasedVideoAd reward;
+    private RewardBasedVideoAd energy;
     //private BannerView banner;
     private bool requested = false;
     private bool rewardRequested = false;
+    private bool energyRequested = false;
 
     void Start()
     {
@@ -31,6 +34,26 @@ public class ShowAds : MonoBehaviour
         reward.OnAdLeavingApplication += HandleRewardBasedVideoLeftApplication;
 
         this.RequestReward();
+
+        this.energy = RewardBasedVideoAd.Instance;
+
+        // Called when an ad request has successfully loaded.
+        energy.OnAdLoaded += HandleRewardBasedVideoLoaded;
+        // Called when an ad request failed to load.
+        energy.OnAdFailedToLoad += HandleRewardBasedVideoFailedToLoadEnergy;
+        // Called when an ad is shown.
+        energy.OnAdOpening += HandleRewardBasedVideoOpened;
+        // Called when the ad starts to play.
+        energy.OnAdStarted += HandleRewardBasedVideoStarted;
+        // Called when the user should be rewarded for watching a video.
+        energy.OnAdRewarded += HandleRewardBasedVideoRewardedEnergy;
+        // Called when the ad is closed.
+        energy.OnAdClosed += HandleRewardBasedVideoClosedEnergy;
+        // Called when the ad click caused the user to leave the application.
+        energy.OnAdLeavingApplication += HandleRewardBasedVideoLeftApplication;
+
+        this.RequestEnergy();
+
         //this.RequestBanner();*/
         this.RequestInterstitial();
 
@@ -68,6 +91,14 @@ public class ShowAds : MonoBehaviour
                 this.reward.Show();
             }
             rewardRequested = false;
+        }
+        if (energyRequested)
+        {
+            if (this.energy.IsLoaded())
+            {
+                this.energy.Show();
+            }
+            energyRequested = false;
         }
     }
 
@@ -118,6 +149,17 @@ public class ShowAds : MonoBehaviour
         this.reward.LoadAd(request, adUnitId);
     }
 
+    private void RequestEnergy()
+    {
+        string adUnitId = "ca-app-pub-3563227024265510/3973009269";
+        //string adUnitId = "ca-app-pub-3940256099942544~3347511713"; //test
+
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+        // Load the rewarded video ad with the request.
+        this.energy.LoadAd(request, adUnitId);
+    }
+
     public void HandleRewardBasedVideoLoaded(object sender, System.EventArgs args)
     {
         MonoBehaviour.print("HandleRewardBasedVideoLoaded event received");
@@ -129,6 +171,14 @@ public class ShowAds : MonoBehaviour
             "HandleRewardBasedVideoFailedToLoad event received with message: "
                              + args.Message);
         this.RequestReward();
+    }
+
+    public void HandleRewardBasedVideoFailedToLoadEnergy(object sender, AdFailedToLoadEventArgs args)
+    {
+        MonoBehaviour.print(
+            "HandleRewardBasedVideoFailedToLoad event received with message: "
+                             + args.Message);
+        NetworkManager.singleton.StopHost();
     }
 
     public void HandleRewardBasedVideoOpened(object sender, System.EventArgs args)
@@ -147,6 +197,12 @@ public class ShowAds : MonoBehaviour
         this.RequestReward();
     }
 
+    public void HandleRewardBasedVideoClosedEnergy(object sender, System.EventArgs args)
+    {
+        MonoBehaviour.print("HandleRewardBasedVideoClosed event received");
+        NetworkManager.singleton.StopHost();
+    }
+
     public void HandleRewardBasedVideoRewarded(object sender, Reward args)
     {
         if (PlayerPrefs.HasKey("Counters"))
@@ -158,6 +214,11 @@ public class ShowAds : MonoBehaviour
             PlayerPrefs.SetInt("Counters", 125);
         }
         FindObjectOfType<CreditsDisplay>().UpdateAmount();
+    }
+
+    public void HandleRewardBasedVideoRewardedEnergy(object sender, Reward args)
+    {
+        PlayerPrefs.SetInt("Energy", 7);
     }
 
     public void HandleRewardBasedVideoLeftApplication(object sender, System.EventArgs args)
@@ -289,6 +350,12 @@ public class ShowAds : MonoBehaviour
     public void Reward()
     {
         rewardRequested = true;
+        //ShowAd(placementId);
+    }
+
+    public void Energy()
+    {
+        energyRequested = true;
         //ShowAd(placementId);
     }
 }

@@ -12,6 +12,6 @@ public class QuitGame : MonoBehaviour
 
     public void Home()
     {
-        NetworkManager.singleton.StopClient();
+        NetworkManager.singleton.StopHost();
     }
 }

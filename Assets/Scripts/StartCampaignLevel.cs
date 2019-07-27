@@ -55,6 +55,10 @@ public class StartCampaignLevel : MonoBehaviour
 
     public void StartLevel()
     {
+        FindObjectOfType<Energy>().DepleteEnergy();
+
+        //if (PlayerPrefs.GetInt("Energy") > 0)
+        //{
         SyncData.health = health;
         SyncData.numPlayers = numBots;
         SyncData.gameMode = gameMode;
@@ -79,6 +83,39 @@ public class StartCampaignLevel : MonoBehaviour
         SyncData.isCampaign = true;
 
         StartCoroutine(WaitForServer());
+        //}
+    }
+
+    IEnumerator WaitForAd()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (PlayerPrefs.GetInt("Energy") > 0)
+        {
+            SyncData.health = health;
+            SyncData.numPlayers = numBots;
+            SyncData.gameMode = gameMode;
+            SyncData.chunkID = chunkID;
+            SyncData.botHealth = botHealth;
+
+            if (!NetworkServer.active)
+            {
+                CheckPorts();
+                SyncData.serverName = SyncData.name + "s Campaign Server!";
+                if (NetworkClient.isConnected)
+                {
+                    NetworkManager.singleton.StopClient();
+                    NetworkManager.singleton.StartHost();
+                }
+                else
+                {
+                    NetworkManager.singleton.StartHost();
+                }
+            }
+
+            SyncData.isCampaign = true;
+
+            StartCoroutine(WaitForServer());
+        }
     }
 
     IEnumerator WaitForServer()

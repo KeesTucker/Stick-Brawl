@@ -113,6 +113,7 @@ public class UpdateUI : MonoBehaviour {
 
     public void NextCampaignLevel()
     {
+        FindObjectOfType<Energy>().DepleteEnergy();
         SyncData.backToHome = false;
         SyncData.nextLevel = true;
         SyncData.reconnectLevel = SyncData.chunkID;
@@ -123,6 +124,7 @@ public class UpdateUI : MonoBehaviour {
 
     public void NextMultiplayerLevel()
     {
+        FindObjectOfType<Energy>().DepleteEnergy();
         SyncData.backToHome = false;
         SyncData.nextLevel = true;
         SyncData.retryLevel = false;
@@ -132,6 +134,7 @@ public class UpdateUI : MonoBehaviour {
 
     public void RetryCampaignLevel()
     {
+        FindObjectOfType<Energy>().DepleteEnergy();
         SyncData.backToHome = false;
         SyncData.nextLevel = false;
         SyncData.reconnectLevel = SyncData.chunkID;

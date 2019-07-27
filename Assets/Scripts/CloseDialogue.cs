@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using Mirror;
 
 public class CloseDialogue : MonoBehaviour
 {
@@ -46,6 +48,11 @@ public class CloseDialogue : MonoBehaviour
     {
         parent.GetComponent<Animator>().SetTrigger("Exit");
         StartCoroutine(Wait(parent));
+    }
+
+    public void Reload()
+    {
+        NetworkManager.singleton.StopHost();
     }
 
     IEnumerator Animate()

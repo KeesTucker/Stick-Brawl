@@ -18,6 +18,10 @@ public class StoreManager : MonoBehaviour
             if (PlayerPrefs.GetString("lastOpenDate") != System.DateTime.Today.ToLongDateString())
             {
                 GameObject confirm = Instantiate(message, GameObject.Find("Canvas").transform);
+
+                PlayerPrefs.SetInt("Energy", 7);
+                PlayerPrefs.SetString("EnergyFullAt", System.DateTime.Now.ToLongTimeString());
+
                 confirm.transform.GetChild(1).GetChild(0).GetComponent<TMPro.TMP_Text>().text = "Daily Counters!";
                 confirm.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<TMPro.TMP_Text>().text = "Thanks for logging in! Here is 125 counters!";
                 confirm.GetComponent<Animator>().SetTrigger("Entry");
