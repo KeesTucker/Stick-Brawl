@@ -11,8 +11,16 @@ public class Escape : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GameObject esc = Instantiate(escape, GameObject.Find("Canvas").transform);
-            esc.GetComponent<Animator>().SetTrigger("Entry");
+            GameObject esc;
+            if (GameObject.Find("Canvas"))
+            {
+                esc = Instantiate(escape, GameObject.Find("Canvas").transform);
+                esc.GetComponent<Animator>().SetTrigger("Entry");
+            }
+            else
+            {
+                Esc();
+            }
         }
     }
 

@@ -41,17 +41,20 @@ public class ShowFPS : MonoBehaviour
         {
             fPSObject = GameObject.Find("FPS");
         }
-        if (PlayerPrefs.GetInt("showFPS") == 1)
+        if (fPSObject)
         {
-            fPSObject.SetActive(false);
-            text.text = "Show FPS";
-            PlayerPrefs.SetInt("showFPS", 0);
-        }
-        else
-        {
-            fPSObject.SetActive(true);
-            text.text = "Hide FPS";
-            PlayerPrefs.SetInt("showFPS", 1);
+            if (PlayerPrefs.GetInt("showFPS") == 1)
+            {
+                fPSObject.SetActive(false);
+                text.text = "Show FPS";
+                PlayerPrefs.SetInt("showFPS", 0);
+            }
+            else
+            {
+                fPSObject.SetActive(true);
+                text.text = "Hide FPS";
+                PlayerPrefs.SetInt("showFPS", 1);
+            }
         }
     }
 }

@@ -144,30 +144,33 @@ public class GrappleActivatorAI : MonoBehaviour {
             rotationTarg = Quaternion.Euler(0, 0, angleTarg);
             directionTarg = rotationTarg * -Vector3.right;
         }
-        handSingle = hand;
-        if (Collided)
+        if (hand)
         {
-            //transform.position = hitTarg.transform.position + hitCoords;
-            if (Vector2.Distance(new Vector2(handSingle.transform.position.x, handSingle.transform.position.y), new Vector2(transform.position.x, transform.position.y)) > 5)
+            handSingle = hand;
+            if (Collided)
             {
-                handSingle.GetComponent<Rigidbody>().AddForce( new Vector3(direction.x * 40000 * Time.deltaTime, direction.y * 80000 * Time.deltaTime)/* * Mathf.Pow(Vector3.Distance(handSingle.transform.position, hitTarg.transform.position), 2f)*/);
-
-                if (hitTarg.GetComponent<Rigidbody>() != null && attractable)
+                //transform.position = hitTarg.transform.position + hitCoords;
+                if (Vector2.Distance(new Vector2(handSingle.transform.position.x, handSingle.transform.position.y), new Vector2(transform.position.x, transform.position.y)) > 5)
                 {
-                    hitTarg.GetComponent<Rigidbody>().AddForce(directionTarg * 30000 * Time.deltaTime/* * Mathf.Pow(Vector3.Distance(handSingle.transform.position, hitTarg.transform.position), 2f)*/);
+                    handSingle.GetComponent<Rigidbody>().AddForce(new Vector3(direction.x * 40000 * Time.deltaTime, direction.y * 80000 * Time.deltaTime)/* * Mathf.Pow(Vector3.Distance(handSingle.transform.position, hitTarg.transform.position), 2f)*/);
+
+                    if (hitTarg.GetComponent<Rigidbody>() != null && attractable)
+                    {
+                        hitTarg.GetComponent<Rigidbody>().AddForce(directionTarg * 30000 * Time.deltaTime/* * Mathf.Pow(Vector3.Distance(handSingle.transform.position, hitTarg.transform.position), 2f)*/);
+                    }
                 }
             }
-        }
-        if (backTime)
-        {
-            rb.AddForce(-direction * (90000 / 25) * Time.deltaTime);
-            if (Vector3.Distance(handSingle.transform.position, transform.position) < 2)
+            if (backTime)
             {
-                if (onLocal)
+                rb.AddForce(-direction * (90000 / 25) * Time.deltaTime);
+                if (Vector3.Distance(handSingle.transform.position, transform.position) < 2)
                 {
-                    parent.GetComponent<GroundForceAI>().grappled = false;
+                    if (onLocal)
+                    {
+                        parent.GetComponent<GroundForceAI>().grappled = false;
+                    }
+                    Destroy(grapple);
                 }
-                Destroy(grapple);
             }
         }
     }

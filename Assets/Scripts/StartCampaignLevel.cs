@@ -85,6 +85,15 @@ public class StartCampaignLevel : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Main");
-        GameObject.Find("LocalConnectionLobby").GetComponent<NetworkLobbyPlayer>().CmdChangeReadyState(true);
+        int count = 0;
+        while (!GameObject.Find("LocalConnectionLobby") && count < 100)
+        {
+            count++;
+            yield return null;
+        }
+        if (GameObject.Find("LocalConnectionLobby"))
+        {
+            GameObject.Find("LocalConnectionLobby").GetComponent<NetworkLobbyPlayer>().CmdChangeReadyState(true);
+        }
     }
 }

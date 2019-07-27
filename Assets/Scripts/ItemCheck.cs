@@ -177,9 +177,9 @@ public class ItemCheck : NetworkBehaviour {
             }
             if (hasAuthority)
             {
-                GetComponent<SpawnItem>().CmdSpawnDropped(weaponItem, transform.position, refrenceKeeper.weaponInventory[refrenceKeeper.activeSlot].id, direction, refrenceKeeper.weaponInventory[refrenceKeeper.activeSlot].currentBullets);
+                GetComponent<SpawnItem>().CmdSpawnDropped(weaponItem, transform.position, refrenceKeeper.weaponInventory[Mathf.Clamp(refrenceKeeper.activeSlot, 0, refrenceKeeper.weaponInventory.Count - 1)].id, direction, refrenceKeeper.weaponInventory[Mathf.Clamp(refrenceKeeper.activeSlot, 0, refrenceKeeper.weaponInventory.Count - 1)].currentBullets);
             }
-            refrenceKeeper.weaponInventory[refrenceKeeper.activeSlot] = fists;
+            refrenceKeeper.weaponInventory[Mathf.Clamp(refrenceKeeper.activeSlot, 0, refrenceKeeper.weaponInventory.Count - 1)] = fists;
             switchWeapon.Switch(100);
             if (hasAuthority && isPlayer)
             {

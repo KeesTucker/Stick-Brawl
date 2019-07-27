@@ -20,14 +20,17 @@ public class renderGrapple : MonoBehaviour {
 
     void Update()
     {
-        if (lineRenderer.material.color != color)
+        if (color != null && lineRenderer != null)
         {
-            lineRenderer.material.SetColor("_Color", color);
+            if (lineRenderer.material.color != color)
+            {
+                lineRenderer.material.SetColor("_Color", color);
+            }
+
+            lineRenderer.SetPosition(1, transform.position);
+            lineRenderer.SetPosition(0, LHT.GetComponent<Transform>().position);
+            lineRenderer.startWidth = 0.4f;
+            lineRenderer.endWidth = 0.4f;
         }
-        
-        lineRenderer.SetPosition(1, transform.position);
-        lineRenderer.SetPosition(0, LHT.GetComponent<Transform>().position);
-        lineRenderer.startWidth = 0.4f;
-        lineRenderer.endWidth = 0.4f;
     }
 }

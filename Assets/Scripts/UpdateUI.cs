@@ -142,7 +142,13 @@ public class UpdateUI : MonoBehaviour {
 
     public void LevelUpdate()
     {
-        GameObject.Find("LocalPlayer").GetComponent<Reconnect>().CmdLevelUpdate();
-        FindObjectOfType<PlayGames>().Game();
+        if (GameObject.Find("LocalPlayer"))
+        {
+            GameObject.Find("LocalPlayer").GetComponent<Reconnect>().CmdLevelUpdate();
+        }
+        if (FindObjectOfType<PlayGames>())
+        {
+            FindObjectOfType<PlayGames>().Game();
+        }
     }
 }

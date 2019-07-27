@@ -30,7 +30,17 @@ public class ActionJoystick : MonoBehaviour
 
     public void Pickup()
     {
-        playerControl.e = true;
+        if (playerControl)
+        {
+            playerControl.e = true;
+        }
+        else
+        {
+            if (GameObject.Find("LocalPlayer"))
+            {
+                playerControl = GameObject.Find("LocalPlayer").GetComponent<PlayerControl>();
+            }
+        }
     }
 
     public void Grapple()

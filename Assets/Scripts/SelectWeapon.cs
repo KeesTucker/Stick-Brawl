@@ -20,25 +20,37 @@ public class SelectWeapon : MonoBehaviour
 
     public void SelectOne()
     {
-        playerControl.scroll = 1;
-        playerControl.one = true;
+        if (playerControl)
+        {
+            playerControl.scroll = 1;
+            playerControl.one = true;
+        }
     }
 
     public void SelectTwo()
     {
-        playerControl.scroll = 2;
-        playerControl.two = true;
+        if (playerControl)
+        {
+            playerControl.scroll = 2;
+            playerControl.two = true;
+        }
     }
 
     public void SelectThree()
     {
-        playerControl.scroll = 3;
-        playerControl.three = true;
+        if (playerControl)
+        {
+            playerControl.scroll = 3;
+            playerControl.three = true;
+        }
     }
 
     public void SelectFour()
     {
-        playerControl.scroll = 4;
-        playerControl.four = true;
+        if (playerControl)
+        {
+            playerControl.scroll = 4;
+            playerControl.four = true;
+        }
     }
 }
