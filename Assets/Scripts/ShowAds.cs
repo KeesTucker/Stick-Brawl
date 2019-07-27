@@ -151,11 +151,11 @@ public class ShowAds : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("Counters"))
         {
-            PlayerPrefs.SetInt("Counters", 125);
+            PlayerPrefs.SetInt("Counters", PlayerPrefs.GetInt("Counters") + 125);
         }
         else
         {
-            PlayerPrefs.SetInt("Counters", PlayerPrefs.GetInt("Counters") + 125);
+            PlayerPrefs.SetInt("Counters", 125);
         }
         FindObjectOfType<CreditsDisplay>().UpdateAmount();
     }
