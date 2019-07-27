@@ -23,9 +23,20 @@ public class MoveTextWithClick : MonoBehaviour, IPointerDownHandler, IPointerUpH
         {
             if (audioSource == null)
             {
-                audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
+                if (GameObject.FindGameObjectWithTag("MainCamera"))
+                {
+                    if (GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>())
+                    {
+                        audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
+                        audioSource.PlayOneShot(audioSource.clip, SyncData.sfx / 100f * 0.6f);
+                    }
+                }
             }
-            audioSource.PlayOneShot(audioSource.clip, SyncData.sfx / 100f * 0.6f);
+            else
+            {
+                audioSource.PlayOneShot(audioSource.clip, SyncData.sfx / 100f * 0.6f);
+            }
+            
             rectTransform.position = rectTransform.position - new Vector3(0, amountDownScaled, 0);
         }
     }
@@ -38,9 +49,16 @@ public class MoveTextWithClick : MonoBehaviour, IPointerDownHandler, IPointerUpH
         }
     }
 
-    void Start()
+    IEnumerator Start()
     {
-        audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
+        yield return new WaitForSeconds(0.1f);
+        if (GameObject.FindGameObjectWithTag("MainCamera"))
+        {
+            if (GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>())
+            {
+                audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
+            }
+        }
         if (disabled)
         {
             Disable();

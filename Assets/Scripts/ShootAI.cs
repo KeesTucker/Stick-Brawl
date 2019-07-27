@@ -462,7 +462,7 @@ public class ShootAI : MonoBehaviour {
                     magazine.transform.localScale = refrenceKeeper.weaponInventory[refrenceKeeper.activeSlot].spawnScale;
                     magrb.mass = 0.5f;
                     StartCoroutine(DestroyMag(magazine));*/
-                    timerReload = refrenceKeeper.weaponInventory[refrenceKeeper.activeSlot].reloadTime;
+                    timerReload = refrenceKeeper.weaponInventory[Mathf.Clamp(refrenceKeeper.activeSlot, 0, refrenceKeeper.weaponInventory.Count - 1)].reloadTime;
                     yield return new WaitForSeconds(refrenceKeeper.weaponInventory[refrenceKeeper.activeSlot].reloadTime);
                     if (reloading)
                     {
@@ -480,12 +480,12 @@ public class ShootAI : MonoBehaviour {
                 }
                 else
                 {
-                    if (refrenceKeeper.weaponInventory[refrenceKeeper.activeSlot].bullet.name == "Slugs")
+                    if (refrenceKeeper.weaponInventory[Mathf.Clamp(refrenceKeeper.activeSlot, 0, refrenceKeeper.weaponInventory.Count - 1)].bullet.name == "Slugs")
                     {
-                        timerReload = refrenceKeeper.weaponInventory[refrenceKeeper.activeSlot].reloadTime / (magSize - bulletsLeft[refrenceKeeper.activeSlot]);
+                        timerReload = refrenceKeeper.weaponInventory[Mathf.Clamp(refrenceKeeper.activeSlot, 0, refrenceKeeper.weaponInventory.Count - 1)].reloadTime / (magSize - bulletsLeft[refrenceKeeper.activeSlot]);
                         if (magSize - bulletsLeft[refrenceKeeper.activeSlot] != 0)
                         {
-                            yield return new WaitForSeconds(refrenceKeeper.weaponInventory[refrenceKeeper.activeSlot].reloadTime / (magSize - bulletsLeft[refrenceKeeper.activeSlot]));
+                            yield return new WaitForSeconds(refrenceKeeper.weaponInventory[Mathf.Clamp(refrenceKeeper.activeSlot, 0, refrenceKeeper.weaponInventory.Count - 1)].reloadTime / (magSize - bulletsLeft[refrenceKeeper.activeSlot]));
                         }
                         audioSource.Stop();
 

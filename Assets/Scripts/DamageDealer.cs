@@ -84,7 +84,7 @@ public class DamageDealer : MonoBehaviour {
         }
         if (collisionInfo.gameObject.tag == "Breakable")
         {
-            if (local)
+            if (local && audioSource)
             {
                 audioSource.PlayOneShot(ping, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
             }
@@ -94,7 +94,7 @@ public class DamageDealer : MonoBehaviour {
         }
         if (collisionInfo.gameObject.layer == 24 && !particleDone && gameObject.tag != "WeaponItem" && gameObject.name != "LimbEnd")
         {
-            if (local)
+            if (local && audioSource)
             {
                 audioSource.PlayOneShot(splat, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
             }
@@ -103,7 +103,7 @@ public class DamageDealer : MonoBehaviour {
         }
         else if (collisionInfo.gameObject.layer == 24 && !particleDone && weaponParticle && gameObject.name != "LimbEnd")
         {
-            if (local)
+            if (local && audioSource)
             {
                 audioSource.PlayOneShot(splat, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
             }
@@ -112,7 +112,7 @@ public class DamageDealer : MonoBehaviour {
         }
         else if (collisionInfo.gameObject.layer == 24 && !particleDone && gameObject.tag != "WeaponItem" && punching)
         {
-            if (local)
+            if (local && audioSource)
             {
                 audioSource.PlayOneShot(splat, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
             }
@@ -123,9 +123,12 @@ public class DamageDealer : MonoBehaviour {
         {
             if (gameObject.tag != "WeaponItem")
             {
-                if (audioSource.enabled && local)
+                if (audioSource)
                 {
-                    audioSource.PlayOneShot(ping, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+                    if (audioSource.enabled && local)
+                    {
+                        audioSource.PlayOneShot(ping, SyncData.sfx / 50f * 0.75f * (Mathf.Clamp((200 - Vector3.Distance(transform.position, local.position)), 0, 200) / 200));
+                    }
                 }
             }
             StartCoroutine(SpawnParticle(collisionInfo));

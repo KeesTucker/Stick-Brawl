@@ -27,8 +27,11 @@ public class renderGrapple : MonoBehaviour {
                 lineRenderer.material.SetColor("_Color", color);
             }
 
+            if (LHT)
+            {
+                lineRenderer.SetPosition(0, LHT.transform.position);
+            }
             lineRenderer.SetPosition(1, transform.position);
-            lineRenderer.SetPosition(0, LHT.GetComponent<Transform>().position);
             lineRenderer.startWidth = 0.4f;
             lineRenderer.endWidth = 0.4f;
         }
