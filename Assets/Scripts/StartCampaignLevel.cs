@@ -55,7 +55,7 @@ public class StartCampaignLevel : MonoBehaviour
 
     public void StartLevel()
     {
-        FindObjectOfType<Energy>().DepleteEnergy();
+        //FindObjectOfType<Energy>().DepleteEnergy();
 
         //if (PlayerPrefs.GetInt("Energy") > 0)
         //{

@@ -6,7 +6,7 @@ public class WatchAdOnEnable : MonoBehaviour
 {
     void OnEnable()
     {
-        if (Random.Range(0, 2) == 1 && !PlayerPrefs.HasKey("BrawlPro"))
+        if (Random.Range(0, 3) == 1 && !PlayerPrefs.HasKey("BrawlPro"))
         {
             FindObjectOfType<ShowAds>().IntersitialAd();
         }

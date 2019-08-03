@@ -5,11 +5,16 @@ using UnityEngine;
 public class CheckForLowEnergy : MonoBehaviour
 {
     // Start is called before the first frame update
+    public bool energyOn = false;
+
     void Start()
     {
-        if (PlayerPrefs.GetInt("Energy") <= 0)
+        if (energyOn)
         {
-            FindObjectOfType<Energy>().DepleteEnergy();
+            if (PlayerPrefs.GetInt("Energy") <= 0)
+            {
+                FindObjectOfType<Energy>().DepleteEnergy();
+            }
         }
     }
 }

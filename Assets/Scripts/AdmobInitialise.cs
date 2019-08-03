@@ -10,7 +10,7 @@ public class AdmobInitialise : MonoBehaviour
     void Start()
     {
         #if UNITY_ANDROID
-            string appId = "ca-app-pub-3563227024265510~3692129622";
+            string appId = "ca-app-pub-3563227024265510~7903465660";
         #elif UNITY_EDITOR
             string appId = "unused";
         #else

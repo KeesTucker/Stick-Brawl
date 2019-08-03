@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "800584044770",
-    "firebase_url": "https://stick-brawl-multiplayer-197153.firebaseio.com",
-    "project_id": "stick-brawl-multiplayer-197153",
-    "storage_bucket": "stick-brawl-multiplayer-197153.appspot.com"
+    "project_number": "72843672644",
+    "firebase_url": "https://stick-brawl-pro.firebaseio.com",
+    "project_id": "stick-brawl-pro",
+    "storage_bucket": "stick-brawl-pro.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:800584044770:android:cf865c8f4d5f234d",
+        "mobilesdk_app_id": "1:72843672644:android:3d1cf0123a604401",
         "android_client_info": {
-          "package_name": "com.TripleFinGames.StickBrawlOnline"
+          "package_name": "com.TriplefinGames.StickBrawlPro"
         }
       },
       "oauth_client": [
         {
-          "client_id": "800584044770-2h5vbrfg2ltqouv59j2a2fan9f8dfjbe.apps.googleusercontent.com",
+          "client_id": "72843672644-kegj40br9bk16j8r0t5psiuis6fm8ev8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAw2ZxvwtlEN9NiO0FPn-PuEgGLCHmePjU"
+          "current_key": "AIzaSyDEQN3bRRrxORWAx8tjNoBFL4ZOOB3Vcl4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "800584044770-2h5vbrfg2ltqouv59j2a2fan9f8dfjbe.apps.googleusercontent.com",
+              "client_id": "72843672644-kegj40br9bk16j8r0t5psiuis6fm8ev8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

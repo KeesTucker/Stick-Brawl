@@ -16,6 +16,8 @@ public class ShowAds : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetInt("BrawlPro", 1);
+
         this.reward = RewardBasedVideoAd.Instance;
 
         // Called when an ad request has successfully loaded.
@@ -52,10 +54,10 @@ public class ShowAds : MonoBehaviour
         // Called when the ad click caused the user to leave the application.
         energy.OnAdLeavingApplication += HandleRewardBasedVideoLeftApplication;
 
-        this.RequestEnergy();
+        //this.RequestEnergy();
 
         //this.RequestBanner();*/
-        this.RequestInterstitial();
+        //this.RequestInterstitial();
 
         /*if (PlayerPrefs.HasKey("AdConfig"))
         {
@@ -140,7 +142,7 @@ public class ShowAds : MonoBehaviour
 
     private void RequestReward()
     {
-        string adUnitId = "ca-app-pub-3563227024265510/9098624692";
+        string adUnitId = "ca-app-pub-3563227024265510/2459567290";//"ca-app-pub-3563227024265510/9098624692";
         //string adUnitId = "ca-app-pub-3940256099942544~3347511713"; //test
 
         // Create an empty ad request.
@@ -151,7 +153,7 @@ public class ShowAds : MonoBehaviour
 
     private void RequestEnergy()
     {
-        string adUnitId = "ca-app-pub-3563227024265510/3973009269";
+        string adUnitId = "ca-app-pub-3563227024265510/2459567290";//"ca-app-pub-3563227024265510/3973009269";
         //string adUnitId = "ca-app-pub-3940256099942544~3347511713"; //test
 
         // Create an empty ad request.
@@ -178,7 +180,7 @@ public class ShowAds : MonoBehaviour
         MonoBehaviour.print(
             "HandleRewardBasedVideoFailedToLoad event received with message: "
                              + args.Message);
-        NetworkManager.singleton.StopHost();
+        //NetworkManager.singleton.StopHost();
     }
 
     public void HandleRewardBasedVideoOpened(object sender, System.EventArgs args)
@@ -200,7 +202,8 @@ public class ShowAds : MonoBehaviour
     public void HandleRewardBasedVideoClosedEnergy(object sender, System.EventArgs args)
     {
         MonoBehaviour.print("HandleRewardBasedVideoClosed event received");
-        NetworkManager.singleton.StopHost();
+        PlayerPrefs.SetInt("Energy", 7);
+        PlayerPrefs.SetString("EnergyFullAt", System.DateTime.Now.ToLongTimeString());
     }
 
     public void HandleRewardBasedVideoRewarded(object sender, Reward args)
@@ -219,6 +222,7 @@ public class ShowAds : MonoBehaviour
     public void HandleRewardBasedVideoRewardedEnergy(object sender, Reward args)
     {
         PlayerPrefs.SetInt("Energy", 7);
+        PlayerPrefs.SetString("EnergyFullAt", System.DateTime.Now.ToLongTimeString());
     }
 
     public void HandleRewardBasedVideoLeftApplication(object sender, System.EventArgs args)
@@ -228,7 +232,7 @@ public class ShowAds : MonoBehaviour
 
     private void RequestInterstitial()
     {
-        string adUnitId = "ca-app-pub-3563227024265510/2753193296";
+        string adUnitId = "	ca-app-pub-3940256099942544/1033173712";//"ca-app-pub-3563227024265510/2753193296";
         //string adUnitId = "ca-app-pub-3940256099942544/1033173712"; //test
 
         // Initialize an InterstitialAd.
@@ -335,7 +339,7 @@ public class ShowAds : MonoBehaviour
 
     public void IntersitialAd()
     {
-        requested = true;
+        //requested = true;
         //Advertisement.Show();
     }
 
@@ -355,7 +359,7 @@ public class ShowAds : MonoBehaviour
 
     public void Energy()
     {
-        energyRequested = true;
+        //energyRequested = true;
         //ShowAd(placementId);
     }
 }

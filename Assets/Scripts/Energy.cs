@@ -9,34 +9,42 @@ public class Energy : MonoBehaviour
 
     public int energy = 0;
 
+    public bool energyOn = false;
+
     IEnumerator Start()
     {
-        yield return new WaitForEndOfFrame();
-        if (PlayerPrefs.HasKey("Energy"))
+        if (energyOn)
         {
-            energyFullAt = System.DateTime.Parse(PlayerPrefs.GetString("EnergyFullAt"));
-            Debug.Log(energyFullAt.ToLongTimeString());
-        }
-        else
-        {
-            PlayerPrefs.SetInt("Energy", 7);
+            yield return new WaitForEndOfFrame();
+            if (PlayerPrefs.HasKey("Energy"))
+            {
+                energyFullAt = System.DateTime.Parse(PlayerPrefs.GetString("EnergyFullAt"));
+                Debug.Log(energyFullAt.ToLongTimeString());
+            }
+            else
+            {
+                PlayerPrefs.SetInt("Energy", 7);
+            }
         }
     }
 
     void Update()
     {
-        int oldEnergy = energy;
-        energy = 7 - Mathf.Clamp((energyFullAt - System.DateTime.Now).Minutes / 5, 0, 7);
-
-        if (oldEnergy != energy)
+        if (energyOn)
         {
-            PlayerPrefs.SetInt("Energy", energy);
+            int oldEnergy = energy;
+            energy = 7 - Mathf.Clamp((energyFullAt - System.DateTime.Now).Minutes / 5, 0, 7);
+
+            if (oldEnergy != energy)
+            {
+                PlayerPrefs.SetInt("Energy", energy);
+            }
         }
     }
 
     public void DepleteEnergy()
     {
-        if (!PlayerPrefs.HasKey("BrawlPro"))
+        if (!PlayerPrefs.HasKey("BrawlPro") && energyOn)
         {
             if (PlayerPrefs.GetInt("Energy") > 0)
             {
@@ -107,9 +115,12 @@ public class Energy : MonoBehaviour
 
     public void WatchAd()
     {
-        FindObjectOfType<ShowAds>().Energy();
-        energyFullAt = System.DateTime.Now;
-        PlayerPrefs.SetString("EnergyFullAt", energyFullAt.ToLongTimeString());
-        Debug.Log(energyFullAt.ToLongTimeString());
+        if (energyOn)
+        {
+            PlayerPrefs.SetInt("Energy", 7);
+            PlayerPrefs.SetString("EnergyFullAt", System.DateTime.Now.ToLongTimeString());
+            Debug.Log("Watched Rewarded Ad");
+            //FindObjectOfType<ShowAds>().Energy();
+        }
     }
 }

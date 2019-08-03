@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id" xmlns:tools="http://schemas.android.com/tools">
-  <string name="firebase_database_url" translatable="false">https://stick-brawl-multiplayer-197153.firebaseio.com</string>
-  <string name="gcm_defaultSenderId" translatable="false">800584044770</string>
-  <string name="google_storage_bucket" translatable="false">stick-brawl-multiplayer-197153.appspot.com</string>
-  <string name="project_id" translatable="false">stick-brawl-multiplayer-197153</string>
-  <string name="google_api_key" translatable="false">AIzaSyAw2ZxvwtlEN9NiO0FPn-PuEgGLCHmePjU</string>
-  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAw2ZxvwtlEN9NiO0FPn-PuEgGLCHmePjU</string>
-  <string name="google_app_id" translatable="false">1:800584044770:android:cf865c8f4d5f234d</string>
-  <string name="default_web_client_id" translatable="false">800584044770-2h5vbrfg2ltqouv59j2a2fan9f8dfjbe.apps.googleusercontent.com</string>
+  <string name="firebase_database_url" translatable="false">https://stick-brawl-pro.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">72843672644</string>
+  <string name="google_storage_bucket" translatable="false">stick-brawl-pro.appspot.com</string>
+  <string name="project_id" translatable="false">stick-brawl-pro</string>
+  <string name="google_api_key" translatable="false">AIzaSyDEQN3bRRrxORWAx8tjNoBFL4ZOOB3Vcl4</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDEQN3bRRrxORWAx8tjNoBFL4ZOOB3Vcl4</string>
+  <string name="google_app_id" translatable="false">1:72843672644:android:3d1cf0123a604401</string>
+  <string name="default_web_client_id" translatable="false">72843672644-kegj40br9bk16j8r0t5psiuis6fm8ev8.apps.googleusercontent.com</string>
 </resources>

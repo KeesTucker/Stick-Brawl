@@ -32,7 +32,7 @@ public class MultiplayerStart : MonoBehaviour
     {
         //if (PlayerPrefs.HasKey("BrawlPro"))
         //{
-        FindObjectOfType<Energy>().DepleteEnergy();
+        //FindObjectOfType<Energy>().DepleteEnergy();
 
         if (!NetworkServer.active)
         {

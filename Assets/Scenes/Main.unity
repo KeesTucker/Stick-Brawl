@@ -4191,11 +4191,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 586304236}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd995b0f1e36d9643a6d900bb8d45722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyOn: 1
 --- !u!1 &593078349
 GameObject:
   m_ObjectHideFlags: 0
@@ -12844,6 +12845,10 @@ PrefabInstance:
     - target: {fileID: 1167953719557772, guid: 3b3f8908bfdad3444b5c2e767917e1e1, type: 3}
       propertyPath: m_Name
       value: PlayerUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 586304236, guid: 3b3f8908bfdad3444b5c2e767917e1e1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224826433530502850, guid: 3b3f8908bfdad3444b5c2e767917e1e1,
         type: 3}

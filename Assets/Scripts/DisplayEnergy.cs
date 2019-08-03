@@ -11,9 +11,11 @@ public class DisplayEnergy : MonoBehaviour
 
     int count;
 
+    public bool energyOn = false;
+
     void Start()
     {
-        if (PlayerPrefs.HasKey("BrawlPro"))
+        if (PlayerPrefs.HasKey("BrawlPro") || !energyOn)
         {
             foreach (GameObject GO in objects)
             {
