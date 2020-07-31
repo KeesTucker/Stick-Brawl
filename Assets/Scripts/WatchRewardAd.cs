@@ -7,6 +7,5 @@ public class WatchRewardAd : MonoBehaviour
     // Start is called before the first frame update
     public void Reward()
     {
-        FindObjectOfType<ShowAds>().Reward();
     }
 }

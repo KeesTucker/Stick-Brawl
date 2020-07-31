@@ -1,90 +1,67 @@
 <dependencies>
   <packages>
-    <package>com.crashlytics.sdk.android:crashlytics:2.9.9</package>
-    <package>com.google.android.gms:play-services-ads:18.1.0</package>
-    <package>com.google.auto.value:auto-value-annotations:1.6.3</package>
-    <package>com.google.firebase:firebase-analytics:17.0.0</package>
-    <package>com.google.firebase:firebase-analytics-unity:6.2.1</package>
-    <package>com.google.firebase:firebase-app-unity:6.2.1</package>
-    <package>com.google.firebase:firebase-common:18.0.0</package>
-    <package>com.google.firebase:firebase-crashlytics-unity:6.2.1</package>
-    <package>com.google.firebase:firebase-iid:[19.0.1]</package>
-    <package>com.google.games:gpgs-plugin-support:0.9.64</package>
+    <package>com.android.support:customtabs:26.1.0</package>
+    <package>com.android.support:recyclerview-v7:28.0.0</package>
+    <package>com.android.support:support-annotations:28.0.0</package>
+    <package>com.android.support:support-compat:28.0.0</package>
+    <package>com.android.support:support-core-ui:28.0.0</package>
+    <package>com.android.support:support-v4:28.0.0</package>
+    <package>com.applovin:applovin-sdk:9.11.6</package>
+    <package>com.appodeal.ads.sdk.networks:a4g:2.6.5.2@aar</package>
+    <package>com.appodeal.ads.sdk.networks:adcolony:2.6.5.4</package>
+    <package>com.appodeal.ads.sdk.networks:admob:2.6.5.2@aar</package>
+    <package>com.appodeal.ads.sdk.networks:amazon_ads:2.6.5.1@aar</package>
+    <package>com.appodeal.ads.sdk.networks:applovin:2.6.5.4@aar</package>
+    <package>com.appodeal.ads.sdk.networks:appodeal:2.6.5.1</package>
+    <package>com.appodeal.ads.sdk.networks:appodealx:2.6.5.1</package>
+    <package>com.appodeal.ads.sdk.networks:chartboost:2.6.5.1@aar</package>
+    <package>com.appodeal.ads.sdk.networks:facebook:2.6.5.3@aar</package>
+    <package>com.appodeal.ads.sdk.networks:inmobi:2.6.5.1@aar</package>
+    <package>com.appodeal.ads.sdk.networks:inner-active:2.6.5.1</package>
+    <package>com.appodeal.ads.sdk.networks:ironsource:2.6.5.3@aar</package>
+    <package>com.appodeal.ads.sdk.networks:mraid:2.6.5.1</package>
+    <package>com.appodeal.ads.sdk.networks:my_target:2.6.5.3@aar</package>
+    <package>com.appodeal.ads.sdk.networks:nast:2.6.5.1</package>
+    <package>com.appodeal.ads.sdk.networks:ogury:2.6.5.3@aar</package>
+    <package>com.appodeal.ads.sdk.networks:smaato:2.6.5.2</package>
+    <package>com.appodeal.ads.sdk.networks:startapp:2.6.5.5</package>
+    <package>com.appodeal.ads.sdk.networks:tapjoy:2.6.5.2@aar</package>
+    <package>com.appodeal.ads.sdk.networks:unity_ads:2.6.5.3</package>
+    <package>com.appodeal.ads.sdk.networks:vast:2.6.5.1</package>
+    <package>com.appodeal.ads.sdk.networks:yandex:2.6.5.3@aar</package>
+    <package>com.appodeal.ads.sdk:core:2.6.5@aar</package>
+    <package>com.appodeal.ads:sdk:2.6.5.0@aar</package>
+    <package>com.appodeal:protobuf-models:1.0.1</package>
+    <package>com.explorestack.amazon:sdk:5.9.0</package>
+    <package>com.explorestack.chartboost:sdk:7.5.0</package>
+    <package>com.explorestack.ogury:sdk:4.7.2</package>
+    <package>com.explorestack:iab:0.5.6</package>
+    <package>com.facebook.android:audience-network-sdk:5.7.1</package>
+    <package>com.google.android.exoplayer:exoplayer-core:2.8.4@aar</package>
+    <package>com.google.android.exoplayer:exoplayer-hls:2.8.4@aar</package>
+    <package>com.google.android.gms:play-services-ads:16.0.0</package>
+    <package>com.google.android.gms:play-services-ads-identifier:16.0.0</package>
+    <package>com.google.android.gms:play-services-base:16.0.1</package>
+    <package>com.google.android.gms:play-services-basement:16.0.1</package>
+    <package>com.google.android.gms:play-services-location:16.0.0</package>
+    <package>com.inmobi.monetization:inmobi-ads:7.3.0</package>
+    <package>com.ironsource.sdk:mediationsdk:6.16.0</package>
+    <package>com.my.target:mytarget-sdk:5.5.6</package>
+    <package>com.squareup.picasso:picasso:2.5.2</package>
+    <package>com.tapjoy:tapjoy-android-sdk:12.4.2@aar</package>
+    <package>com.yandex.android:mobileads:2.142@aar</package>
+    <package>com.yandex.android:mobmetricalib:3.13.1</package>
   </packages>
-  <files>
-    <file>Assets/Plugins/Android/androidx.annotation.annotation-1.0.0.jar</file>
-    <file>Assets/Plugins/Android/androidx.arch.core.core-common-2.0.0.jar</file>
-    <file>Assets/Plugins/Android/androidx.arch.core.core-runtime-2.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.asynclayoutinflater.asynclayoutinflater-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.browser.browser-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.collection.collection-1.0.0.jar</file>
-    <file>Assets/Plugins/Android/androidx.coordinatorlayout.coordinatorlayout-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.core.core-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.cursoradapter.cursoradapter-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.customview.customview-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.documentfile.documentfile-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.drawerlayout.drawerlayout-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.fragment.fragment-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.interpolator.interpolator-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.legacy.legacy-support-core-ui-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.legacy.legacy-support-core-utils-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-common-2.0.0.jar</file>
-    <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-livedata-2.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-livedata-core-2.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-runtime-2.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-viewmodel-2.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.loader.loader-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.localbroadcastmanager.localbroadcastmanager-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.print.print-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.slidingpanelayout.slidingpanelayout-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.swiperefreshlayout.swiperefreshlayout-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.versionedparcelable.versionedparcelable-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.viewpager.viewpager-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.crashlytics.sdk.android.answers-1.4.7.aar</file>
-    <file>Assets/Plugins/Android/com.crashlytics.sdk.android.beta-1.2.10.aar</file>
-    <file>Assets/Plugins/Android/com.crashlytics.sdk.android.crashlytics-2.9.9.aar</file>
-    <file>Assets/Plugins/Android/com.crashlytics.sdk.android.crashlytics-core-2.6.8.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-18.1.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-base-18.1.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-identifier-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-18.1.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-16.0.1.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-api-phone-16.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-base-16.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-base-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-basement-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-drive-16.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-games-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-gass-18.1.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-measurement-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-measurement-api-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-measurement-base-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-measurement-impl-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-measurement-sdk-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-measurement-sdk-api-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-nearby-16.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-stats-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.auto.value.auto-value-annotations-1.6.3.jar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-analytics-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-analytics-unity-6.2.1.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-app-unity-6.2.1.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-common-18.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-crashlytics-unity-6.2.1.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-iid-19.0.1.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-iid-interop-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-measurement-connector-18.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.games.gpgs-plugin-support-0.9.64.aar</file>
-    <file>Assets/Plugins/Android/io.fabric.sdk.android.fabric-1.4.8.aar</file>
-  </files>
+  <files />
   <settings>
-    <setting name="androidAbis" value="arm64-v8a,armeabi-v7a,x86" />
-    <setting name="bundleId" value="com.TriplefinGames.StickBrawlPro" />
+    <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
+    <setting name="bundleId" value="com.TriplefinGames.StickBrawl" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
-    <setting name="gradleTemplateEnabled" value="False" />
+    <setting name="gradleTemplateEnabled" value="True" />
     <setting name="installAndroidPackages" value="True" />
-    <setting name="packageDir" value="Assets\Plugins\Android" />
+    <setting name="localMavenRepoDir" value="Assets/GeneratedLocalRepo" />
+    <setting name="packageDir" value="Assets/Plugins/Android" />
     <setting name="patchAndroidManifest" value="True" />
     <setting name="patchMainTemplateGradle" value="True" />
     <setting name="projectExportEnabled" value="False" />

@@ -85,11 +85,11 @@ public class DisplayStoreItems : MonoBehaviour
             
             if (itemType != ShopItemType.BrawlPro)
             {
-                currentCell.GetComponent<BuyItem>().cost = items[i].cost;
+                /*currentCell.GetComponent<BuyItem>().cost = items[i].cost;
                 currentCell.GetComponent<BuyItem>().itemType = items[i].shopItemType;
                 currentCell.GetComponent<BuyItem>().id = items[i].itemID;
                 currentCell.GetComponent<BuyItem>().itemName = items[i].itemName;
-                currentCell.GetComponent<BuyItem>().item = items[i];
+                currentCell.GetComponent<BuyItem>().item = items[i];*/
 
                 currentCell.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = items[i].name;
                 currentCell.transform.GetChild(1).GetComponent<Image>().color = items[i].backgroundColor;
@@ -117,7 +117,7 @@ public class DisplayStoreItems : MonoBehaviour
                 currentCell.transform.GetChild(3).GetChild(0).localPosition = new Vector2(0, currentCell.transform.GetChild(3).GetChild(0).localPosition.y);
                 currentCell.transform.GetChild(3).GetChild(0).GetComponent<TMPro.TMP_Text>().text = items[i].cost.ToString() + " USD";
                 currentCell.transform.GetChild(3).GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.white;
-                currentCell.GetComponent<BuyItem>().amount = items[i].amount;
+                //currentCell.GetComponent<BuyItem>().amount = items[i].amount;
                 if (items[i].cost == 0)
                 {
                     currentCell.transform.GetChild(3).GetChild(0).GetComponent<TMPro.TMP_Text>().text = "Free!";

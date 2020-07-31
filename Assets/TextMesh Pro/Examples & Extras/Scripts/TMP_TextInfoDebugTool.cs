@@ -165,6 +165,13 @@ namespace TMPro.Examples
                 Gizmos.DrawLine(originTR, originBR);
                 Gizmos.DrawLine(originBR, originBL);
 
+                if (textInfo.lineInfo[cInfo.lineNumber].firstCharacterIndex == i)
+                {
+                    Gizmos.color = Color.green;
+                    Gizmos.DrawLine((originTL + originTR) / 2, (originBL + originBR) / 2);
+                    Gizmos.DrawLine((originTL + originBL) / 2, (originTR + originBR) / 2);
+                }
+
                 // Draw xAdvance for each character.
                 gizmoSize = (ascenderEnd.y - descenderEnd.y) * 0.04f;
                 float xAdvance = m_Transform.TransformPoint(cInfo.xAdvance, 0, 0).x;
@@ -402,7 +409,7 @@ namespace TMPro.Examples
             {
                 TMP_LineInfo lineInfo = textInfo.lineInfo[i];
 
-                bool isLineVisible = (lineInfo.characterCount == 1 && textInfo.characterInfo[lineInfo.firstCharacterIndex].character == 10) ||
+                bool isLineVisible = (lineInfo.characterCount == 1 && (textInfo.characterInfo[lineInfo.firstCharacterIndex].character == 10 || textInfo.characterInfo[lineInfo.firstCharacterIndex].character == 11)) ||
                                       i > m_TextComponent.maxVisibleLines ||
                                      (m_TextComponent.overflowMode == TextOverflowModes.Page && textInfo.characterInfo[lineInfo.firstCharacterIndex].pageNumber + 1 != m_TextComponent.pageToDisplay) ? false : true;
 
@@ -414,7 +421,7 @@ namespace TMPro.Examples
                 float ascender = lineInfo.ascender;
                 float descender = lineInfo.descender;
                 float baseline = lineInfo.baseline;
-                float maxAdvance = lineInfo.maxAdvance;
+
                 Vector3 bottomLeft = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstCharacterIndex].bottomLeft.x, descender, 0));
                 Vector3 topLeft = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstCharacterIndex].bottomLeft.x, ascender, 0));
                 Vector3 topRight = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastCharacterIndex].topRight.x, ascender, 0));
@@ -424,8 +431,8 @@ namespace TMPro.Examples
 
                 Vector3 bottomOrigin = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstCharacterIndex].origin, descender, 0));
                 Vector3 topOrigin = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstCharacterIndex].origin, ascender, 0));
-                Vector3 bottomAdvance = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstCharacterIndex].origin + maxAdvance, descender, 0));
-                Vector3 topAdvance = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstCharacterIndex].origin + maxAdvance, ascender, 0));
+                Vector3 bottomAdvance = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastCharacterIndex].xAdvance, descender, 0));
+                Vector3 topAdvance = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastCharacterIndex].xAdvance, ascender, 0));
 
                 DrawDottedRectangle(bottomOrigin, topOrigin, topAdvance, bottomAdvance, Color.green);
 
