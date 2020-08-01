@@ -167,7 +167,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.TriplefinGames.StickBrawl
+    Android: com.TriplefinGames.StickBrawlPro
     Standalone: com.TriplefinGames.StickFight
     iPhone: com.TriplefinGames.StickBrawl
   buildNumber: {}
