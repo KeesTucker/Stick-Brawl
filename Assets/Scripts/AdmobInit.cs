@@ -12,7 +12,7 @@ public class AdmobInit : MonoBehaviour, IRewardedVideoAdListener
     // Start is called before the first frame update
     void Start()
     {
-        Appodeal.initialize("8787d18fb2dd41c8dccbf1e30b2352ad488c603553f79bc1", Appodeal.REWARDED_VIDEO, true);
+        Appodeal.initialize("bfbb02bda0683bf5c6f85b2329750b7c98775dcd9423a6e2", Appodeal.REWARDED_VIDEO, true);
         Appodeal.setRewardedVideoCallbacks(this);
     }
 
